@@ -15,12 +15,12 @@ export default function Home() {
                 style={{
                     backgroundImage: 'linear-gradient(255.75deg,rgba(255,255,255,0.3) 20.33%, rgba(255,255,255,0.05) 100%)'
                 }}
-                className={`w-full pb-6 h-full bg-transparent absolute z-[2] inset-0 flex flex-col justify-between isolate`}>
+                className={`w-full pb-6 h-full bg-blue-06 bg-opacity-40 absolute z-[2] inset-0 flex flex-col justify-between isolate`}>
                 <nav
                     style={{
                         backgroundImage: 'linear-gradient(to bottom,rgba(255,255,255,1), rgba(255,255,255,0.05))'
                     }}
-                    className={`w-full p-6 flex items-center justify-between bg-transparent lg:hidden`}>
+                    className={`w-full p-6 flex items-center justify-between lg:hidden bg-transparent`}>
                     <Link href={''}
                           className={`bg-white border border-blue-main text-blue-main rounded-[16px] px-4 py-2`}>
                         ورود / ثبت نام
@@ -70,7 +70,7 @@ export default function Home() {
                     </Link>
                 </nav>
 
-                <div className={'w-full flex flex-col lg:flex-row gap-4 lg:px-[128px] lg:items-center relative z-[2]'}>
+                <div className={'w-full bg-transparent flex flex-col lg:flex-row gap-4 lg:px-[128px] lg:items-center relative z-[2]'}>
                     <Image
                         src={heroMainImage}
                         alt={''}
@@ -83,7 +83,7 @@ export default function Home() {
                             &nbsp;
                             <span className={`${styles['gradiant-color']}`}>شهرتو</span>
                             &nbsp;
-                            بشناش!
+                            بشناس!
                         </h1>
                         <p className={`text-[16px] ps-6 text-write-04 max-w-[293px] lg:max-w-[593px] lg:text-[24px]`}>
                             تو این سایت اخبار، گردشگری، کسب و کارهای
