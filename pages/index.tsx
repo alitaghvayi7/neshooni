@@ -2,7 +2,7 @@ import Image from 'next/image';
 // import backgrounOne from "@/assets/images/mainpage/hero_bg_one.png";
 // import backgrounTwo from "@/assets/images/mainpage/hero_bg_two.png";
 import heroMainImage from "@/assets/images/mainpage/hero_main.png";
-import Logo from "@/assets/images/mainpagelogo.png";
+import Logo from "@/assets/images/mainpage/logo.png";
 import styles from "@/styles/Home/Home.module.css"
 import Link from "next/link";
 
