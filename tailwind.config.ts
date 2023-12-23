@@ -12,11 +12,6 @@ const config: Config = {
         Peyda: ["Peyda"],
         peydaBold: ["Peyda_bold"],
       },
-      backgroundImage: {
-        "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
-        "gradient-conic":
-          "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
-      },
       colors: {
         blue: {
           "08": "#0138B6",
@@ -45,6 +40,7 @@ const config: Config = {
           main: "#140E00",
         },
         gray: {
+          "03": "#AFAFAF",
           "02": "#F2F2F2",
           "01": "#DDDDDD",
         },

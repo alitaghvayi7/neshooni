@@ -9,7 +9,7 @@ import Link from "next/link";
 export default function Home() {
   return (
     <main
-      className={`flex w-full h-[590px] lg:h-[623px] items-center justify-between relative isolate bg-white font-Peyda`}
+      className={`flex w-full h-[590px] lg:h-[623px] items-center justify-between relative isolate bg-white`}
     >
       <section
         style={{
@@ -29,7 +29,7 @@ export default function Home() {
             href={""}
             className={`bg-white border border-blue-main text-blue-main rounded-[16px] px-4 py-2`}
           >
-            ورود / ثبت نام
+           :)
           </Link>
           <Image
             src={Logo}
@@ -37,7 +37,7 @@ export default function Home() {
             className={`w-8 h-8 object-cover`}
           />
           <Link
-            href={""}
+            href={"/auth"}
             className={`bg-white border border-blue-main text-blue-main rounded-[16px] px-6 py-2 flex items-center justify-center`}
           >
             ورود / ثبت نام
@@ -77,7 +77,7 @@ export default function Home() {
           </ul>
 
           <Link
-            href={""}
+            href={"/auth"}
             className={`bg-white border border-blue-main text-blue-main rounded-[16px] px-6 py-2 flex items-center justify-center`}
           >
             ورود / ثبت نام

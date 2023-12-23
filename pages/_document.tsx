@@ -4,7 +4,7 @@ export default function Document() {
   return (
     <Html lang="fa" dir={'rtl'}>
       <Head />
-      <body>
+      <body className={`font-Peyda`}>
         <Main />
         <NextScript />
       </body>
