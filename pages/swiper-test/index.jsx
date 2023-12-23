@@ -6,8 +6,6 @@ import "swiper/css/navigation";
 import "swiper/css/pagination";
 import "swiper/css/scrollbar";
 import { useState } from "react";
-import TreeOne from "../../assets/images/mainpage/asd.jpg";
-import TreeTwo from "../../assets/images/mainpage/hero_main.png";
 
 function SwiperTest() {
   const [my_swiper, set_my_swiper] = useState({});
