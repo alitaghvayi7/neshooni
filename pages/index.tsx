@@ -106,7 +106,7 @@ export default function Home() {
               }
             >
               جای جای &nbsp;
-              <span className={`${styles["gradiant-color"]} `}>شهرتو</span>
+              <span className={`${styles["gradiant-color"]}`}>شهرتو</span>
               &nbsp; بشناش!
             </h1>
             <p
