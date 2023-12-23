@@ -72,10 +72,10 @@ function SwiperTest() {
         autoplay={{ delay: 3000, disableOnInteraction: true }}
       >
         <SwiperSlide>
-          <div className="w-full h-[400px] bg-gray-400"></div>
+          <div className="w-full h-[400px] bg-gray-400 rounded-[32px]"></div>
         </SwiperSlide>
         <SwiperSlide>
-          <div className="w-full h-[400px] bg-black"></div>
+          <div className="w-full h-[400px] bg-black rounded-[32px]"></div>
         </SwiperSlide>
       </Swiper>
     </div>
