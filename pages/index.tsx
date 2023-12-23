@@ -5,6 +5,7 @@ import heroMainImage from "@/assets/images/mainpage/hero_main.png";
 import Logo from "@/assets/images/mainpage/Logo.png";
 import styles from "@/styles/Home/Home.module.css";
 import Link from "next/link";
+import SearchBox from "@/components/SearchBox";
 
 export default function Home() {
   return (
@@ -127,7 +128,11 @@ export default function Home() {
             backgroundImage: `linear-gradient(180deg, #D7E3FF 0%, #C3D5FF 100%)`,
           }}
           className={`absolute bottom-[-10%] lg:bottom-[-25%] left-0 right-0 w-full h-[65px] lg:h-[156px] z-[1]`}
-        ></div>
+        >
+          <div className="mt-8 xl:mt-28">
+            <SearchBox />
+          </div>
+        </div>
       </section>
 
       <section
