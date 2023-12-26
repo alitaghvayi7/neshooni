@@ -1,48 +1,55 @@
-import {MapContainer, Marker, Popup, TileLayer, useMap} from "react-leaflet";
-import {useEffect, useLayoutEffect, useState} from "react";
+import {MapContainer, Marker, Popup, TileLayer, useMap, useMapEvents} from "react-leaflet";
+import {useEffect, useRef} from "react";
 import 'leaflet/dist/leaflet.css';
-import {MapIcon} from "@heroicons/react/24/outline";
-
+import L from 'leaflet';
 
 const RecenterAutomatically = ({lat, lng}: { lat: number, lng: number }) => {
+
     const map = useMap();
+    const mapEvent = useMapEvents({
+        click(e) {
+        
+        },
+        locationfound(e) {
+
+        },
+        drag(e) {
+        },
+        dragend(e) {
+        },
+        moveend(e) {
+        }
+    })
+
     useEffect(() => {
         map.setView([lat, lng]);
     }, [lat, lng]);
-    return null;
+
+    return null
+
 }
 
-const Map = (props: { color: string, labelTitle: string, direction: string }) => {
+const Map = (props: {
+    color: string,
+    labelTitle: string,
+    direction: string,
+    boundes: { lat: number, lng: number },
+    setBoundes: Function
+}) => {
 
-    const {color = 'blue', labelTitle, direction = 'left'} = props
+    const {color = 'blue', labelTitle, direction = 'left', boundes, setBoundes} = props
 
-    const [boundes, setBoundes] = useState({lat: 0, lng: 0})
+    const mapRef = useRef<L.Map | null>(null);
 
-    useLayoutEffect(() => {
-        if ("geolocation" in navigator) {
-            // Prompt user for permission to access their location
-            navigator.geolocation.getCurrentPosition(
-                // Success callback function
-                (position) => {
-                    // Get the user's latitude and longitude coordinates
-                    const lat = position.coords.latitude;
-                    const lng = position.coords.longitude;
-
-                    // Do something with the location data, e.g. display on a map
-                    console.log(`Latitude: ${lat}, longitude: ${lng}`);
-                    setBoundes({lat, lng})
-                },
-                // Error callback function
-                (error) => {
-                    // Handle errors, e.g. user denied location sharing permissions
-                    console.error("Error getting user location:", error);
-                }
-            );
-        } else {
-            // Geolocation is not supported by the browser
-            console.error("Geolocation is not supported by this browser.");
+    useEffect(() => {
+        if (mapRef.current) {
+            mapRef.current.on('moveend', () => {
+                const bounds = mapRef.current!.getBounds();
+                console.log(bounds.getCenter())
+                setBoundes(bounds.getCenter());
+            });
         }
-    }, []);
+    }, [setBoundes]);
 
     return (
         <>
@@ -56,7 +63,7 @@ const Map = (props: { color: string, labelTitle: string, direction: string }) =>
                     className={`w-full h-full absolute inset-0 pointer-events-none z-[2] mix-blend-color flex items-center justify-center ${color === 'blue' ? 'bg-blue-04' : 'bg-yellow-04 '}`}>
                 </div>
                 <MapContainer
-
+                    ref={mapRef}
                     className={`w-full h-full absolute inset-0 z-[1]`}
                     center={[boundes?.lat, boundes?.lng]}
                     zoom={20}
@@ -70,6 +77,7 @@ const Map = (props: { color: string, labelTitle: string, direction: string }) =>
                         url='https://{s}.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}{r}.png'
                         subdomains='abcd'
                     />
+
                     <RecenterAutomatically lat={boundes?.lat} lng={boundes?.lng}/>
                 </MapContainer>
             </section>

@@ -1,14 +1,12 @@
 import Image from 'next/image';
-// import backgrounOne from "@/assets/images/mainpage/hero_bg_one.png";
-// import backgrounTwo from "@/assets/images/mainpage/hero_bg_two.png";
 import heroMainImage from "@/assets/images/mainpage/hero_main.png";
 import Logo from "@/assets/images/mainpage/logo.png";
 import styles from "@/styles/Home/Home.module.css"
 import Link from "next/link";
 import SearchBox from "@/components/shared/SearchBox";
-import {MapContainer, Marker, Popup, TileLayer} from "react-leaflet";
 import dynamic from "next/dynamic";
-import {useCallback, useRef, useState} from "react";
+import {useCallback, useLayoutEffect, useRef, useState} from "react";
+
 
 const MapComponent = dynamic(() => import("@/components/HomePage/Map/Map"), {ssr: false})
 
@@ -16,7 +14,7 @@ export default function Home() {
 
     const parentMapRef = useRef<HTMLElement>(null);
     const resizeElementRef = useRef<HTMLDivElement>(null);
-    const [percentage, setPercentage] = useState<number | null>(null)
+    const [percentage, setPercentage] = useState<number | null>(null);
 
 
     const onDrag = useCallback((e: MouseEvent) => {
@@ -36,6 +34,36 @@ export default function Home() {
             setPercentage(p)
         }
     }, [])
+
+    const [boundes, setBoundes] = useState({lat: 0, lng: 0})
+
+    useLayoutEffect(() => {
+        if ("geolocation" in navigator) {
+            // Prompt user for permission to access their location
+            navigator.geolocation.getCurrentPosition(
+                // Success callback function
+                (position) => {
+                    // Get the user's latitude and longitude coordinates
+                    const lat = position.coords.latitude;
+                    const lng = position.coords.longitude;
+
+                    // Do something with the location data, e.g. display on a map
+                    console.log(`Latitude: ${lat}, longitude: ${lng}`);
+                    setBoundes({lat, lng})
+                },
+                // Error callback function
+                (error) => {
+                    // Handle errors, e.g. user denied location sharing permissions
+                    console.error("Error getting user location:", error);
+                }
+            );
+        } else {
+            // Geolocation is not supported by the browser
+            console.error("Geolocation is not supported by this browser.");
+        }
+    }, []);
+
+
 
     return (
         <>
@@ -182,12 +210,12 @@ export default function Home() {
                 <div
                     style={{clipPath: `polygon(0 0, ${percentage ? percentage + .4 : 50}% 0, ${percentage ? percentage + .4 : 50}% 100%, 0% 100%)`}}
                     className={`w-[100%] h-full overflow-hidden absolute inset-0 transition z-[1]`}>
-                    <MapComponent color={'blue'} labelTitle={'کسب و کار'} direction={'left'}/>
+                    <MapComponent boundes={boundes} setBoundes={setBoundes} color={'blue'} labelTitle={'کسب و کار'} direction={'left'}/>
                 </div>
                 <div
                     style={{clipPath: `polygon(${percentage ? percentage + .4 : 50}% 0, 100% 0, 100% 100%, ${percentage ? percentage + .4 : 50}% 100%)`}}
                     className={`w-[100%] h-full overflow-hidden absolute inset-0 transition z-[1]`}>
-                    <MapComponent color={'yellow'} labelTitle={'گردشگری'} direction={'right'}/>
+                    <MapComponent boundes={boundes} setBoundes={setBoundes} color={'yellow'} labelTitle={'گردشگری'} direction={'right'}/>
                 </div>
 
             </section>
