@@ -8,9 +8,35 @@ import Link from "next/link";
 import SearchBox from "@/components/shared/SearchBox";
 import {MapContainer, Marker, Popup, TileLayer} from "react-leaflet";
 import dynamic from "next/dynamic";
-const MapComponent = dynamic(()=> import("@/components/HomePage/Map/Map"),{ssr:false})
+import {useCallback, useRef, useState} from "react";
+
+const MapComponent = dynamic(() => import("@/components/HomePage/Map/Map"), {ssr: false})
 
 export default function Home() {
+
+    const parentMapRef = useRef<HTMLElement>(null);
+    const resizeElementRef = useRef<HTMLDivElement>(null);
+    const [percentage, setPercentage] = useState<number | null>(null)
+
+
+    const onDrag = useCallback((e: MouseEvent) => {
+        e.preventDefault();
+        // @ts-ignore
+        const sel = window.getSelection ? window.getSelection() : document.selection;
+        if (sel) {
+            if (sel.removeAllRanges) {
+                sel.removeAllRanges();
+            } else if (sel.empty) {
+                sel.empty();
+            }
+        }
+
+        if (parentMapRef.current && resizeElementRef.current) {
+            const p = ((e.pageX - ((window.innerWidth - parentMapRef.current.clientWidth) / 2)) / parentMapRef.current.clientWidth) * 100
+            setPercentage(p)
+        }
+    }, [])
+
     return (
         <>
             <section
@@ -133,17 +159,37 @@ export default function Home() {
 
             </section>
 
-            <section className={`w-[80%] h-[300px] mx-auto overflow-hidden rounded-[16px] my-[15rem] flex items-center justify-center relative`}>
+            <section
+                dir={'ltr'}
+                ref={parentMapRef}
+                className={`w-[80%] h-[300px] mx-auto overflow-hidden rounded-[16px] my-[15rem] flex items-center justify-center relative isolate`}>
                 <div
-                    style={{clipPath:`polygon(0 0, 50% 0, 50% 100%, 0% 100%)`}}
-                    className={`w-[100%] h-full overflow-hidden absolute inset-0`}>
+                    ref={resizeElementRef}
+                    onMouseDown={(e) => {
+                        if (parentMapRef.current) {
+                            parentMapRef.current.addEventListener('mousemove', onDrag)
+                        }
+                    }}
+                    onClick={(e) => {
+                        if (parentMapRef.current) {
+                            parentMapRef.current.removeEventListener('mousemove', onDrag)
+                        }
+                    }}
+
+                    style={{left: `${percentage ? percentage + .4 : 49.8}%`}}
+                    className={`absolute h-full w-[5px] top-0 bottom-0 bg-yellow-main z-[2] cursor-e-resize left-[49.8%] transition`}></div>
+
+                <div
+                    style={{clipPath: `polygon(0 0, ${percentage ? percentage + .4 : 50}% 0, ${percentage ? percentage + .4 : 50}% 100%, 0% 100%)`}}
+                    className={`w-[100%] h-full overflow-hidden absolute inset-0 transition z-[1]`}>
                     <MapComponent color={'blue'} labelTitle={'کسب و کار'} direction={'left'}/>
                 </div>
                 <div
-                    style={{clipPath:`polygon(50% 0, 100% 0, 100% 100%, 50% 100%);`}}
-                    className={`w-[100%] h-full overflow-hidden absolute inset-0`}>
+                    style={{clipPath: `polygon(${percentage ? percentage + .4 : 50}% 0, 100% 0, 100% 100%, ${percentage ? percentage + .4 : 50}% 100%)`}}
+                    className={`w-[100%] h-full overflow-hidden absolute inset-0 transition z-[1]`}>
                     <MapComponent color={'yellow'} labelTitle={'گردشگری'} direction={'right'}/>
                 </div>
+
             </section>
 
         </>
