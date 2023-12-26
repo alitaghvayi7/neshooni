@@ -2,7 +2,23 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
+@font-face {
+  font-family: "Peyda";
+  src: url("../public/assets/fonts/Peyda-Regular.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: condensed;
+}
+
+@font-face {
+  font-family: "Peyda_bold";
+  src: url("../public/assets/fonts/Peyda-Bold.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-stretch: normal;
+}
+
+/* :root {
   --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 214, 219, 220;
   --background-end-rgb: 255, 255, 255;
@@ -24,4 +40,29 @@ body {
       rgb(var(--background-end-rgb))
     )
     rgb(var(--background-start-rgb));
+} */
+.clippath1 {
+  clip-path: polygon(
+    99% 1%,
+    97% 10%,
+    94% 20%,
+    89% 28%,
+    83% 39%,
+    77% 48%,
+    70% 56%,
+    62% 64%,
+    55% 71%,
+    48% 78%,
+    40% 85%,
+    34% 93%,
+    26% 100%,
+    100% 100%
+  );
+}
+.swiper-rotate1 {
+  transform: rotateY(180deg);
+  transform: rotateX(180deg);
+}
+.swiper-rotate2{
+  transform: rotateY(180deg);
 }

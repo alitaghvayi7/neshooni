@@ -5,6 +5,7 @@ import heroMainImage from "@/assets/images/mainpage/hero_main.png";
 import Logo from "@/assets/images/mainpage/logo.png";
 import styles from "@/styles/Home/Home.module.css"
 import Link from "next/link";
+import SearchBox from "@/components/SearchBox";
 import {MapContainer, Marker, Popup, TileLayer} from "react-leaflet";
 import dynamic from "next/dynamic";
 const MapComponent = dynamic(()=> import("@/components/HomePage/Map/Map"),{ssr:false})
@@ -37,31 +38,32 @@ export default function Home() {
 
                 <nav
                     style={{
-                        backgroundImage: 'linear-gradient(to bottom,rgba(255,255,255,1), rgba(255,255,255,0.05))'
+                        backgroundImage:
+                            "linear-gradient(to bottom,rgba(255,255,255,1), rgba(255,255,255,0.05))",
                     }}
-                    className={`w-full py-[52px] px-[10%] items-center justify-between bg-transparent hidden lg:flex`}>
+                    className={`w-full py-[52px] px-[10%] items-center justify-between bg-transparent hidden lg:flex`}
+                >
                     <ul className={`flex items-center gap-12`}>
-                        <Link href={''}>
-                            <Image src={Logo} alt={'qom-neshan-logo'} className={`w-8 h-8 object-cover`}/>
+                        <Link href={""}>
+                            <Image
+                                src={Logo}
+                                alt={"qom-neshan-logo"}
+                                className={`w-8 h-8 object-cover`}
+                            />
                         </Link>
-                        <Link href={''}
-                              className={`text-[18px] text-write-main`}>
+                        <Link href={""} className={`text-[18px] text-write-main`}>
                             صفحه اصلی
-                        </Link> <Link href={''}
-                                      className={`text-[18px] text-write-main`}>
-                        گردشگری
-                    </Link>
-                        <Link href={''}
-                              className={`text-[18px] text-write-main`}>
+                        </Link>{" "}
+                        <Link href={""} className={`text-[18px] text-write-main`}>
+                            گردشگری
+                        </Link>
+                        <Link href={""} className={`text-[18px] text-write-main`}>
                             کسب و کار
                         </Link>
-
-                        <Link href={''}
-                              className={`text-[18px] text-write-main`}>
+                        <Link href={""} className={`text-[18px] text-write-main`}>
                             اخبار
                         </Link>
-                        <Link href={''}
-                              className={`text-[18px] text-write-main`}>
+                        <Link href={""} className={`text-[18px] text-write-main`}>
                             شما معرفی کنید
                         </Link>
                     </ul>
@@ -74,27 +76,38 @@ export default function Home() {
                 </nav>
 
                 <div
-                    className={'w-full bg-transparent flex flex-col lg:flex-row gap-4 lg:px-[128px] lg:items-center relative z-[2]'}>
+                    className={
+                        "w-full flex flex-col lg:flex-row gap-4 lg:px-[128px] lg:items-center relative z-[2]"
+                    }
+                >
                     <Image
                         src={heroMainImage}
-                        alt={''}
+                        alt={""}
                         className={`object-cover w-[385px] mx-auto h-[266px] lg:w-[700px] lg:h-[500px] lg:order-2`}
                     />
 
-                    <div className={'w-full flex flex-col gap-4 lg:gap-10 lg:order-1 lg:h-full'}>
-                        <h1 className={'text-[24px] lg:text-[64px] font-bold text-write-main ps-6'}>
-                            جای جای
-                            &nbsp;
-                            <span className={`${styles['gradiant-color']}`}>شهرتو</span>
-                            &nbsp;
-                            بشناس!
+                    <div
+                        className={
+                            "w-full flex flex-col gap-4 lg:gap-10 lg:order-1 lg:h-full"
+                        }
+                    >
+                        <h1
+                            className={
+                                "text-[24px] lg:text-[64px] font-bold text-write-main ps-6 font-peydaBold"
+                            }
+                        >
+                            جای جای &nbsp;
+                            <span className={`${styles["gradiant-color"]}`}>شهرتو</span>
+                            &nbsp; بشناش!
                         </h1>
-                        <p className={`text-[16px] ps-6 text-write-04 max-w-[293px] lg:max-w-[593px] lg:text-[24px]`}>
-                            تو این سایت اخبار، گردشگری، کسب و کارهای
-                            شهرتو به راحتی پیدا کن
+                        <p
+                            className={`text-[16px] ps-6 text-write-04 max-w-[293px] lg:max-w-[593px] lg:text-[24px]`}
+                        >
+                            تو این سایت اخبار، گردشگری، کسب و کارهای شهرتو به راحتی پیدا کن
                         </p>
                         <button
-                            className={`bg-white w-[260px] ms-6 border border-yellow-04 text-write-03 py-4 px-10 rounded-[8px] items-center justify-center hidden lg:flex`}>
+                            className={`bg-white w-[260px] ms-6 border border-yellow-04 text-write-03 py-4 px-10 rounded-[8px] items-center justify-center hidden lg:flex`}
+                        >
                             صاحب کسب و کار هستم
                         </button>
                     </div>
@@ -102,16 +115,17 @@ export default function Home() {
 
                 <div
                     style={{
-                        backgroundImage: `linear-gradient(180deg, #D7E3FF 0%, #C3D5FF 100%)`
+                        backgroundImage: `linear-gradient(180deg, #D7E3FF 0%, #C3D5FF 100%)`,
                     }}
                     className={`absolute bottom-[-10%] lg:bottom-[-25%] left-0 right-0 w-full h-[65px] lg:h-[156px] z-[1]`}
-                ></div>
-
-
-                <div className={`w-full overflow-hidden h-[200px]`}>
-                    <MapComponent />
+                >
+                    <div className="mt-8 xl:mt-28">
+                        <SearchBox/>
+                    </div>
                 </div>
-
+                <div className={`w-full overflow-hidden h-[200px]`}>
+                    <MapComponent/>
+                </div>
             </section>
 
             <section
