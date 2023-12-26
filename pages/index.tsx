@@ -5,6 +5,9 @@ import heroMainImage from "@/assets/images/mainpage/hero_main.png";
 import Logo from "@/assets/images/mainpage/logo.png";
 import styles from "@/styles/Home/Home.module.css"
 import Link from "next/link";
+import {MapContainer, Marker, Popup, TileLayer} from "react-leaflet";
+import dynamic from "next/dynamic";
+const MapComponent = dynamic(()=> import("@/components/HomePage/Map/Map"),{ssr:false})
 
 export default function Home() {
     return (
@@ -44,18 +47,18 @@ export default function Home() {
                         <Link href={''}
                               className={`text-[18px] text-write-main`}>
                             صفحه اصلی
-                        </Link>   <Link href={''}
-                                        className={`text-[18px] text-write-main`}>
-                         گردشگری
-                        </Link>
+                        </Link> <Link href={''}
+                                      className={`text-[18px] text-write-main`}>
+                        گردشگری
+                    </Link>
                         <Link href={''}
                               className={`text-[18px] text-write-main`}>
-                           کسب و کار
+                            کسب و کار
                         </Link>
 
                         <Link href={''}
                               className={`text-[18px] text-write-main`}>
-                        اخبار
+                            اخبار
                         </Link>
                         <Link href={''}
                               className={`text-[18px] text-write-main`}>
@@ -70,7 +73,8 @@ export default function Home() {
                     </Link>
                 </nav>
 
-                <div className={'w-full bg-transparent flex flex-col lg:flex-row gap-4 lg:px-[128px] lg:items-center relative z-[2]'}>
+                <div
+                    className={'w-full bg-transparent flex flex-col lg:flex-row gap-4 lg:px-[128px] lg:items-center relative z-[2]'}>
                     <Image
                         src={heroMainImage}
                         alt={''}
@@ -89,7 +93,8 @@ export default function Home() {
                             تو این سایت اخبار، گردشگری، کسب و کارهای
                             شهرتو به راحتی پیدا کن
                         </p>
-                        <button className={`bg-white w-[260px] ms-6 border border-yellow-04 text-write-03 py-4 px-10 rounded-[8px] items-center justify-center hidden lg:flex`}>
+                        <button
+                            className={`bg-white w-[260px] ms-6 border border-yellow-04 text-write-03 py-4 px-10 rounded-[8px] items-center justify-center hidden lg:flex`}>
                             صاحب کسب و کار هستم
                         </button>
                     </div>
@@ -101,6 +106,12 @@ export default function Home() {
                     }}
                     className={`absolute bottom-[-10%] lg:bottom-[-25%] left-0 right-0 w-full h-[65px] lg:h-[156px] z-[1]`}
                 ></div>
+
+
+                <div className={`w-full overflow-hidden h-[200px]`}>
+                    <MapComponent />
+                </div>
+
             </section>
 
             <section
