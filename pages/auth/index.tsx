@@ -4,7 +4,6 @@ import Logo from "@/assets/images/mainpage/logo.png";
 import GoogleLogo from "@/assets/images/auth/google-logo.png";
 import styles from "@/styles/Auth/Auth.module.css";
 import {useState, useRef, useEffect, Fragment} from "react";
-import {set} from "yaml/dist/schema/yaml-1.1/set";
 
 
 export default function Auth() {
@@ -13,7 +12,7 @@ export default function Auth() {
     const [change, setChange] = useState(false)
     const [code, setCode] = useState("");
     const [step, setStep] = useState(1)
-    const inputRef = useRef<HTMLInputElement>();
+    const inputRef = useRef<HTMLInputElement | null>(null);
 
     const onChange = (value: string) => {
 
@@ -26,28 +25,23 @@ export default function Auth() {
         }
     }
 
-    const onBlur = () => {
-        if (!change) {
-            setChange(true)
-        }
-    }
 
-    const onKeyDown = (event: KeyboardEvent) => {
+    const onKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
         event.stopPropagation();
         event.preventDefault();
         // onChange()
-        const currentCode = event.which || event.keyCode || event.code;
+        const currentCode = event.nativeEvent.which || event.nativeEvent.keyCode || event.nativeEvent.code;
 
         let currentKey = event.key;
         if (!currentKey) {
-            currentKey = String.fromCharCode(currentCode);
+            currentKey = String.fromCharCode(Number(currentCode));
         }
 
         if (currentKey === 'Backspace') {
             // setCodeLength(codeLength - 1 <= 0 ? 1 : codeLength - 1);
             setCode(code.slice(0, code.length - 1))
         } else {
-            if (isNaN(currentKey)) {
+            if (isNaN(Number(currentKey))) {
                 return
             }
             if (code.length + 1 > maxLength) {
@@ -139,7 +133,7 @@ export default function Auth() {
                                     className={`w-full h-[40px] flex items-center gap-2 rounded-[16px] border border-gray-01 mt-8 py-2 px-4`}>
                                     <input
                                         ref={(r) => {
-                                            if(code==="") {
+                                            if (code === "") {
                                                 inputRef.current = r
                                             }
                                             if (code.length === 1) {
