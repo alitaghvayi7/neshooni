@@ -65,8 +65,8 @@ function SwiperTest() {
           width: "100%",
           zIndex: "0",
           pointerEvents: "none",
-          borderRadius : "32px",
-          overflow : "hidden"
+          borderRadius: "32px",
+          overflow: "hidden",
         }}
         modules={[Scrollbar]}
         spaceBetween={50}
