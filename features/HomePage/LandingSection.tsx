@@ -26,7 +26,7 @@ const LandingSection = () => {
                             ورود / ثبت نام
                         </Link>
                         <Image src={Logo} alt={'qom-neshan-logo'} className={`w-8 h-8 object-cover`}/>
-                        <Link href={''}
+                        <Link href={'/auth'}
                               className={`bg-white border border-blue-main text-blue-main rounded-[16px] px-6 py-2 flex items-center justify-center`}>
                             ورود / ثبت نام
                         </Link>
@@ -65,7 +65,7 @@ const LandingSection = () => {
                         </ul>
 
 
-                        <Link href={''}
+                        <Link href={'/auth'}
                               className={`bg-white border border-blue-main text-blue-main rounded-[16px] px-6 py-2 flex items-center justify-center`}>
                             ورود / ثبت نام
                         </Link>
