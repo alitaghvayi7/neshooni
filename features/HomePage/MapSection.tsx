@@ -9,7 +9,8 @@ const MapSection = () => {
     const [percentage, setPercentage] = useState<number | null>(null);
 
 
-    const onDrag = useCallback((e: MouseEvent) => {
+    const onDrag = useCallback((e: MouseEvent | TouchEvent) => {
+        e.stopImmediatePropagation();
         e.preventDefault();
         // @ts-ignore
         const sel = window.getSelection ? window.getSelection() : document.selection;
@@ -21,8 +22,16 @@ const MapSection = () => {
             }
         }
 
+        console.log(e)
+
         if (parentMapRef.current && resizeElementRef.current) {
-            const p = ((e.pageX - ((window.innerWidth - parentMapRef.current.clientWidth) / 2)) / parentMapRef.current.clientWidth) * 100
+            let pageX;
+            if (e instanceof MouseEvent) {
+                pageX = e.pageX;
+            } else if (e instanceof TouchEvent) {
+                pageX = e.changedTouches[0].pageX;
+            }
+            const p = ((pageX - ((window.innerWidth - parentMapRef.current.clientWidth) / 2)) / parentMapRef.current.clientWidth) * 100
             setPercentage(p)
         }
     }, [])
@@ -76,9 +85,20 @@ const MapSection = () => {
                                 parentMapRef.current.addEventListener('mousemove', onDrag)
                             }
                         }}
-                        onClick={(e) => {
+                        onTouchStartCapture={() => {
+
+                            if (parentMapRef.current) {
+                                parentMapRef.current.addEventListener('touchmove', onDrag)
+                            }
+                        }}
+                        onMouseUp={(e) => {
                             if (parentMapRef.current) {
                                 parentMapRef.current.removeEventListener('mousemove', onDrag)
+                            }
+                        }}
+                        onTouchEnd={() => {
+                            if (parentMapRef.current) {
+                                parentMapRef.current.removeEventListener('touchmove', onDrag)
                             }
                         }}
 
@@ -88,14 +108,24 @@ const MapSection = () => {
                     <div
                         style={{clipPath: `polygon(0 0, ${percentage ? percentage + .4 : 50}% 0, ${percentage ? percentage + .4 : 50}% 100%, 0% 100%)`}}
                         className={`w-[100%] h-full overflow-hidden absolute inset-0 transition z-[1]`}>
-                        <MapComponent boundes={boundes} setBoundes={setBoundes} color={'blue'} labelTitle={'کسب و کار'}
-                                      direction={'left'}/>
+                        <MapComponent
+                            boundes={boundes}
+                            setBoundes={setBoundes}
+                            color={'blue'}
+                            labelTitle={'کسب و کار'}
+                            direction={'left'}
+                        />
                     </div>
                     <div
                         style={{clipPath: `polygon(${percentage ? percentage + .4 : 50}% 0, 100% 0, 100% 100%, ${percentage ? percentage + .4 : 50}% 100%)`}}
                         className={`w-[100%] h-full overflow-hidden absolute inset-0 transition z-[1]`}>
-                        <MapComponent boundes={boundes} setBoundes={setBoundes} color={'yellow'} labelTitle={'گردشگری'}
-                                      direction={'right'}/>
+                        <MapComponent
+                            boundes={boundes}
+                            setBoundes={setBoundes}
+                            color={'yellow'}
+                            labelTitle={'گردشگری'}
+                            direction={'right'}
+                        />
                     </div>
 
                 </section>

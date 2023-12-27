@@ -4,6 +4,7 @@ import Logo from "../../assets/images/mainpage/logo.png";
 import heroMainImage from "../../assets/images/mainpage/hero_main.png";
 import styles from "../../styles/Home/Home.module.css";
 import SearchBox from "../../components/shared/SearchBox";
+import {Bars3Icon} from "@heroicons/react/24/outline";
 
 const LandingSection = () => {
     return (
@@ -21,10 +22,7 @@ const LandingSection = () => {
                             backgroundImage: 'linear-gradient(to bottom,rgba(255,255,255,1), rgba(255,255,255,0.05))'
                         }}
                         className={`w-full p-6 flex items-center justify-between lg:hidden bg-transparent`}>
-                        <Link href={''}
-                              className={`bg-white border border-blue-main text-blue-main rounded-[16px] px-4 py-2`}>
-                            ورود / ثبت نام
-                        </Link>
+                        <Bars3Icon className={'w-8 h-8 cursor-pointer text-write-main'}/>
                         <Image src={Logo} alt={'qom-neshan-logo'} className={`w-8 h-8 object-cover`}/>
                         <Link href={'/auth'}
                               className={`bg-white border border-blue-main text-blue-main rounded-[16px] px-6 py-2 flex items-center justify-center`}>
