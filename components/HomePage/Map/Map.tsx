@@ -1,29 +1,30 @@
 import {MapContainer, Marker, Popup, TileLayer, useMap, useMapEvents} from "react-leaflet";
-import {useEffect, useRef} from "react";
+import {useEffect, useRef, useState} from "react";
 import 'leaflet/dist/leaflet.css';
 import L from 'leaflet';
 
 const RecenterAutomatically = ({lat, lng}: { lat: number, lng: number }) => {
 
     const map = useMap();
-    const mapEvent = useMapEvents({
-        click(e) {
-        
-        },
-        locationfound(e) {
 
-        },
-        drag(e) {
-        },
-        dragend(e) {
-        },
-        moveend(e) {
-        }
-    })
+    // const mapEvent = useMapEvents({
+    //     click(e) {
+    //
+    //     },
+    //     locationfound(e) {
+    //
+    //     },
+    //     drag(e) {
+    //     },
+    //     dragend(e) {
+    //     },
+    //     moveend(e) {
+    //     }
+    // })
 
     useEffect(() => {
         map.setView([lat, lng]);
-    }, [lat, lng]);
+    }, [lat, lng, map]);
 
     return null
 
@@ -38,18 +39,25 @@ const Map = (props: {
 }) => {
 
     const {color = 'blue', labelTitle, direction = 'left', boundes, setBoundes} = props
-
+    const [loaded, setLoaded] = useState(false)
     const mapRef = useRef<L.Map | null>(null);
 
     useEffect(() => {
-        if (mapRef.current) {
-            mapRef.current.on('moveend', () => {
-                const bounds = mapRef.current!.getBounds();
-                console.log(bounds.getCenter())
-                setBoundes(bounds.getCenter());
-            });
+        setLoaded(true);
+    }, [])
+
+    useEffect(() => {
+        if (loaded) {
+            if (mapRef.current) {
+                mapRef.current.on('drag', () => {
+                    const bounds = mapRef.current!.getBounds();
+                    setBoundes(bounds.getCenter());
+                });
+            }
         }
-    }, [setBoundes]);
+
+    }, [setBoundes, loaded]);
+
 
     return (
         <>
@@ -66,7 +74,7 @@ const Map = (props: {
                     ref={mapRef}
                     className={`w-full h-full absolute inset-0 z-[1]`}
                     center={[boundes?.lat, boundes?.lng]}
-                    zoom={20}
+                    zoom={30}
                     scrollWheelZoom={false}
                     fadeAnimation={true}
                     zoomControl={false}
