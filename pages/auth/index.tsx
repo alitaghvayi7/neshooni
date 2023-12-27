@@ -11,19 +11,18 @@ export default function Auth() {
 
     const maxLength = 6;
     const [change, setChange] = useState(false)
-    const [codeLength, setCodeLength] = useState(1);
     const [code, setCode] = useState("");
     const [step, setStep] = useState(1)
     const inputRef = useRef<HTMLInputElement>();
 
     const onChange = (value: string) => {
 
-        if (value !== "" && codeLength <= maxLength) {
-            setCodeLength(codeLength + 1 > maxLength ? 6 : codeLength + 1);
+        if (value !== "" && code.length + 1 <= maxLength) {
+            // setCodeLength(codeLength + 1 > maxLength ? 6 : codeLength + 1);
             setCode(code + value)
         } else {
-            setCodeLength(codeLength - 1 <= 0 ? 1 : codeLength - 1);
-            setCode(code.slice(0, codeLength - 1))
+            // setCodeLength(codeLength - 1 <= 0 ? 1 : codeLength - 1);
+            setCode(code.slice(0, code.length - 1))
         }
     }
 
@@ -45,11 +44,14 @@ export default function Auth() {
         }
 
         if (currentKey === 'Backspace') {
-            setCodeLength(codeLength - 1 <= 0 ? 1 : codeLength - 1);
-            setCode(code.slice(0, codeLength - 1))
+            // setCodeLength(codeLength - 1 <= 0 ? 1 : codeLength - 1);
+            setCode(code.slice(0, code.length - 1))
         } else {
             if (isNaN(currentKey)) {
                 return
+            }
+            if (code.length + 1 > maxLength) {
+                return;
             }
             onChange(currentKey)
         }
@@ -60,7 +62,7 @@ export default function Auth() {
         if (inputRef.current) {
             inputRef.current?.focus()
         }
-    }, [codeLength, step]);
+    }, [code.length, step]);
 
 
     return (
@@ -137,7 +139,10 @@ export default function Auth() {
                                     className={`w-full h-[40px] flex items-center gap-2 rounded-[16px] border border-gray-01 mt-8 py-2 px-4`}>
                                     <input
                                         ref={(r) => {
-                                            if (codeLength === 1) {
+                                            if(code==="") {
+                                                inputRef.current = r
+                                            }
+                                            if (code.length === 1) {
                                                 inputRef.current = r
                                             }
                                         }}
@@ -152,7 +157,7 @@ export default function Auth() {
                                     />
                                     <input
                                         ref={(r) => {
-                                            if (codeLength === 2) {
+                                            if (code.length === 2) {
                                                 inputRef.current = r
                                             }
                                         }}
@@ -167,7 +172,7 @@ export default function Auth() {
                                     />
                                     <input
                                         ref={(r) => {
-                                            if (codeLength === 3) {
+                                            if (code.length === 3) {
                                                 inputRef.current = r
                                             }
                                         }}
@@ -182,7 +187,7 @@ export default function Auth() {
                                     />
                                     <input
                                         ref={(r) => {
-                                            if (codeLength === 4) {
+                                            if (code.length === 4) {
                                                 inputRef.current = r
                                             }
                                         }}
@@ -197,7 +202,7 @@ export default function Auth() {
                                     />
                                     <input
                                         ref={(r) => {
-                                            if (codeLength === 5) {
+                                            if (code.length === 5) {
                                                 inputRef.current = r
                                             }
                                         }}
@@ -212,7 +217,7 @@ export default function Auth() {
                                     />
                                     <input
                                         ref={(r) => {
-                                            if (codeLength === 6) {
+                                            if (code.length === 6) {
                                                 inputRef.current = r
                                             }
                                         }}
