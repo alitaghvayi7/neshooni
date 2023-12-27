@@ -14,16 +14,16 @@ const MapSection = () => {
     e.stopImmediatePropagation();
     e.preventDefault();
     // @ts-ignore
-    const sel = window.getSelection
-      ? window.getSelection()
-      : document.selection;
-    if (sel) {
-      if (sel.removeAllRanges) {
-        sel.removeAllRanges();
-      } else if (sel.empty) {
-        sel.empty();
-      }
-    }
+    // const sel = window.getSelection
+    //   ? window.getSelection()
+    //   : 'selection' in document && document.selection;
+    // if (sel) {
+    //   if (sel.removeAllRanges) {
+    //     sel.removeAllRanges();
+    //   } else if (sel.empty) {
+    //     sel.empty();
+    //   }
+    // }
 
     if (parentMapRef.current && resizeElementRef.current) {
       let pageX;
