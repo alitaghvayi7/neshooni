@@ -71,7 +71,7 @@ const LandingSection = () => {
 
                     <div
                         className={
-                            "w-full flex flex-col lg:flex-row gap-4 lg:px-[128px] lg:items-center relative z-[2]"
+                            "w-full max-w-[1689px] mx-auto flex flex-col lg:flex-row gap-4 lg:px-[128px] lg:items-center relative z-[2]"
                         }
                     >
                         <Image
