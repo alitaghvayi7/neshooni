@@ -74,13 +74,13 @@ const MapSection = () => {
     return (
         <>
             <section
-                className={`flex flex-col w-[calc(100%-56px)] lg:w-[calc(100%-128px)] max-w-[1689px] mx-auto my-[8rem] gap-8`}>
+                className={`flex flex-col w-[calc(100%-56px)] lg:w-[calc(100%-128px)] max-w-[1689px] mx-auto mt-[5rem] lg:mt-[8rem] gap-8`}>
                 <span style={{backgroundClip: "content-box", borderRadius: '0 0 32px 0'}}
                       className={`w-fit pl-6 border-b border-r border-yellow-04 bg-yellow-06 indent-5 font-bold text-[20px] lg:text-[40px] text-write-main`}>از روی نقشه شهر پیدا کن</span>
                 {boundes.lat === 0 && boundes.lng === 0 && (
                     <section
                         dir={"ltr"}
-                        className={`w-full h-[414px] mx-auto overflow-hidden rounded-[16px] bg-gray-01 flex items-center justify-center relative isolate`}
+                        className={`w-full h-[329px] lg:h-[414px] mx-auto overflow-hidden rounded-[16px] bg-gray-01 flex items-center justify-center relative isolate`}
                     ></section>
                 )}
                 {boundes.lat !== 0 && boundes.lng !== 0 && (
@@ -92,7 +92,7 @@ const MapSection = () => {
                         }}
                         dir={"ltr"}
                         ref={parentMapRef}
-                        className={`w-full h-[414px] mx-auto overflow-hidden rounded-[16px]  flex items-center justify-center relative isolate`}
+                        className={`w-full h-[329px] lg:h-[414px] mx-auto overflow-hidden rounded-[16px]  flex items-center justify-center relative isolate`}
                     >
                         <div
                             ref={resizeElementRef}

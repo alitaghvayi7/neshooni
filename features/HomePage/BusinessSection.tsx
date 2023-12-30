@@ -5,7 +5,7 @@ import {StarIcon} from "@heroicons/react/24/solid";
 const BusinessSection = () => {
     return (
         <>
-            <section className={`flex flex-col items-center w-full max-w-[1689px] mx-auto mt-[15rem] gap-8`}>
+            <section className={`flex flex-col items-center w-full max-w-[1689px] mx-auto mt-[11rem] lg:mt-[15rem] gap-8`}>
                 <div className={`w-[calc(100%-56px)] lg:w-[calc(100%-128px)] flex items-center justify-between`}>
                         <span style={{backgroundClip: "content-box", borderRadius: '0 0 32px 0'}}
                               className={`w-fit pl-6 border-b border-r border-yellow-04 bg-yellow-06 indent-5 font-bold text-[20px] lg:text-[40px] text-write-main`}>کسب و کارها</span>
@@ -16,7 +16,7 @@ const BusinessSection = () => {
                 <div className={`w-full flex items-center justify-center bg-gray-02 bg-opacity-25`}>
                     <div
                         className={`w-[calc(100%-56px)] lg:w-[calc(100%-128px)] flex-col lg:flex-row  flex items-center bg-white rounded-[32px] border border-yellow-04`}>
-                        <div className={`w-full lg:w-1/2 h-[429px]`}>
+                        <div className={`w-full lg:w-1/2 h-[249px] lg:h-[429px]`}>
                             <BusinessSlider/>
                         </div>
                         <div className={`w-full lg:w-1/2 h-[429px] p-4 lg:p-[4rem] flex flex-col justify-between`}>
@@ -32,7 +32,7 @@ const BusinessSection = () => {
                                 پوشاک یا لِباس یا جامه آنچه است که بر تن پوشیده می‌شود. پوشاک، و دیگر خطرهای موجود در طبیعت حفظ می‌کند. همچنین پوشاک می‌تواند برای راحتی، زیبایی، حفظ در برابر سرما یا دگرگونی دمایی و نیز برای ایمنی استفاده شود.
                                 پوشیدنی‌ها همچنین می‌توانند نشان دهندهٔ باورهای مذهبی، فرهنگی و دیگر معانی اجتماعی باشند.
                             </p>
-                            <Link href={''} className={`py-[14px] px-[54px] border border-yellow-main rounded-[16px] w-fit text-[16px] self-end`}>بیشتر</Link>
+                            <Link href={''} className={`py-[6px] px-[38px] lg:py-[14px] lg:px-[54px] border border-yellow-main rounded-[16px] w-fit text-[16px] self-end`}>بیشتر</Link>
                         </div>
                     </div>
                 </div>
