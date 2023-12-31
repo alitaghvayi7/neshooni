@@ -9,7 +9,7 @@ import { Fragment } from "react";
 
 const slides = [
   {
-    id: crypto.randomUUID(),
+    id: Math.random(),
     image: Image3,
     publisher: "همشهری آنلاین",
     date: "1402 / 11 / 02",
@@ -19,7 +19,7 @@ const slides = [
     desc: "پوشاک یا لِباس یا جامه آنچه است که بر تن پوشیده می‌شود. پوشاک، و دیگر خطرهای موجود در طبیعت حفظ می‌کند. همچنین پوشاک می‌تواند برای راحتی، زیبایی، حفظ در برابر سرما یا دگرگونی دمایی و نیز برای ایمنی استفاده شود.",
   },
   {
-    id: crypto.randomUUID(),
+    id: Math.random(),
     image: Image2,
     publisher: "همشهری آنلاین",
     date: "1402 / 11 / 02",
@@ -28,7 +28,7 @@ const slides = [
     desc: "لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ",
   },
   {
-    id: crypto.randomUUID(),
+    id: Math.random(),
     image: Image1,
     publisher: "همشهری آنلاین",
     date: "1402 / 11 / 02",
@@ -37,7 +37,7 @@ const slides = [
     desc: "لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ",
   },
   {
-    id: crypto.randomUUID(),
+    id: Math.random(),
     image: Image2,
     publisher: "همشهری آنلاین",
     date: "1402 / 11 / 02",
@@ -75,7 +75,7 @@ const NewsSection = () => {
                 />
                 <div
                   // style={{ borderRadius: `16px 0 0 16px` }}
-                  className={`w-full lg:w-[calc(100%-255px)] h-1/2 lg:h-full flex flex-col justify-around px-4 py-6 lg:px-6 lg:py-10 border-r border-b-[2px] border-t border-l lg:border-r-0 border-yellow-04 overflow-hidden rounded-b-[16px] lg:rounded-b-none lg:rounded-tl-[16px] lg:rounded-bl-[16px]`}
+                  className={`w-full lg:w-[calc(100%-255px)] h-1/2 lg:h-full flex flex-col justify-around px-4 py-6 lg:px-6 lg:py-10 border-r border-b border-t border-l lg:border-r-0 border-yellow-04 overflow-hidden rounded-b-[16px] lg:rounded-b-none lg:rounded-tl-[16px] lg:rounded-bl-[16px]`}
                 >
                   <div className={`w-full flex items-center justify-between`}>
                     <div className={`flex items-center justify-center gap-3`}>
@@ -117,7 +117,7 @@ const NewsSection = () => {
                       />
                       <div
                         style={{ borderRadius: `16px 0 0 16px` }}
-                        className={`w-[calc(100%-128px)] lg:w-[calc(100%-255px)] h-full flex flex-col justify-around px-4 py-6 lg:px-6 lg:py-10 border-b border-t-[2px] border-l border-yellow-04 overflow-hidden`}
+                        className={`w-[calc(100%-128px)] lg:w-[calc(100%-255px)] h-full flex flex-col justify-around px-4 py-6 lg:px-6 lg:py-10 border-b border-t border-l border-yellow-04 overflow-hidden`}
                       >
                         <div className={`w-full flex items-center justify-between`}>
                           <div className={`flex items-center justify-center gap-3`}>

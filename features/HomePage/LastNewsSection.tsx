@@ -9,7 +9,7 @@ import { Fragment } from "react";
 
 const slides = [
   {
-    id: crypto.randomUUID(),
+    id: Math.random(),
     image: Image3,
     publisher: "همشهری آنلاین",
     date: "1402 / 11 / 02",
@@ -17,7 +17,7 @@ const slides = [
     desc: "لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ",
   },
   {
-    id: crypto.randomUUID(),
+    id: Math.random(),
     image: Image2,
     publisher: "همشهری آنلاین",
     date: "1402 / 11 / 02",
@@ -25,7 +25,7 @@ const slides = [
     desc: "لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ",
   },
   {
-    id: crypto.randomUUID(),
+    id: Math.random(),
     image: Image1,
     publisher: "همشهری آنلاین",
     date: "1402 / 11 / 02",
@@ -33,7 +33,7 @@ const slides = [
     desc: "لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ",
   },
   {
-    id: crypto.randomUUID(),
+    id: Math.random(),
     image: Image2,
     publisher: "همشهری آنلاین",
     date: "1402 / 11 / 02",

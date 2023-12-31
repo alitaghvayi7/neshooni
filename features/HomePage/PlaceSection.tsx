@@ -15,28 +15,28 @@ import Image3 from "@/assets/images/mainpage/Rectangle273.png";
 
 const slides = [
   {
-    id: crypto.randomUUID(),
+    id: Math.random(),
     image: Image1,
     score: 1.4,
     name: "کوه خضر",
     desc: "خودکار فوق روان نانو آنتی باکتریال پنتر مدل یک انتخاب بی‌نظیر برای دوستداران خودکارهای با کیفیت است.",
   },
   {
-    id: crypto.randomUUID(),
+    id: Math.random(),
     image: Image2,
     score: 3.4,
     name: "بوستان علوی",
     desc: "خودکار فوق روان نانو آنتی باکتریال پنتر مدل یک انتخاب بی‌نظیر برای دوستداران خودکارهای با کیفیت است.",
   },
   {
-    id: crypto.randomUUID(),
+    id: Math.random(),
     image: Image3,
     score: 5,
     name: "بوستان مهدی",
     desc: "خودکار فوق روان نانو آنتی باکتریال پنتر مدل یک انتخاب بی‌نظیر برای دوستداران خودکارهای با کیفیت است.",
   },
   {
-    id: crypto.randomUUID(),
+    id: Math.random(),
     image: Image1,
     score: 4.3,
     name: "کوه خضر",
