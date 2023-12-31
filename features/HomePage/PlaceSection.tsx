@@ -104,8 +104,6 @@ const PalceSection = () => {
               slidesPerView={3}
               pagination={{ clickable: true, enabled: false }}
               scrollbar={{ draggable: true }}
-              onSwiper={(swiper) => console.log(swiper)}
-              onSlideChange={() => console.log("slide change")}
               style={{
                 width: "100%",
                 height: "100%",
