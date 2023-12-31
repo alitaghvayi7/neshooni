@@ -6,6 +6,7 @@ import ShoppingSection from "@/features/HomePage/ShoppingSection";
 import PalceSection from "../features/HomePage/PlaceSection";
 import Footer from "@/components/shared/Footer";
 import LastNewsSection from "@/features/HomePage/LastNewsSection";
+import NewsSection from "@/features/HomePage/NewsSection";
 
 const MapSection = dynamic(() => import("@/features/HomePage/MapSection"), { ssr: false });
 
@@ -17,6 +18,7 @@ export default function Home() {
       <ShoppingSection />
       <MapSection />
       <PalceSection />
+      <NewsSection />
       <LastNewsSection />
       <Footer />
     </main>

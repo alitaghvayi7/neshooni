@@ -107,7 +107,6 @@ const LastNewsSection = () => {
               </Fragment>
             );
           })}
-
           {/* single Crat */}
         </div>
         <Link
