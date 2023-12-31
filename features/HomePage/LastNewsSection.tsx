@@ -42,7 +42,7 @@ const slides = [
   },
 ];
 
-const NewsSection = () => {
+const LastNewsSection = () => {
   return (
     <>
       <section className={`flex flex-col items-center w-full max-w-[1689px] mx-auto gap-8 my-[5rem]`}>
@@ -110,9 +110,16 @@ const NewsSection = () => {
 
           {/* single Crat */}
         </div>
+        <Link
+          href={""}
+          style={{ backgroundClip: "content-box", borderRadius: "0 0 0 32px" }}
+          className={`w-fit flex lg:hidden px-6 py-1 border-b border-l border-yellow-04 bg-transparent text-[12px] text-write-04`}
+        >
+          مشاهده همه
+        </Link>
       </section>
     </>
   );
 };
 
-export default NewsSection;
+export default LastNewsSection;

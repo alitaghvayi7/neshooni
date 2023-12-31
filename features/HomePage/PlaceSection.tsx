@@ -65,7 +65,7 @@ const PalceSection = () => {
           </Link>
         </div>
         <div
-          className={`w-[calc(100%-56px)] lg:w-[calc(100%-128px)] h-[285px] lg:h-[601px] flex items-center bg-gray-02 bg-opacity-25 border border-yellow-04 rounded-[32px] overflow-hidden`}
+          className={`w-[calc(100%-56px)] lg:w-[calc(100%-128px)] h-[285px] lg:h-[601px] flex items-center bg-gray-02 bg-opacity-25 rounded-[32px] overflow-hidden`}
         >
           <div className={`w-[119px] lg:w-[390px] h-full relative isolate bg-yellow-06`}>
             <Image alt={``} src={BackGround} className={`w-full h-full object-cover absolute inset-0`} />
@@ -76,11 +76,13 @@ const PalceSection = () => {
             />
           </div>
           <div
-            className={`w-[calc(100%-119px)] lg:w-[calc(100%-390px)] h-full bg-white py-4 ps-5 lg:py-10 lg:ps-[85px] overflow-hidden`}
+            style={{ borderRadius: `32px 0 0 32px` }}
+            className={`w-[calc(100%-119px)] lg:w-[calc(100%-390px)] h-full bg-white border-t border-b border-l border-yellow-04 py-4 ps-5 lg:py-10 lg:ps-[85px] overflow-hidden`}
           >
             <Swiper
               // install Swiper modules
               modules={[Keyboard, Mousewheel, Autoplay, EffectFade, Pagination]}
+              allowTouchMove={true}
               breakpoints={{
                 // when window width is >= 320px
                 320: {
@@ -140,6 +142,13 @@ const PalceSection = () => {
             </Swiper>
           </div>
         </div>
+        <Link
+          href={""}
+          style={{ backgroundClip: "content-box", borderRadius: "0 0 0 32px" }}
+          className={`w-fit flex lg:hidden px-6 py-1 border-b border-l border-yellow-04 bg-transparent text-[12px] text-write-04`}
+        >
+          مشاهده همه
+        </Link>
       </section>
     </>
   );
