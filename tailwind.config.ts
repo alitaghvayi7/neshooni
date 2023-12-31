@@ -41,6 +41,7 @@ const config: Config = {
           main: "#140E00",
         },
         gray: {
+          "04": "#9C9C9C",
           "03": "#AFAFAF",
           "02": "#F2F2F2",
           "01": "#DDDDDD",
