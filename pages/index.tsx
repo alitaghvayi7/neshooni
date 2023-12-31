@@ -1,9 +1,8 @@
 import LandingSection from "@/features/HomePage/LandingSection";
 import dynamic from "next/dynamic";
-import { Fragment } from "react";
 import BusinessSection from "@/features/HomePage/BusinessSection";
 import ShoppingSection from "@/features/HomePage/ShoppingSection";
-import PalceSection from "../features/HomePage/PlaceSection";
+import PlaceSection from "../features/HomePage/PlaceSection";
 import Footer from "@/components/shared/Footer";
 import LastNewsSection from "@/features/HomePage/LastNewsSection";
 import NewsSection from "@/features/HomePage/NewsSection";
@@ -17,7 +16,7 @@ export default function Home() {
       <BusinessSection />
       <ShoppingSection />
       <MapSection />
-      <PalceSection />
+      <PlaceSection />
       <NewsSection />
       <LastNewsSection />
       <Footer />

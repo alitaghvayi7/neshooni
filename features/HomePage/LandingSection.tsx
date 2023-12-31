@@ -5,8 +5,10 @@ import heroMainImage from "../../assets/images/mainpage/hero_main.png";
 import styles from "../../styles/Home/Home.module.css";
 import SearchBox from "../../components/shared/SearchBox";
 import { Bars3Icon } from "@heroicons/react/24/outline";
+import {useRouter} from "next/router";
 
 const LandingSection = () => {
+  const router = useRouter();
   return (
     <>
       <header className={`flex w-full h-[590px] lg:h-[623px] items-center justify-between relative isolate bg-white`}>
@@ -42,19 +44,19 @@ const LandingSection = () => {
               <Link href={""}>
                 <Image src={Logo} alt={"qom-neshan-logo"} className={`w-8 h-8 object-cover`} />
               </Link>
-              <Link href={""} className={`text-[18px] text-write-main`}>
+              <Link href={""} className={`text-[18px] text-write-main ${router.pathname == "/" && 'border-b border-yellow-04'}`}>
                 صفحه اصلی
               </Link>{" "}
-              <Link href={""} className={`text-[18px] text-write-main`}>
+              <Link href={""} className={`text-[18px] text-write-main ${router.pathname == "/tourist" && 'border-b border-yellow-04'}`}>
                 گردشگری
               </Link>
-              <Link href={""} className={`text-[18px] text-write-main`}>
+              <Link href={""} className={`text-[18px] text-write-main ${router.pathname == "/business" && 'border-b border-yellow-04'}`}>
                 کسب و کار
               </Link>
-              <Link href={""} className={`text-[18px] text-write-main`}>
+              <Link href={""} className={`text-[18px] text-write-main ${router.pathname == "/news" && 'border-b border-yellow-04'}`}>
                 اخبار
               </Link>
-              <Link href={""} className={`text-[18px] text-write-main`}>
+              <Link href={""} className={`text-[18px] text-write-main ${router.pathname == "/introduce" && 'border-b border-yellow-04'}`}>
                 شما معرفی کنید
               </Link>
             </ul>
