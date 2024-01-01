@@ -6,7 +6,7 @@ import PlaceSection from "@/features/HomePage/PlaceSection";
 import Footer from "@/components/shared/Footer";
 import LastNewsSection from "@/features/HomePage/LastNewsSection";
 import NewsSection from "@/features/HomePage/NewsSection";
-const MapSection = dynamic(() => import("@/features/HomePage/MapSection"));
+const MapSection = dynamic(() => import("@/features/HomePage/MapSection"), { ssr: false });
 
 export default function Home() {
   return (

@@ -60,12 +60,14 @@ const MapSection = () => {
         // Error callback function
         (error) => {
           // Handle errors, e.g. user denied location sharing permissions
-          console.error("Error getting user location:", error);
+          // console.error("Error getting user location:", error);
+          setBoundes({ lat: 34.382436, lng: 50.523504 });
         }
       );
     } else {
       // Geolocation is not supported by the browser
-      console.error("Geolocation is not supported by this browser.");
+      // console.error("Geolocation is not supported by this browser.");
+      setBoundes({ lat: 34.382436, lng: 50.523504 });
     }
   }, []);
 
