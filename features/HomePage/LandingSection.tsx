@@ -5,7 +5,8 @@ import heroMainImage from "../../assets/images/mainpage/hero_main.png";
 import styles from "../../styles/Home/Home.module.css";
 import SearchBox from "../../components/shared/SearchBox";
 import { Bars3Icon } from "@heroicons/react/24/outline";
-import {useRouter} from "next/router";
+import { useRouter } from "next/router";
+import Menu from "@/components/shared/Menu";
 
 const LandingSection = () => {
   const router = useRouter();
@@ -18,56 +19,7 @@ const LandingSection = () => {
           }}
           className={`w-full pb-6 h-full bg-blue-06 bg-opacity-40 absolute z-[2] inset-0 flex flex-col justify-between isolate`}
         >
-          <nav
-            style={{
-              backgroundImage: "linear-gradient(to bottom,rgba(255,255,255,1), rgba(255,255,255,0.05))",
-            }}
-            className={`w-full p-6 flex items-center justify-between lg:hidden bg-transparent`}
-          >
-            <Bars3Icon className={"w-8 h-8 cursor-pointer text-write-main"} />
-            <Image src={Logo} alt={"qom-neshan-logo"} className={`w-8 h-8 object-cover`} />
-            <Link
-              href={"/auth"}
-              className={`bg-white border border-blue-main text-blue-main rounded-[16px] px-6 py-2 flex items-center justify-center`}
-            >
-              ورود / ثبت نام
-            </Link>
-          </nav>
-
-          <nav
-            style={{
-              backgroundImage: "linear-gradient(to bottom,rgba(255,255,255,1), rgba(255,255,255,0.05))",
-            }}
-            className={`w-full py-[52px] px-[10%] items-center justify-between bg-transparent hidden lg:flex`}
-          >
-            <ul className={`flex items-center gap-12`}>
-              <Link href={""}>
-                <Image src={Logo} alt={"qom-neshan-logo"} className={`w-8 h-8 object-cover`} />
-              </Link>
-              <Link href={""} className={`text-[18px] text-write-main ${router.pathname == "/" && 'border-b border-yellow-04'}`}>
-                صفحه اصلی
-              </Link>{" "}
-              <Link href={""} className={`text-[18px] text-write-main ${router.pathname == "/tourist" && 'border-b border-yellow-04'}`}>
-                گردشگری
-              </Link>
-              <Link href={""} className={`text-[18px] text-write-main ${router.pathname == "/business" && 'border-b border-yellow-04'}`}>
-                کسب و کار
-              </Link>
-              <Link href={""} className={`text-[18px] text-write-main ${router.pathname == "/news" && 'border-b border-yellow-04'}`}>
-                اخبار
-              </Link>
-              <Link href={""} className={`text-[18px] text-write-main ${router.pathname == "/introduce" && 'border-b border-yellow-04'}`}>
-                شما معرفی کنید
-              </Link>
-            </ul>
-
-            <Link
-              href={"/auth"}
-              className={`bg-white border border-blue-main text-blue-main rounded-[16px] px-6 py-2 flex items-center justify-center`}
-            >
-              ورود / ثبت نام
-            </Link>
-          </nav>
+          <Menu />
 
           <div
             className={
