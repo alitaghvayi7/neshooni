@@ -48,6 +48,11 @@ const MapComponent = (props: Props) => {
             url={`https://{s}.tile.thunderforest.com/transport/{z}/{x}/{y}.png?apikey=${process.env.THUNDERFOREST_API_KEY}`}
             attribution='&copy; <a href="http://www.thunderforest.com/">Thunderforest</a>, &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
           />
+          {/* <TileLayer
+            url={`http://{s}.google.com/vt/lyrs=m&x={x}&y={y}&z={z}`}
+            subdomains={["mt0", "mt1", "mt2", "mt3"]}
+            attribution='&copy; <a href="http://www.thunderforest.com/">Thunderforest</a>, &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+          /> */}
           {/* {locations.map((item: any) => {
             return (
               <Marker

@@ -14,7 +14,6 @@ export default function BusinessPage() {
           <BusinessSection />
         </section>
         {/* <MapComponent /> */}
-        <Footer />
       </main>
     </>
   );

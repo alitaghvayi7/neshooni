@@ -31,24 +31,28 @@ const Menu = () => {
         className={`w-full py-[52px] px-[10%] items-center justify-between bg-transparent hidden lg:flex`}
       >
         <ul className={`flex items-center gap-12`}>
-          <Link href={""}>
+          <Link href={"/"}>
             <Image src={Logo} alt={"qom-neshan-logo"} className={`w-8 h-8 object-cover`} />
           </Link>
           <Link
-            href={""}
-            className={`text-[18px] text-write-main ${router.pathname == "/" && "border-b border-yellow-04"}`}
+            href={"/"}
+            className={`text-[18px] text-write-main ${router.pathname === "/" && "border-b border-yellow-04"}`}
           >
             صفحه اصلی
           </Link>{" "}
           <Link
             href={""}
-            className={`text-[18px] text-write-main ${router.pathname == "/tourist" && "border-b border-yellow-04"}`}
+            className={`text-[18px] text-write-main ${
+              router.pathname.startsWith("/tourist") && "border-b border-yellow-04"
+            }`}
           >
             گردشگری
           </Link>
           <Link
             href={"/business"}
-            className={`text-[18px] text-write-main ${router.pathname == "/business" && "border-b border-yellow-04"}`}
+            className={`text-[18px] text-write-main ${
+              router.pathname.startsWith("/business") && "border-b border-yellow-04"
+            }`}
           >
             کسب و کار
           </Link>

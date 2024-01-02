@@ -32,13 +32,13 @@ const Footer = () => {
           <Link className={`text-write-04 text-[16px] font-[400]`} href={"/"}>
             صفحه اصلی
           </Link>
-          <Link className={`text-write-04 text-[16px] font-[400]`} href={"/"}>
+          <Link className={`text-write-04 text-[16px] font-[400]`} href={""}>
             اخبار
           </Link>
-          <Link className={`text-write-04 text-[16px] font-[400]`} href={"/"}>
+          <Link className={`text-write-04 text-[16px] font-[400]`} href={""}>
             گردشگری
           </Link>
-          <Link className={`text-write-04 text-[16px] font-[400]`} href={"/"}>
+          <Link className={`text-write-04 text-[16px] font-[400]`} href={"/business"}>
             کسب و کار
           </Link>
         </ul>

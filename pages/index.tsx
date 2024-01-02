@@ -18,7 +18,6 @@ export default function HomePage() {
       <PlaceSection />
       <NewsSection />
       <LastNewsSection />
-      <Footer />
     </main>
   );
 }
