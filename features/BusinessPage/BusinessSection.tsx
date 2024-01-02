@@ -105,12 +105,6 @@ const BusinessSection = () => {
 
   const onScroll = () => {
     if (containerRef?.current) {
-      console.log(
-        containerRef.current.scrollTop,
-        containerRef.current.clientHeight,
-        containerRef.current.offsetHeight,
-        containerRef.current.scrollHeight
-      );
       if (containerRef.current.scrollTop + containerRef.current.clientHeight === containerRef.current.scrollHeight) {
         setloading(true);
         try {
@@ -188,7 +182,7 @@ const BusinessSection = () => {
                         {item?.desc}
                       </p>
                       <Link
-                        href={""}
+                        href={"/business/1"}
                         className={`py-[6px] px-[38px] lg:py-[9px] lg:px-[38px] border border-yellow-main rounded-[16px] w-fit text-[16px] self-end`}
                       >
                         بیشتر
