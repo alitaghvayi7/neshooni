@@ -47,7 +47,7 @@ const Menu = () => {
             گردشگری
           </Link>
           <Link
-            href={""}
+            href={"/business"}
             className={`text-[18px] text-write-main ${router.pathname == "/business" && "border-b border-yellow-04"}`}
           >
             کسب و کار

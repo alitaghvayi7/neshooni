@@ -8,7 +8,7 @@ import LastNewsSection from "@/features/HomePage/LastNewsSection";
 import NewsSection from "@/features/HomePage/NewsSection";
 const MapSection = dynamic(() => import("@/features/HomePage/MapSection"), { ssr: false });
 
-export default function Home() {
+export default function HomePage() {
   return (
     <main className={``}>
       <LandingSection />
