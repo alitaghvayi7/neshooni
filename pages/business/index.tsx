@@ -8,7 +8,7 @@ export default function BusinessPage() {
     <>
       <main className={`w-full`}>
         <HeaderSection />
-        <section className={`w-full bg-blue-04 bg-opacity-20 pt-[5rem] lg:pt-[8rem]`}>
+        <section className={`w-full bg-blue-04 bg-opacity-10 pt-[5rem] lg:pt-[8rem]`}>
           <MapSection />
           <BusinessSection />
         </section>

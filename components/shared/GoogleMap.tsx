@@ -22,15 +22,13 @@ const GoogleMap = (props: Props) => {
   return (
     <>
       <section className={`w-full h-full overflow-hidden relative isolate`}>
-        <div
-          className={`w-full h-full absolute inset-0 pointer-events-none z-[3] bg-transparent flex items-end justify-center pb-[48px]`}
+
+        <button
+          className={`h-[58px] py-3 px-5 bg-yellow-06 text-write-03 rounded-[16px] font-[700] text-[24px] flex items-center justify-center absolute z-[2] bottom-8 left-[50%] translate-x-[-50%]`}
         >
-          <span
-            className={`h-[58px] py-3 px-5 bg-yellow-06 text-write-03 rounded-[16px] font-[700] text-[24px] flex items-center justify-center `}
-          >
-            {labelTitle}
-          </span>
-        </div>
+          {labelTitle}
+        </button>
+
         <MapContainer
           ref={mapRef}
           className={`w-full h-full absolute inset-0 z-[1]`}
