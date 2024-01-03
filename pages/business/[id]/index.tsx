@@ -1,5 +1,7 @@
 import Footer from "@/components/shared/Footer";
 import Menu from "@/components/shared/Menu";
+import dynamic from "next/dynamic";
+const IntroductionSection = dynamic(import("@/features/SingleBusinessPage/IntroductionSection"), { ssr: false });
 
 export default function SingleBusinessPage() {
   return (
@@ -14,9 +16,10 @@ export default function SingleBusinessPage() {
             className={`relative w-full h-[65px] lg:h-[156px] z-[1] isolate`}
           ></div>
         </header>
-        <section className={`w-full bg-blue-04 bg-opacity-20`}>
+        <section className={`w-full bg-blue-04 bg-opacity-10`}>
           {/* <MapSection />
           <BusinessSection /> */}
+          <IntroductionSection />
         </section>
       </main>
     </>
