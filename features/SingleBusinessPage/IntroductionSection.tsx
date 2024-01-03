@@ -1,4 +1,6 @@
 import Image from "next/image";
+import Link from "next/link";
+import dynamic from "next/dynamic";
 // import SourceImage from "@/assets/images/singlebusinesspage/singlebusiness.png";
 import Image1 from "@/assets/images/businesspage/business-image(1).png";
 import Breadcrumbs from "@/components/shared/Breadcrumbs";
@@ -7,8 +9,8 @@ import { BookmarkIcon as BookmarkIconOutline, ShareIcon, StarIcon as StarIconOut
 import { BookmarkIcon as BookmarkIconSolid, StarIcon as StarIconSolid } from "@heroicons/react/24/solid";
 import { useLayoutEffect, useState } from "react";
 import PlaceDetails from "@/components/shared/PlaceDetails";
-import GoogleMap from "@/components/shared/GoogleMap";
-import Link from "next/link";
+const GoogleMap = dynamic(() => import("@/components/shared/GoogleMap"), { ssr: false })
+
 
 const IntroductionSection = () => {
   const [bookmarked, setBookmarked] = useState(false);
