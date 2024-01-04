@@ -6,7 +6,7 @@ import { useState, useRef, useEffect, Fragment } from "react";
 import type { GetServerSidePropsContext, InferGetServerSidePropsType } from "next";
 import { getProviders, signIn } from "next-auth/react"
 import { getServerSession } from "next-auth/next"
-import { authOptions } from "@/pages/api/auth/[…nextauth]";
+import { authOptions } from "@/pages/api/auth/[...nextauth]";
 
 
 export default function Auth({ providers }: InferGetServerSidePropsType<typeof getServerSideProps>) {

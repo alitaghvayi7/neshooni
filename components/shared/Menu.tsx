@@ -3,9 +3,11 @@ import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import Logo from "../../assets/images/mainpage/logo.png";
+import { useSession } from "next-auth/react";
 
 const Menu = () => {
   const router = useRouter();
+  const { data: session } = useSession();
   return (
     <>
       <nav
@@ -17,10 +19,11 @@ const Menu = () => {
         <Bars3Icon className={"w-8 h-8 cursor-pointer text-write-main"} />
         <Image src={Logo} alt={"qom-neshan-logo"} className={`w-8 h-8 object-cover`} />
         <Link
-          href={"/auth"}
+          href={`${session ? '/profile' : '/auth'}`}
           className={`bg-white border border-blue-main text-blue-main rounded-[16px] px-6 py-2 flex items-center justify-center`}
         >
-          ورود / ثبت نام
+          {!session && 'ورود / ثبت نام'}
+          {session && 'پروفایل'}
         </Link>
       </nav>
 
@@ -42,17 +45,15 @@ const Menu = () => {
           </Link>{" "}
           <Link
             href={""}
-            className={`text-[18px] text-write-main ${
-              router.pathname.startsWith("/tourist") && "border-b border-yellow-04"
-            }`}
+            className={`text-[18px] text-write-main ${router.pathname.startsWith("/tourist") && "border-b border-yellow-04"
+              }`}
           >
             گردشگری
           </Link>
           <Link
             href={"/business"}
-            className={`text-[18px] text-write-main ${
-              router.pathname.startsWith("/business") && "border-b border-yellow-04"
-            }`}
+            className={`text-[18px] text-write-main ${router.pathname.startsWith("/business") && "border-b border-yellow-04"
+              }`}
           >
             کسب و کار
           </Link>
@@ -71,10 +72,11 @@ const Menu = () => {
         </ul>
 
         <Link
-          href={"/auth"}
+          href={`${session ? '/profile' : '/auth'}`}
           className={`bg-white border border-blue-main text-blue-main rounded-[16px] px-6 py-2 flex items-center justify-center`}
         >
-          ورود / ثبت نام
+          {!session && 'ورود / ثبت نام'}
+          {session && 'پروفایل'}
         </Link>
       </nav>
     </>
