@@ -28,7 +28,7 @@ const AddCommentSection = () => {
                     به موبایل ارم چه امتیازی میدهید؟
                 </span>
                 <div className="flex items-center lg:mt-8 w-full">
-                    {[...Array(totalStars)].map((star, index) => {
+                    {[...Array(totalStars)].map((star: any, index: number) => {
                         const currentRating = index + 1;
                         return (
                             <label key={index}>
