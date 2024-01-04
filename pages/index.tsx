@@ -6,10 +6,14 @@ import PlaceSection from "@/features/HomePage/PlaceSection";
 import LastNewsSection from "@/features/HomePage/LastNewsSection";
 import NewsSection from "@/features/HomePage/NewsSection";
 import Footer from "@/components/shared/Footer";
+import { wrapper } from "@/lib/store/store";
+import { setAuthState } from "@/lib/store/authSlice";
+import RootLayout from "./RootLayout";
 const MapSection = dynamic(() => import("@/features/HomePage/MapSection"), { ssr: false });
 
 export default function HomePage() {
   return (
+
     <main className={``}>
       <LandingSection />
       <BusinessSection />
@@ -20,5 +24,7 @@ export default function HomePage() {
       <LastNewsSection />
       <Footer />
     </main>
+
   );
 }
+
