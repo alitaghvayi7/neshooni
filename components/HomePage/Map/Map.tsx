@@ -1,7 +1,7 @@
 import { MapContainer, Marker, Popup, TileLayer, useMap, useMapEvents } from "react-leaflet";
 import { useEffect, useRef, useState } from "react";
 import "leaflet/dist/leaflet.css";
-import { Icon, LatLng } from "leaflet";
+import { Icon, LatLng, Map as LeafletMap } from "leaflet";
 import IconImage from "@/assets/images/icons/icon.png";
 
 interface Props {
@@ -102,7 +102,7 @@ const Map = (props: Props) => {
 
   const { color = "blue", labelTitle, direction = "left", boundes, setBoundes } = props;
   const [loaded, setLoaded] = useState(false);
-  const mapRef = useRef<L.Map | null>(null);
+  const mapRef = useRef<LeafletMap | null>(null);
 
   useEffect(() => {
     setLoaded(true);
@@ -123,22 +123,19 @@ const Map = (props: Props) => {
     <>
       <section className={`w-full h-full overflow-hidden relative isolate`}>
         <div
-          className={`w-[50%] h-full absolute top-0 bottom-0 pointer-events-none z-[3] bg-transparent flex items-center justify-center ${
-            direction === "left" ? "left-0" : "right-0"
-          }`}
+          className={`w-[50%] h-full absolute top-0 bottom-0 pointer-events-none z-[3] bg-transparent flex items-center justify-center ${direction === "left" ? "left-0" : "right-0"
+            }`}
         >
           <span
-            className={`w-[139px] h-[49px] text-write-03 rounded-[16px] text-[18px] flex items-center justify-center font-bold ${
-              color === "blue" ? "bg-blue-04" : "bg-yellow-04 "
-            }`}
+            className={`w-[139px] h-[49px] text-write-03 rounded-[16px] text-[18px] flex items-center justify-center font-bold ${color === "blue" ? "bg-blue-04" : "bg-yellow-04 "
+              }`}
           >
             {labelTitle}
           </span>
         </div>
         <div
-          className={`w-full h-full absolute inset-0 pointer-events-none z-[2] mix-blend-color flex items-center justify-center ${
-            color === "blue" ? "bg-blue-04" : "bg-yellow-04 "
-          }`}
+          className={`w-full h-full absolute inset-0 pointer-events-none z-[2] mix-blend-color flex items-center justify-center ${color === "blue" ? "bg-blue-04" : "bg-yellow-04 "
+            }`}
         ></div>
         <MapContainer
           ref={mapRef}

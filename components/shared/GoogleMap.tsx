@@ -1,7 +1,7 @@
 import { MapContainer, Marker, Popup, TileLayer, useMap, useMapEvents } from "react-leaflet";
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import "leaflet/dist/leaflet.css";
-import { Icon } from "leaflet";
+import { Icon, Map } from "leaflet";
 import IconImage from "@/assets/images/icons/icons8_Location_1.png";
 
 interface Props {
@@ -12,7 +12,7 @@ interface Props {
 const GoogleMap = (props: Props) => {
   const { boundes, labelTitle } = props;
   const [loaded, setLoaded] = useState(false);
-  const mapRef = useRef<L.Map | null>(null);
+  const mapRef = useRef<Map | null>(null);
 
   const markerIcon = new Icon({
     iconSize: [80, 80],

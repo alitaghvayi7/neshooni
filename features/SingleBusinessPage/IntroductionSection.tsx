@@ -152,7 +152,7 @@ const IntroductionSection = () => {
             </div>
             <span className="text-[20px] text-write-main font-[400] pt-12">شما هم درباره این مغازه دیدگاه ثبت کنید</span>
             <Link
-              href={''}
+              href={'/business/1/comment'}
               className="w-full bg-yellow-02 text-write-main rounded-[16px] py-3 flex items-center justify-center mt-9"
             >
               ثبت دیدگاه

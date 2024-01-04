@@ -1,7 +1,7 @@
 import { MapContainer, Marker, Popup, TileLayer, useMap, useMapEvents } from "react-leaflet";
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import "leaflet/dist/leaflet.css";
-import { Icon, LatLng } from "leaflet";
+import { Icon, LatLng, Map } from "leaflet";
 import IconImage from "@/assets/images/icons/marker.png";
 import IconShadowImage from "@/assets/images/icons/shadow-marker.png";
 
@@ -13,7 +13,7 @@ interface Props {
 const MapComponent = (props: Props) => {
   const { boundes, labelTitle } = props;
   const [loaded, setLoaded] = useState(false);
-  const mapRef = useRef<L.Map | null>(null);
+  const mapRef = useRef<Map | null>(null);
 
   const markerIcon = new Icon({
     iconSize: [40, 40],

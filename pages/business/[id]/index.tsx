@@ -21,6 +21,7 @@ export default function SingleBusinessPage() {
           <BusinessSection /> */}
           <IntroductionSection />
         </section>
+        <Footer />
       </main>
     </>
   );

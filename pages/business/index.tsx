@@ -1,3 +1,4 @@
+import Footer from "@/components/shared/Footer";
 import HeaderSection from "@/features/BusinessPage/HeaderSection";
 import dynamic from "next/dynamic";
 const MapSection = dynamic(() => import("@/features/BusinessPage/MapSection"), { ssr: false });
@@ -12,6 +13,7 @@ export default function BusinessPage() {
           <MapSection />
           <BusinessSection />
         </section>
+        <Footer />
         {/* <MapComponent /> */}
       </main>
     </>
