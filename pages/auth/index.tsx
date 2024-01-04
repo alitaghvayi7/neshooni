@@ -1,12 +1,15 @@
-import Link from "next/link";
 import Image from "next/image";
 import Logo from "@/assets/images/mainpage/logo.png";
 import GoogleLogo from "@/assets/images/auth/google-logo.png";
 import styles from "@/styles/Auth/Auth.module.css";
-import {useState, useRef, useEffect, Fragment} from "react";
+import { useState, useRef, useEffect, Fragment } from "react";
+import type { GetServerSidePropsContext, InferGetServerSidePropsType } from "next";
+import { getProviders, signIn } from "next-auth/react"
+import { getServerSession } from "next-auth/next"
+import { authOptions } from "@/pages/api/auth/[…nextauth]";
 
 
-export default function Auth() {
+export default function Auth({ providers }: InferGetServerSidePropsType<typeof getServerSideProps>) {
 
     const maxLength = 6;
     const [change, setChange] = useState(false)
@@ -86,16 +89,21 @@ export default function Auth() {
                     {
                         step === 1 && (
                             <Fragment>
-                                <button
-                                    type={'button'}
-                                    className={`w-full h-[56px] rounded-[16px] border border-gray-03 flex items-center justify-center gap-2 mt-4`}>
-                                    <Image
-                                        src={GoogleLogo}
-                                        alt={"google-logo"}
-                                        className={`w-6 h-6 object-cover`}
-                                    />
-                                    <span className={`text-[14px] text-write-main`}>ورود با گوگل</span>
-                                </button>
+                                {Object.values(providers).map((provider) => (
+                                    <button
+                                        key={provider.name}
+                                        onClick={() => signIn(provider.id)}
+                                        type={'button'}
+                                        className={`w-full h-[56px] rounded-[16px] border border-gray-03 flex items-center justify-center gap-2 mt-4`}>
+                                        <Image
+                                            src={GoogleLogo}
+                                            alt={"google-logo"}
+                                            className={`w-6 h-6 object-cover`}
+                                        />
+                                        <span className={`text-[14px] text-write-main`}>ورود با {provider.name}</span>
+                                    </button>
+                                ))}
+
 
                                 <div className={`w-full flex items-center justify-between mt-6`}>
                                     <span className={`w-[40%] h-[1px] bg-gray-01`}></span>
@@ -104,10 +112,10 @@ export default function Auth() {
                                 </div>
 
                                 <span className={`w-full self-start text-[16px] text-write-main mt-6`}>
-                                            سلام!
-                                            <br/>
-                    لطفا شماره موبایل یا ایمیل خود را وارد کنید.
-                                        </span>
+                                    سلام!
+                                    <br />
+                                    لطفا شماره موبایل یا ایمیل خود را وارد کنید.
+                                </span>
 
                                 <input
                                     type={'text'}
@@ -123,9 +131,9 @@ export default function Auth() {
                         step === 2 && (
                             <Fragment>
                                 <span className={`w-full max-w-[262px] self-start text-[16px] text-write-main mt-6`}>
-                        لطفا کد ارسال شده به شماره 0912222222
-را وارد کنید.
-                    </span>
+                                    لطفا کد ارسال شده به شماره 0912222222
+                                    را وارد کنید.
+                                </span>
 
                                 <div
                                     dir={'ltr'}
@@ -254,4 +262,20 @@ export default function Auth() {
             ></section>
         </main>
     )
+}
+
+export async function getServerSideProps(context: GetServerSidePropsContext) {
+    const session = await getServerSession(context.req, context.res, authOptions);
+
+    // If the user is already logged in, redirect.
+    // Note: Make sure not to redirect to the same page
+    // To avoid an infinite loop!
+    if (session) {
+        return { redirect: { destination: "/" } };
+    }
+    const providers = await getProviders();
+
+    return {
+        props: { providers: providers ?? [] },
+    }
 }
