@@ -79,12 +79,12 @@ const OrganSection = () => {
                     </span>
                 </section>
 
-                <section className={`w-[calc(100%-56px)] lg:w-[calc(100%-128px)] mx-auto max-w-[1662px] flex flex-wrap items-center justify-between lg:gap-6`}>
+                <section className={`w-[calc(100%-56px)] lg:w-[calc(100%-128px)] mx-auto max-w-[1662px] flex flex-wrap items-center justify-between gap-4 lg:gap-6`}>
                     {slides.map((item: any, index: number) => {
 
                         return (
                             <Fragment key={item?.id}>
-                                <div className={`w-[49%] max-w-[812px] bg-white flex items-center rounded-[16px] h-[128px] lg:h-[229px]`}>
+                                <div className={`w-full lg:w-[49%] max-w-[812px] bg-white flex items-center rounded-[16px] h-[128px] lg:h-[229px]`}>
                                     <Image
                                         style={{ borderRadius: `0 16px 16px 0` }}
                                         alt=""

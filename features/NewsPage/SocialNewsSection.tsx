@@ -67,7 +67,7 @@ const SliderSection = () => {
                     <div className={`w-full lg:w-1/2 h-[249px] lg:h-[429px]`}>
                         <BusinessSlider />
                     </div>
-                    <div className={`w-full lg:w-1/2 h-[429px] p-4 lg:p-[4rem] flex flex-col justify-between bg-white rounded-tl-[32px] rounded-bl-[32px]`}>
+                    <div className={`w-full lg:w-1/2 h-[429px] p-4 lg:p-[4rem] flex flex-col justify-between bg-white rounded-b-[32px] lg:rounded-tl-[32px] lg:rounded-bl-[32px]`}>
                         <div className={`w-full flex items-center justify-between`}>
                             <span className={`text-[24px] font-[600]`}>پوشاک فروردین</span>
                             <div className={`flex items-center gap-2`}>
@@ -89,12 +89,12 @@ const SliderSection = () => {
                         </Link>
                     </div>
                 </section>
-                <section className={`w-[calc(100%-56px)] lg:w-[calc(100%-128px)] mx-auto max-w-[1662px] flex items-center justify-between`}>
+                <section className={`w-[calc(100%-56px)] lg:w-[calc(100%-128px)] mx-auto max-w-[1662px] flex flex-wrap gap-4 lg:gap-0 items-center justify-between`}>
                     {slides.map((item: any, index: number) => {
                         if (index < 2) {
                             return (
                                 <Fragment key={item?.id}>
-                                    <div className={`w-[48%] max-w-[812px] bg-white flex items-center rounded-[16px] h-[128px] lg:h-[158px]`}>
+                                    <div className={`w-full lg:w-[48%] max-w-[812px] bg-white flex items-center rounded-[16px] h-[128px] lg:h-[158px]`}>
                                         <Image
                                             style={{ borderRadius: `0 16px 16px 0` }}
                                             alt=""

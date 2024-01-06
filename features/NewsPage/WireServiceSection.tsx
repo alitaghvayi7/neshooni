@@ -18,7 +18,7 @@ const slides = [
         name: `عضو هیات رئیسه مجلس: خودروسازان
  با چراغ سبز شورای رقابت قیمت‌ها را 
 افزایش دادند`,
-        desc: "پوشاک یا لِباس یا جامه آنچه است که بر تن پوشیده می‌شود. پوشاک، و دیگر خطرهای موجود در طبیعت حفظ می‌کند. همچنین پوشاک می‌تواند برای راحتی، زیبایی، حفظ در برابر سرما یا دگرگونی دمایی و نیز برای ایمنی استفاده شود.",
+        desc: "شانزدهمین اجلاس سران اکو در تاشکند، مبنایی جدید برای توسعه رویکردهای مشترک برای پرداختن به مسائل منطقه‌ای است. شانزدهمین اجلاس سران اکو در تاشکند، مبنایی جدید برای توسعه مشترک برای پرداختن به مسائل منطقه‌ای است."
     },
     {
         id: Math.random(),
@@ -27,7 +27,7 @@ const slides = [
         date: "1402 / 11 / 02",
         name: `سرلشکر موسوی: اقدامات وحشیانه‌ رژیم صهیونیستی در نوار
  غزه کوچک‍ترین ارزش نظامی ندارد`,
-        desc: "لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ",
+        desc: "شانزدهمین اجلاس سران اکو در تاشکند، مبنایی جدید برای توسعه رویکردهای مشترک برای پرداختن به مسائل منطقه‌ای است. شانزدهمین اجلاس سران اکو در تاشکند، مبنایی جدید برای توسعه مشترک برای پرداختن به مسائل منطقه‌ای است.",
     },
     {
         id: Math.random(),
@@ -36,7 +36,7 @@ const slides = [
         date: "1402 / 11 / 02",
         name: `سرلشکر موسوی: اقدامات وحشیانه‌ رژیم صهیونیستی در نوار
  غزه کوچک‍ترین ارزش نظامی ندارد`,
-        desc: "لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ",
+        desc: "شانزدهمین اجلاس سران اکو در تاشکند، مبنایی جدید برای توسعه رویکردهای مشترک برای پرداختن به مسائل منطقه‌ای است. شانزدهمین اجلاس سران اکو در تاشکند، مبنایی جدید برای توسعه مشترک برای پرداختن به مسائل منطقه‌ای است.",
     },
     {
         id: Math.random(),
@@ -45,7 +45,7 @@ const slides = [
         date: "1402 / 11 / 02",
         name: `سرلشکر موسوی: اقدامات وحشیانه‌ رژیم صهیونیستی در نوار
  غزه کوچک‍ترین ارزش نظامی ندارد`,
-        desc: "لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ",
+        desc: "شانزدهمین اجلاس سران اکو در تاشکند، مبنایی جدید برای توسعه رویکردهای مشترک برای پرداختن به مسائل منطقه‌ای است. شانزدهمین اجلاس سران اکو در تاشکند، مبنایی جدید برای توسعه مشترک برای پرداختن به مسائل منطقه‌ای است."
     },
     {
         id: Math.random(),
@@ -54,7 +54,7 @@ const slides = [
         date: "1402 / 11 / 02",
         name: `سرلشکر موسوی: اقدامات وحشیانه‌ رژیم صهیونیستی در نوار
  غزه کوچک‍ترین ارزش نظامی ندارد`,
-        desc: "لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ",
+        desc: "شانزدهمین اجلاس سران اکو در تاشکند، مبنایی جدید برای توسعه رویکردهای مشترک برای پرداختن به مسائل منطقه‌ای است. شانزدهمین اجلاس سران اکو در تاشکند، مبنایی جدید برای توسعه مشترک برای پرداختن به مسائل منطقه‌ای است."
     },
     {
         id: Math.random(),
@@ -63,7 +63,7 @@ const slides = [
         date: "1402 / 11 / 02",
         name: `سرلشکر موسوی: اقدامات وحشیانه‌ رژیم صهیونیستی در نوار
  غزه کوچک‍ترین ارزش نظامی ندارد`,
-        desc: "لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ",
+        desc: "شانزدهمین اجلاس سران اکو در تاشکند، مبنایی جدید برای توسعه رویکردهای مشترک برای پرداختن به مسائل منطقه‌ای است. شانزدهمین اجلاس سران اکو در تاشکند، مبنایی جدید برای توسعه مشترک برای پرداختن به مسائل منطقه‌ای است."
     },
 ];
 
@@ -80,16 +80,16 @@ const WireServiceSection = () => {
                     </span>
                 </section>
                 <section
-                    className={`w-[calc(100%-56px)] lg:w-[calc(100%-128px)] mx-auto max-w-[1662px] flex-col lg:flex-row  flex items-center bg-transparent rounded-[32px] lg:gap-6`}
+                    className={`w-[calc(100%-56px)] lg:w-[calc(100%-128px)] mx-auto max-w-[1662px] flex-col lg:flex-row  flex items-center bg-transparent rounded-[32px] gap-4 lg:gap-6`}
                 >
                     {slides.map((item: any, index: number) => {
                         if (index > 1) {
                             return (
-                                <div key={item?.id} className="w-[25%] max-w-[398px] bg-white rounded-[32px] overflow-hidden h-[755px]">
-                                    <div className="w-full h-[60%] rounded-t-[32px] overflow-hidden">
+                                <div key={item?.id} className="w-full lg:w-[25%] max-w-[398px] bg-white rounded-[16px] lg:rounded-[32px] overflow-hidden h-[500px] lg:h-[755px]">
+                                    <div className="w-full h-[60%] rounded-t-[16px] lg:rounded-t-[32px] overflow-hidden">
                                         <Image src={item?.image} className="w-full h-full object-cover" alt="" />
                                     </div>
-                                    <div className="w-full h-[40%] rounded-b-[32px] overflow-hidden flex flex-col justify-between lg:p-6 border border-yellow-04">
+                                    <div className="w-full h-[40%] rounded-b-[16px] lg:rounded-b-[32px] overflow-hidden flex flex-col justify-between p-4 lg:p-6 border border-yellow-04">
                                         <div className={`w-full flex items-center justify-between`}>
                                             <div className={`flex items-center justify-center gap-3`}>
                                                 <span className={`w-1 h-1 bg-gray-04`}></span>
@@ -118,12 +118,12 @@ const WireServiceSection = () => {
                         }
                     })}
                 </section>
-                <section className={`w-[calc(100%-56px)] lg:w-[calc(100%-128px)] mx-auto max-w-[1662px] flex items-center justify-between lg:gap-6`}>
+                <section className={`w-[calc(100%-56px)] lg:w-[calc(100%-128px)] mx-auto max-w-[1662px] flex flex-wrap items-center justify-between gap-4 lg:gap-6`}>
                     {slides.map((item: any, index: number) => {
                         if (index < 2) {
                             return (
                                 <Fragment key={item?.id}>
-                                    <div className={`w-[50%] max-w-[812px] bg-white flex items-center rounded-[16px] h-[128px] lg:h-[229px]`}>
+                                    <div className={`w-full lg:w-[49%] max-w-[812px] bg-white flex items-center rounded-[16px] h-[128px] lg:h-[229px]`}>
                                         <Image
                                             style={{ borderRadius: `0 16px 16px 0` }}
                                             alt=""
