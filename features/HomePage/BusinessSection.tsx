@@ -21,14 +21,14 @@ const BusinessSection = () => {
             مشاهده همه
           </Link>
         </div>
-        <div className={`w-full flex items-center justify-center bg-gray-02 bg-opacity-25`}>
+        <div className={`w-full flex items-center justify-center`}>
           <div
             className={`w-[calc(100%-56px)] lg:w-[calc(100%-128px)] flex-col lg:flex-row  flex items-center bg-white rounded-[32px] border border-yellow-04`}
           >
             <div className={`w-full lg:w-1/2 h-[249px] lg:h-[429px]`}>
               <BusinessSlider />
             </div>
-            <div className={`w-full lg:w-1/2 h-[429px] p-4 lg:p-[4rem] flex flex-col justify-between`}>
+            <div className={`w-full lg:w-1/2 h-[429px] p-4 lg:p-[4rem] flex flex-col justify-between rounded-tl-[32px] rounded-bl-[32px]`}>
               <div className={`w-full flex items-center justify-between`}>
                 <span className={`text-[24px] font-[600]`}>پوشاک فروردین</span>
                 <div className={`flex items-center gap-2`}>

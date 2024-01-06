@@ -58,7 +58,7 @@ const Menu = () => {
             کسب و کار
           </Link>
           <Link
-            href={""}
+            href={"/news"}
             className={`text-[18px] text-write-main ${router.pathname == "/news" && "border-b border-yellow-04"}`}
           >
             اخبار
