@@ -32,7 +32,7 @@ const Footer = () => {
           <Link className={`text-write-04 text-[16px] font-[400]`} href={"/"}>
             صفحه اصلی
           </Link>
-          <Link className={`text-write-04 text-[16px] font-[400]`} href={""}>
+          <Link className={`text-write-04 text-[16px] font-[400]`} href={"/news"}>
             اخبار
           </Link>
           <Link className={`text-write-04 text-[16px] font-[400]`} href={""}>
