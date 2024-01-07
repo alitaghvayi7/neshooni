@@ -1,9 +1,13 @@
 import {BookmarkIcon, IdentificationIcon, MegaphoneIcon, UserIcon} from "@heroicons/react/24/outline";
 import Link from "next/link";
 import { useSearchParams } from 'next/navigation';
+import {useSession} from "next-auth/react";
 
 export default function ProfileLayout({children}:{children:React.ReactNode}) {
     const searchParams = useSearchParams();
+    const { data: session } = useSession();
+
+
     return (
         <>
             <section
@@ -16,7 +20,7 @@ export default function ProfileLayout({children}:{children:React.ReactNode}) {
                               <UserIcon className="w-[24px] h-[24px] lg:w-[40px] lg:h-[40px] text-white"/>
                             </span>
                             <span
-                                className="text-[14px] lg:text-[16px] font-[400] text-write-02">willie.jennings@example.com</span>
+                                className="text-[14px] lg:text-[16px] font-[400] text-write-02">{session?.user?.email ?? 'willie.jennings@example.com'}</span>
                         </div>
                         <span className="w-full block h-[2px] my-5 bg-gray-02"></span>
                         <Link href={'/profile?tab=info'} className={`flex items-center gap-4 my-4`}>

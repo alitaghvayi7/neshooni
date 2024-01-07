@@ -17,6 +17,7 @@ import Image6 from "@/assets/images/businesspage/business-image(6).png";
 import Image7 from "@/assets/images/businesspage/business-image(7).png";
 import Image8 from "@/assets/images/businesspage/business-image(8).png";
 import Image9 from "@/assets/images/businesspage/business-image(9).png";
+import {useSession} from "next-auth/react";
 
 
 const slides = [
