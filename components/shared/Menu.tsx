@@ -64,8 +64,8 @@ const Menu = () => {
             اخبار
           </Link>
           <Link
-            href={""}
-            className={`text-[18px] text-write-main ${router.pathname == "/introduce" && "border-b border-yellow-04"}`}
+            href={"/introduction"}
+            className={`text-[18px] text-write-main ${router.pathname == "/introduction" && "border-b border-yellow-04"}`}
           >
             شما معرفی کنید
           </Link>

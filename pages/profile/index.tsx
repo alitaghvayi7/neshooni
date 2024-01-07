@@ -197,7 +197,7 @@ export default function ProfilePage() {
                                         <div
                                             className={`flex flex-col lg:flex-row gap-2 lg:gap-0 w-full items-center justify-between mt-12 lg:mt-0`}>
                                             <span className={`text-[14px] lg:text-[20px] text-write-04 font-[400]`}>شما می توانید جاهای دیدنی ، کسب و کارهای مختلف و... در این بخش به ما معرفی کنید.</span>
-                                            <Link href={''}
+                                            <Link href={'/introduction'}
                                                   className={`w-full lg:w-auto py-2 lg:py-4 px-[76px] border border-yellow-main bg-white rounded-[16px] flex items-center justify-center text-write-02`}>شما
                                                 معرفی کنید</Link>
                                         </div>
