@@ -5,8 +5,8 @@ import { StarIcon } from "@heroicons/react/24/solid";
 const BusinessSection = () => {
   return (
     <>
-      <section className={`flex flex-col items-center w-full max-w-[1689px] mx-auto mt-[11rem] lg:mt-[15rem] gap-8`}>
-        <div className={`w-[calc(100%-56px)] lg:w-[calc(100%-128px)] flex items-center justify-between`}>
+      <section className={`flex flex-col items-center  w-[calc(100%-56px)] lg:w-[calc(100%-128px)] max-w-[1689px] mx-auto mt-[11rem] lg:mt-[15rem] gap-8`}>
+        <div className={`w-full flex items-center justify-between`}>
           <span
             style={{ backgroundClip: "content-box", borderRadius: "0 0 32px 0" }}
             className={`w-fit pl-6 border-b border-r border-yellow-04 bg-yellow-06 indent-5 font-bold text-[20px] lg:text-[40px] text-write-main`}
@@ -23,7 +23,7 @@ const BusinessSection = () => {
         </div>
         <div className={`w-full flex items-center justify-center`}>
           <div
-            className={`w-[calc(100%-56px)] lg:w-[calc(100%-128px)] flex-col lg:flex-row  flex items-center bg-white rounded-[32px] border border-yellow-04`}
+            className={`w-full flex-col lg:flex-row  flex items-center bg-white rounded-[32px] border border-yellow-04`}
           >
             <div className={`w-full lg:w-1/2 h-[249px] lg:h-[429px]`}>
               <BusinessSlider />

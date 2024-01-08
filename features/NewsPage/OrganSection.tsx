@@ -7,6 +7,7 @@ import Image4 from "@/assets/images/newspage/news-image-section-two (4).png";
 import Image5 from "@/assets/images/newspage/news-image-section-two (5).png";
 import { Fragment } from "react";
 import Image from "next/image";
+import Link from "next/link";
 
 const slides = [
     {
@@ -84,7 +85,7 @@ const OrganSection = () => {
 
                         return (
                             <Fragment key={item?.id}>
-                                <div className={`w-full lg:w-[49%] max-w-[812px] bg-white flex items-center rounded-[16px] h-[128px] lg:h-[229px]`}>
+                                <Link href={`/news/organization/1`} className={`w-full lg:w-[49%] max-w-[812px] bg-white flex items-center rounded-[16px] h-[128px] lg:h-[229px]`}>
                                     <Image
                                         style={{ borderRadius: `0 16px 16px 0` }}
                                         alt=""
@@ -113,7 +114,7 @@ const OrganSection = () => {
                                         </div>
                                         <span className={`text-[14px] lg:text-[24px] font-[600]`}>{item?.name}</span>
                                     </div>
-                                </div>
+                                </Link>
                             </Fragment>
                         );
 

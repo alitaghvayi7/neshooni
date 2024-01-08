@@ -47,8 +47,8 @@ const slides = [
 const PalceSection = () => {
   return (
     <>
-      <section className={`flex flex-col items-center w-full max-w-[1689px] mx-auto mt-[11rem] lg:mt-[15rem] gap-8`}>
-        <div className={`w-[calc(100%-56px)] lg:w-[calc(100%-128px)] flex items-center justify-between`}>
+      <section className={`flex flex-col items-center w-[calc(100%-56px)] lg:w-[calc(100%-128px)] max-w-[1689px] mx-auto mt-[11rem] lg:mt-[15rem] gap-8`}>
+        <div className={`w-full flex items-center justify-between`}>
           <span
             style={{ backgroundClip: "content-box", borderRadius: "0 0 32px 0" }}
             className={`w-fit pl-6 border-b border-r border-yellow-04 bg-yellow-06 indent-5 font-bold text-[20px] lg:text-[40px] text-write-main`}
@@ -65,7 +65,7 @@ const PalceSection = () => {
           </Link>
         </div>
         <div
-          className={`w-[calc(100%-56px)] lg:w-[calc(100%-128px)] h-[285px] lg:h-[601px] flex items-center bg-gray-02 bg-opacity-25 rounded-[32px] overflow-hidden`}
+          className={`w-full h-[285px] lg:h-[601px] flex items-center bg-gray-02 bg-opacity-25 rounded-[32px] overflow-hidden`}
         >
           <div className={`w-[119px] lg:w-[390px] h-full relative isolate bg-yellow-06`}>
             <Image alt={``} src={BackGround} className={`w-full h-full object-cover absolute inset-0`} />

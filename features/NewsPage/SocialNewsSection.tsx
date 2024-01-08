@@ -94,7 +94,7 @@ const SliderSection = () => {
                         if (index < 2) {
                             return (
                                 <Fragment key={item?.id}>
-                                    <div className={`w-full lg:w-[48%] max-w-[812px] bg-white flex items-center rounded-[16px] h-[128px] lg:h-[158px]`}>
+                                    <Link className={`w-full lg:w-[48%] max-w-[812px] bg-white flex items-center rounded-[16px] h-[128px] lg:h-[158px]`} href={`/news/social-media/1`}>
                                         <Image
                                             style={{ borderRadius: `0 16px 16px 0` }}
                                             alt=""
@@ -123,7 +123,7 @@ const SliderSection = () => {
                                             </div>
                                             <span className={`text-[14px] lg:text-[24px] font-[600]`}>{item?.name}</span>
                                         </div>
-                                    </div>
+                                    </Link>
                                 </Fragment>
                             );
                         }

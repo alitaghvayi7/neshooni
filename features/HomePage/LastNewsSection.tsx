@@ -45,8 +45,8 @@ const slides = [
 const LastNewsSection = () => {
   return (
     <>
-      <section className={`flex flex-col items-center w-full max-w-[1689px] mx-auto gap-8 my-[5rem]`}>
-        <div className={`w-[calc(100%-56px)] lg:w-[calc(100%-128px)] flex items-center justify-between`}>
+      <section className={`flex flex-col items-center w-[calc(100%-56px)] lg:w-[calc(100%-128px)] max-w-[1689px] mx-auto gap-8 my-[5rem]`}>
+        <div className={`w-full flex items-center justify-between`}>
           <span
             style={{ backgroundClip: "content-box", borderRadius: "0 0 32px 0" }}
             className={`w-fit pl-6 border-b border-r border-yellow-04 bg-yellow-06 indent-5 font-bold text-[20px] lg:text-[40px] text-write-main`}
@@ -63,7 +63,7 @@ const LastNewsSection = () => {
           </Link>
         </div>
         <div
-          className={`flex flex-wrap justify-around content-around w-[calc(100%-56px)] lg:w-[calc(100%-128px)] max-w-[1689px] mx-auto gap-3 lg:gap-4`}
+          className={`flex flex-wrap justify-around content-around w-full mx-auto gap-3 lg:gap-4`}
         >
           {/* single Crat */}
           {slides.map((item: any) => {

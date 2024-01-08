@@ -85,7 +85,7 @@ const WireServiceSection = () => {
                     {slides.map((item: any, index: number) => {
                         if (index > 1) {
                             return (
-                                <div key={item?.id} className="w-full lg:w-[25%] max-w-[398px] bg-white rounded-[16px] lg:rounded-[32px] overflow-hidden h-[500px] lg:h-[755px]">
+                                <Link href={`/news/wire-service/1`} key={item?.id} className="w-full lg:w-[25%] max-w-[398px] bg-white rounded-[16px] lg:rounded-[32px] overflow-hidden h-[500px] lg:h-[755px]">
                                     <div className="w-full h-[60%] rounded-t-[16px] lg:rounded-t-[32px] overflow-hidden">
                                         <Image src={item?.image} className="w-full h-full object-cover" alt="" />
                                     </div>
@@ -113,7 +113,7 @@ const WireServiceSection = () => {
                                             {item?.desc}
                                         </span>
                                     </div>
-                                </div>
+                                </Link>
                             )
                         }
                     })}
@@ -123,7 +123,7 @@ const WireServiceSection = () => {
                         if (index < 2) {
                             return (
                                 <Fragment key={item?.id}>
-                                    <div className={`w-full lg:w-[49%] max-w-[812px] bg-white flex items-center rounded-[16px] h-[128px] lg:h-[229px]`}>
+                                    <Link href={`/news/wire-service/1`} className={`w-full lg:w-[49%] max-w-[812px] bg-white flex items-center rounded-[16px] h-[128px] lg:h-[229px]`}>
                                         <Image
                                             style={{ borderRadius: `0 16px 16px 0` }}
                                             alt=""
@@ -152,7 +152,7 @@ const WireServiceSection = () => {
                                             </div>
                                             <span className={`text-[14px] lg:text-[24px] font-[600]`}>{item?.name}</span>
                                         </div>
-                                    </div>
+                                    </Link>
                                 </Fragment>
                             );
                         }
