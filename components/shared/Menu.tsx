@@ -44,7 +44,7 @@ const Menu = () => {
                         صفحه اصلی
                     </Link>{" "}
                     <Link
-                        href={""}
+                        href={"/tourist"}
                         className={`text-[18px] text-write-main ${router.pathname.startsWith("/tourist") && "border-b border-yellow-04"
                         }`}
                     >
@@ -65,7 +65,7 @@ const Menu = () => {
                     </Link>
                     <Link
                         href={"/introduction"}
-                        className={`text-[18px] text-write-main ${router.pathname == "/introduction" && "border-b border-yellow-04"}`}
+                        className={`text-[18px] text-write-main ${router.pathname === "/introduction" && "border-b border-yellow-04"}`}
                     >
                         شما معرفی کنید
                     </Link>
