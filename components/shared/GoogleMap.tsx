@@ -15,7 +15,7 @@ const GoogleMap = (props: Props) => {
     const mapRef = useRef<Map | null>(null);
 
     const markerIcon = new Icon({
-        iconSize: [80, 80],
+        iconSize: [40, 40],
         iconUrl: IconImage.src,
     });
 
