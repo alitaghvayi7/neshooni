@@ -141,7 +141,7 @@ const Map = (props: Props) => {
           ref={mapRef}
           className={`w-full h-full absolute inset-0 z-[1]`}
           center={[boundes?.lat, boundes?.lng]}
-          zoom={30}
+          zoom={10}
           scrollWheelZoom={false}
           fadeAnimation={true}
           zoomControl={false}
@@ -161,8 +161,6 @@ const Map = (props: Props) => {
               ></Marker>
             );
           })}
-
-          <Marker key={Math.random()} icon={markerIcon} position={boundes}></Marker>
           <RecenterAutomatically lat={boundes?.lat} lng={boundes?.lng} />
         </MapContainer>
       </section>
