@@ -1,0 +1,22 @@
+.hero-image {
+  background-image: url("../../../public/assets/images/mainpage/hero_bg_two.png"),
+    url("../../../public/assets/images/mainpage/Vector.png"), url("../../../public/assets/images/mainpage/Vector1.png"),
+    url("../../../public/assets/images/mainpage/Vector2.png"),
+    linear-gradient(255.75deg, rgba(255, 255, 255, 0.3) 20.33%, rgba(255, 255, 255, 0.05) 100%);
+  background-repeat: no-repeat;
+  background-size: cover, contain, contain, contain;
+  background-position: -900px -50vh, 30vw -10%, -180px -20%, -10% center;
+  background-attachment: fixed;
+}
+
+.gradiant-color {
+  background: linear-gradient(180deg, #01226d -17.91%, #9cbafe 100%, #0138b6 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+@media (min-width: 1024px) {
+  .hero-image {
+    background-position: -150px -100px, 50% center, 1% center, -10% center;
+  }
+}
