@@ -2,22 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-@font-face {
-  font-family: "Peyda";
-  src: url("../../public/assets/fonts/Peyda-Regular.ttf") format("truetype");
-  font-weight: normal;
-  font-style: normal;
-  font-stretch: condensed;
-}
-
-@font-face {
-  font-family: "Peyda_bold";
-  src: url("../../public/assets/fonts/Peyda-Bold.ttf") format("truetype");
-  font-weight: 400;
-  font-style: normal;
-  font-stretch: normal;
-}
-
 /* Firefox */
 * {
   scrollbar-width: thin;
@@ -86,4 +70,8 @@
 }
 .swiper-rotate2 {
   transform: rotateY(180deg);
+}
+
+.leaflet-control-attribution.leaflet-control {
+  display: none !important;
 }

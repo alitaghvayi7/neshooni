@@ -9,10 +9,6 @@ const config: Config = {
   ],
   theme: {
     extend: {
-      fontFamily: {
-        Peyda: ["Peyda"],
-        peydaBold: ["Peyda_bold"],
-      },
       colors: {
         blue: {
           "08": "#0138B6",

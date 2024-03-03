@@ -8,67 +8,31 @@ import Image2 from "@/assets/images/mainpage/Rectangle66.png";
 import Image3 from "@/assets/images/mainpage/Rectangle67.png";
 import { Fragment, useEffect, useMemo, useState } from "react";
 import { imageBaseURL } from "@/data";
+import { HASHTAG_ICON, NEWS_ICON, PAPER_ICON } from "@/assets/icons/svgs";
 
 const newsTypes = [
   {
     id: 1,
     name: "اخبار شرکت‌ها و سازمان‌ها",
     type: "organizations",
-    icon: "/icons/news.svg",
+    activeIcon: <NEWS_ICON />,
+    inActiveIcon: <NEWS_ICON fill="#9C9C9C" />,
   },
   {
     id: 2,
     name: "اخبار شبکه‌های اجتماعی",
     type: "social",
-    icon: "/icons/news.svg",
+    inActiveIcon: <HASHTAG_ICON fill="#9C9C9C" />,
+    activeIcon: <HASHTAG_ICON />,
   },
   {
     id: 3,
     name: "اخبار سایت‌های خبری",
     type: "newsAgancies",
-    icon: "/icons/news.svg",
+    activeIcon: <PAPER_ICON />,
+    inActiveIcon: <PAPER_ICON fill="#9C9C9C" />,
   },
 ] as const;
-
-const slides = [
-  {
-    id: Math.random(),
-    image: Image3,
-    publisher: "همشهری آنلاین",
-    date: "1402 / 11 / 02",
-    name: `عضو هیات رئیسه مجلس: خودروسازان
- با چراغ سبز شورای رقابت قیمت‌ها را 
-افزایش دادند`,
-    desc: "پوشاک یا لِباس یا جامه آنچه است که بر تن پوشیده می‌شود. پوشاک، و دیگر خطرهای موجود در طبیعت حفظ می‌کند. همچنین پوشاک می‌تواند برای راحتی، زیبایی، حفظ در برابر سرما یا دگرگونی دمایی و نیز برای ایمنی استفاده شود.",
-  },
-  {
-    id: Math.random(),
-    image: Image2,
-    publisher: "همشهری آنلاین",
-    date: "1402 / 11 / 02",
-    name: `سرلشکر موسوی: اقدامات وحشیانه‌ رژیم صهیونیستی در نوار
- غزه کوچک‍ترین ارزش نظامی ندارد`,
-    desc: "لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ",
-  },
-  {
-    id: Math.random(),
-    image: Image1,
-    publisher: "همشهری آنلاین",
-    date: "1402 / 11 / 02",
-    name: `سرلشکر موسوی: اقدامات وحشیانه‌ رژیم صهیونیستی در نوار
- غزه کوچک‍ترین ارزش نظامی ندارد`,
-    desc: "لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ",
-  },
-  {
-    id: Math.random(),
-    image: Image2,
-    publisher: "همشهری آنلاین",
-    date: "1402 / 11 / 02",
-    name: `سرلشکر موسوی: اقدامات وحشیانه‌ رژیم صهیونیستی در نوار
- غزه کوچک‍ترین ارزش نظامی ندارد`,
-    desc: "لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ",
-  },
-];
 
 const NewsSection = ({ newsList }: { newsList: SingleNews[] }) => {
   const [activeNewsType, setActiveNewsType] = useState<"social" | "organizations" | "newsAgancies">("organizations");
@@ -93,12 +57,12 @@ const NewsSection = ({ newsList }: { newsList: SingleNews[] }) => {
             <button
               key={tab.id}
               onClick={() => setActiveNewsType(tab.type)}
-              className={`py-2 flex items-center justify-center gap-2 ${
+              className={`py-2 flex items-center justify-center gap-3 ${
                 activeNewsType === tab.type ? "text-write-main border-b border-b-yellow-02" : "text-gray-03"
               }`}
             >
               <div className="relative size-4 fill-red-600 text-red-300">
-                <Image className="fill-red-600 text-red-300" src={tab.icon} alt="icon" fill />
+                {activeNewsType === tab.type ? tab.activeIcon : tab.inActiveIcon}
               </div>
               <span>{tab.name}</span>
             </button>
