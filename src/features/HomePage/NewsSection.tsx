@@ -3,12 +3,9 @@ import Image from "next/image";
 import Link from "next/link";
 
 // images
-import Image1 from "@/assets/images/mainpage/Rectangle142.png";
-import Image2 from "@/assets/images/mainpage/Rectangle66.png";
-import Image3 from "@/assets/images/mainpage/Rectangle67.png";
-import { Fragment, useEffect, useMemo, useState } from "react";
-import { imageBaseURL } from "@/data";
 import { HASHTAG_ICON, NEWS_ICON, PAPER_ICON } from "@/assets/icons/svgs";
+import { imageBaseURL } from "@/data";
+import { Fragment, useMemo, useState } from "react";
 
 const newsTypes = [
   {
@@ -52,7 +49,7 @@ const NewsSection = ({ newsList }: { newsList: SingleNews[] }) => {
         </span>
         {/* tabs */}
 
-        <div className="flex items-center border-b gap-6">
+        <div className="flex items-center border-b gap-6 overflow-x-auto whitespace-nowrap">
           {newsTypes.map((tab) => (
             <button
               key={tab.id}
@@ -118,9 +115,9 @@ const NewsSection = ({ newsList }: { newsList: SingleNews[] }) => {
             )}
           </div>
           <div
-            className={`w-full flex flex-col justify-center gap-3 lg:gap-0 lg:justify-between lg:w-[49%] max-w-[829px] rounded-[16px] overflow-hidden h-[515px]`}
+            className={`w-full flex flex-col gap-3 lg:gap-0 lg:justify-between lg:w-[49%] max-w-[829px] rounded-[16px] overflow-hidden h-[515px]`}
           >
-            {/* single Crat */}
+            {/* single Crad */}
             {activeNews.slice(1, 3).map((item, index: number) => {
               return (
                 <Fragment key={item?.id}>

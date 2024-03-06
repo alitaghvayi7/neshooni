@@ -1,3 +1,4 @@
+"use client";
 import { AdjustmentsHorizontalIcon } from "@heroicons/react/24/outline";
 
 const FilterBox = () => {

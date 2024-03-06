@@ -1,5 +1,11 @@
-import { useLayoutEffect, useState } from "react";
-import MapWithoutLabels from "@/components/shared/MapWithoutLabels";
+"use client";
+
+import { useEffect, useLayoutEffect, useState } from "react";
+// import MapWithoutLabels from "@/components/shared/MapWithoutLabels";
+import dynamic from "next/dynamic";
+const MapWithoutLabels = dynamic(() => import("@/components/shared/MapWithoutLabels"), {
+  ssr: false,
+});
 
 const MapSection = () => {
   const [boundes, setBoundes] = useState({ lat: 0, lng: 0 });
@@ -12,6 +18,7 @@ const MapSection = () => {
         (position) => {
           // Get the user's latitude and longitude coordinates
           const lat = position.coords.latitude;
+
           const lng = position.coords.longitude;
 
           // Do something with the location data, e.g. display on a map
@@ -46,7 +53,9 @@ const MapSection = () => {
         <div
           className={`w-full h-[343px] lg:h-[300px] mx-auto overflow-hidden rounded-[16px]  flex items-center justify-center relative isolate`}
         >
-          <MapWithoutLabels boundes={boundes} labelTitle="روی نقشه همه کسب و کارهای شهرتو ببین" />
+          {typeof window !== undefined && (
+            <MapWithoutLabels boundes={boundes} labelTitle="روی نقشه همه کسب و کارهای شهرتو ببین" />
+          )}
         </div>
       )}
     </section>

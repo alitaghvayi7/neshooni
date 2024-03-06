@@ -1,3 +1,5 @@
+"use client";
+
 import FilterBox from "@/components/shared/FilterBox";
 import { EllipsisVerticalIcon, EllipsisHorizontalIcon, ChatBubbleLeftIcon } from "@heroicons/react/24/outline";
 import Image from "next/image";
@@ -13,86 +15,71 @@ import Image8 from "@/assets/images/businesspage/business-image(8).png";
 import Image9 from "@/assets/images/businesspage/business-image(9).png";
 import { StarIcon } from "@heroicons/react/24/solid";
 import Link from "next/link";
+import { GRID_ICON, ROWS_ICON } from "@/assets/icons/svgs";
+import BusinessVerticalCard from "@/components/Cards/BusinessVertical";
+import BusinessHorizantalCard from "@/components/Cards/BusinessHorizantal";
 
 const slides = [
   {
-    id: Math.random(),
+    id: 1,
     image: Image1,
     name: "نانوایی سید",
-    comments: parseInt(String(Math.random() * 100)),
-    score: (Math.random() * 5).toFixed(2),
+    comments: 561,
+    score: 5.36,
     address: "تهران، خیابان ایرانشهر، منطقه ۳، بلوار خردمند شمالی، کوچه ۲۰، پلاک ۵۰۰",
     desc: "پوشاک یا لِباس یا جامه آنچه است که بر تن پوشیده می‌شود. پوشاک، و دیگر خطرهای موجود در طبیعت حفظ می‌کند. همچنین پوشاک می‌تواند برای راحتی، زیبایی، حفظ در برابر سرما یا دگرگونی دمایی و نیز برای ایمنی استفاده شود.",
   },
   {
-    id: Math.random(),
+    id: 2,
     image: Image2,
     name: "لبنیات سید اصغر",
-    comments: parseInt(String(Math.random() * 100)),
-    score: (Math.random() * 5).toFixed(2),
+    comments: 651,
+    score: 4.65,
     address: "تهران، خیابان جمهوری اسلامی، منطقه ۲۴، بلوار نیایش، کوچه ۵، پلاک ۲۰۰",
     desc: "پوشاک یا لِباس یا جامه آنچه است که بر تن پوشیده می‌شود. پوشاک، و دیگر خطرهای موجود در طبیعت حفظ می‌کند. همچنین پوشاک می‌تواند برای راحتی، زیبایی، حفظ در برابر سرما یا دگرگونی دمایی و نیز برای ایمنی استفاده شود.",
   },
   {
-    id: Math.random(),
+    id: 3,
     image: Image3,
     name: "پوشاک فروردین",
-    comments: parseInt(String(Math.random() * 100)),
-    score: (Math.random() * 5).toFixed(2),
+    comments: 471,
+    score: 2.45,
     address: "تهران، خیابان انقلاب، منطقه ۴، بلوار جمهوری، کوچه ۲۰، پلاک ۵۰۰",
     desc: "پوشاک یا لِباس یا جامه آنچه است که بر تن پوشیده می‌شود. پوشاک، و دیگر خطرهای موجود در طبیعت حفظ می‌کند. همچنین پوشاک می‌تواند برای راحتی، زیبایی، حفظ در برابر سرما یا دگرگونی دمایی و نیز برای ایمنی استفاده شود.",
   },
   {
-    id: Math.random(),
+    id: 4,
     image: Image4,
     name: "پوشاک هیراد",
-    comments: parseInt(String(Math.random() * 100)),
-    score: (Math.random() * 5).toFixed(2),
+    comments: 154,
+    score: 2.45,
     address: "تهران، خیابان انقلاب، منطقه ۴، بلوار جمهوری، کوچه ۲۰، پلاک ۵۰۰",
     desc: "پوشاک یا لِباس یا جامه آنچه است که بر تن پوشیده می‌شود. پوشاک، و دیگر خطرهای موجود در طبیعت حفظ می‌کند. همچنین پوشاک می‌تواند برای راحتی، زیبایی، حفظ در برابر سرما یا دگرگونی دمایی و نیز برای ایمنی استفاده شود.",
   },
   {
-    id: Math.random(),
+    id: 5,
     image: Image5,
     name: "لبنیات اسماعیلی",
-    comments: parseInt(String(Math.random() * 100)),
-    score: (Math.random() * 5).toFixed(2),
+    comments: 354,
+    score: 2.87,
     address: "تهران، خیابان انقلاب، منطقه ۴، بلوار جمهوری، کوچه ۲۰، پلاک ۵۰۰",
     desc: "پوشاک یا لِباس یا جامه آنچه است که بر تن پوشیده می‌شود. پوشاک، و دیگر خطرهای موجود در طبیعت حفظ می‌کند. همچنین پوشاک می‌تواند برای راحتی، زیبایی، حفظ در برابر سرما یا دگرگونی دمایی و نیز برای ایمنی استفاده شود.",
   },
   {
-    id: Math.random(),
+    id: 6,
     image: Image6,
     name: "نانوایی رضایی و برادران",
-    comments: parseInt(String(Math.random() * 100)),
-    score: (Math.random() * 5).toFixed(2),
+    comments: 641,
+    score: 4.25,
     address: "تهران، خیابان انقلاب، منطقه ۴، بلوار جمهوری، کوچه ۲۰، پلاک ۵۰۰",
     desc: "پوشاک یا لِباس یا جامه آنچه است که بر تن پوشیده می‌شود. پوشاک، و دیگر خطرهای موجود در طبیعت حفظ می‌کند. همچنین پوشاک می‌تواند برای راحتی، زیبایی، حفظ در برابر سرما یا دگرگونی دمایی و نیز برای ایمنی استفاده شود.",
   },
   {
-    id: Math.random(),
+    id: 7,
     image: Image7,
     name: "پوشاک ملودی",
-    comments: parseInt(String(Math.random() * 100)),
-    score: (Math.random() * 5).toFixed(2),
-    address: "تهران، خیابان انقلاب، منطقه ۴، بلوار جمهوری، کوچه ۲۰، پلاک ۵۰۰",
-    desc: "پوشاک یا لِباس یا جامه آنچه است که بر تن پوشیده می‌شود. پوشاک، و دیگر خطرهای موجود در طبیعت حفظ می‌کند. همچنین پوشاک می‌تواند برای راحتی، زیبایی، حفظ در برابر سرما یا دگرگونی دمایی و نیز برای ایمنی استفاده شود.",
-  },
-  {
-    id: Math.random(),
-    image: Image8,
-    name: "پوشاک افتاب",
-    comments: parseInt(String(Math.random() * 100)),
-    score: (Math.random() * 5).toFixed(2),
-    address: "تهران، خیابان انقلاب، منطقه ۴، بلوار جمهوری، کوچه ۲۰، پلاک ۵۰۰",
-    desc: "پوشاک یا لِباس یا جامه آنچه است که بر تن پوشیده می‌شود. پوشاک، و دیگر خطرهای موجود در طبیعت حفظ می‌کند. همچنین پوشاک می‌تواند برای راحتی، زیبایی، حفظ در برابر سرما یا دگرگونی دمایی و نیز برای ایمنی استفاده شود.",
-  },
-  {
-    id: Math.random(),
-    image: Image9,
-    name: "فروشگاه جانبازان",
-    comments: parseInt(String(Math.random() * 100)),
-    score: (Math.random() * 5).toFixed(2),
+    comments: 324,
+    score: 4.9,
     address: "تهران، خیابان انقلاب، منطقه ۴، بلوار جمهوری، کوچه ۲۰، پلاک ۵۰۰",
     desc: "پوشاک یا لِباس یا جامه آنچه است که بر تن پوشیده می‌شود. پوشاک، و دیگر خطرهای موجود در طبیعت حفظ می‌کند. همچنین پوشاک می‌تواند برای راحتی، زیبایی، حفظ در برابر سرما یا دگرگونی دمایی و نیز برای ایمنی استفاده شود.",
   },
@@ -100,6 +87,7 @@ const slides = [
 
 const BusinessSection = () => {
   const [collections, setCollections] = useState([...slides.slice(0, 4)]);
+  const [showContentType, setShowContentType] = useState<"row" | "grid">("row");
   const [loading, setloading] = useState(false);
   const containerRef = useRef<HTMLDivElement | null>(null);
 
@@ -125,74 +113,60 @@ const BusinessSection = () => {
       <FilterBox />
       <div className="lg:w-[calc(100%-434px)]">
         <div className="flex w-full items-center justify-end gap-4">
-          <EllipsisVerticalIcon className="w-8 h-8 text-write-04 cursor-pointer" />
-          <EllipsisHorizontalIcon className="w-8 h-8 text-gray-03 cursor-pointer" />
+          <button
+            onClick={() => {
+              setShowContentType("grid");
+            }}
+          >
+            <GRID_ICON fill={showContentType === "row" ? "#AFAFAF" : "#4D3500"} />
+          </button>
+          <button
+            onClick={() => {
+              setShowContentType("row");
+            }}
+          >
+            <ROWS_ICON fill={showContentType === "grid" ? "#AFAFAF" : "#4D3500"} />
+          </button>
         </div>
         <div
-          onScroll={onScroll}
+          onScroll={() => {
+            onScroll();
+          }}
           ref={containerRef}
-          className="w-full overflow-hidden overflow-y-auto h-[556px] lg:h-[1288px] pt-8"
+          dir="ltr"
+          className={`w-full overflow-hidden overflow-y-auto mt-6 ${
+            showContentType === "row" ? "max-h-[556px] lg:max-h-[1188px]" : "max-h-[556px] lg:max-h-[1188px]"
+          }`}
         >
-          {collections.map((item: any) => {
-            return (
-              <div
-                key={item?.id}
-                className={`w-full flex items-center rounded-[16px] overflow-hidden h-[127px] lg:h-[302px] my-4`}
-              >
-                <Fragment>
-                  <div
-                    className={`w-full flex items-center rounded-t-[16px] lg:rounded-t-none lg:rounded-tr-[16px] lg:rounded-br-[16px] h-full overflow-hidden`}
-                  >
-                    <Image
-                      // style={{ borderRadius: `0 16px 16px 0` }}
-                      alt=""
-                      src={item?.image}
-                      className={`w-[40%] h-full object-cover`}
-                    />
-                    <div
-                      // style={{ borderRadius: `16px 0 0 16px` }}
-                      className={`w-[60%] h-full flex flex-col gap-2 bg-white justify-between p-4 lg:px-8 lg:py-8 border-b border-t border-l  border-yellow-04 overflow-hidden rounded-tl-[16px] rounded-bl-[16px]`}
-                    >
-                      <div className={`w-full flex items-center justify-between`}>
-                        <span className={`text-[14px] lg:text-[24px] font-[700]`}>{item?.name}</span>
-                        <div className={`flex items-center gap-2`}>
-                          <div className={`flex items-center gap-2`}>
-                            <StarIcon className={`w-3 h-3 lg:w-5 lg:h-5 text-yellow-main`} />
-                            <span
-                              className={`text-[12px] lg:text-[16px] leading-6 text-write-04 flex items-center justify-center`}
-                            >
-                              {item?.score}
-                            </span>
-                          </div>
-                          <span className="w-[2px] h-[50px] bg-gray-02 hidden lg:flex"></span>
-                          <div className={`items-center gap-2 hidden lg:flex`}>
-                            <ChatBubbleLeftIcon className={`w-5 h-5 text-gray-04`} />
-                            <span className={`text-[16px] leading-6 text-write-04 flex items-center justify-center`}>
-                              {item?.comments}
-                            </span>
-                          </div>
-                        </div>
-                      </div>
-                      <span className={`text-[12px] text-ellipsis leading-6 lg:text-[16px] text-write-main font-[500]`}>
-                        {item?.address}
-                      </span>
-                      <p
-                        className={`text-[12px] leading-6 lg:leading-8 text-ellipsis lg:text-[16px] text-write-main font-[200]`}
-                      >
-                        {item?.desc}
-                      </p>
-                      <Link
-                        href={"/business/1"}
-                        className={`py-[6px] px-[38px] lg:py-[9px] lg:px-[38px] border border-yellow-main rounded-[16px] w-fit text-[16px] self-end`}
-                      >
-                        بیشتر
-                      </Link>
-                    </div>
-                  </div>
-                </Fragment>
-              </div>
-            );
-          })}
+          <div
+            dir="rtl"
+            className={`w-full h-full ${showContentType === "row" ? "flex flex-col gap-6" : "grid grid-cols-3 gap-6"}`}
+          >
+            {collections.map((item) => {
+              return showContentType === "row" ? (
+                <BusinessVerticalCard
+                  address={item.address}
+                  comments={item.comments}
+                  desc={item.desc}
+                  image={item.image}
+                  name={item.name}
+                  score={item.score}
+                  key={item.id}
+                />
+              ) : (
+                <div key={item.id} className="h-[540px]">
+                  <BusinessHorizantalCard
+                    address={item.address}
+                    comments={item.comments}
+                    desc={item.desc}
+                    image={item.image}
+                    name={item.name}
+                    score={item.score}
+                  />
+                </div>
+              );
+            })}
+          </div>
           {loading && (
             <div className={`w-[32px] h-[32px] border-r border-r-gray-04 animate-spin rounded-full my-4 mx-auto`}></div>
           )}
