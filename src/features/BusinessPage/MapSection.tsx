@@ -1,5 +1,5 @@
+"use client";
 import MapComponent from "@/components/shared/Map";
-import exp from "constants";
 import { useLayoutEffect, useState } from "react";
 
 const MapSection = () => {

@@ -1,9 +1,6 @@
 "use client";
 
-import FilterBox from "@/components/shared/FilterBox";
-import { EllipsisVerticalIcon, EllipsisHorizontalIcon, ChatBubbleLeftIcon } from "@heroicons/react/24/outline";
-import Image from "next/image";
-import { Fragment, useRef, useState } from "react";
+import { GRID_ICON, ROWS_ICON } from "@/assets/icons/svgs";
 import Image1 from "@/assets/images/businesspage/business-image(1).png";
 import Image2 from "@/assets/images/businesspage/business-image(2).png";
 import Image3 from "@/assets/images/businesspage/business-image(3).png";
@@ -11,13 +8,10 @@ import Image4 from "@/assets/images/businesspage/business-image(4).png";
 import Image5 from "@/assets/images/businesspage/business-image(5).png";
 import Image6 from "@/assets/images/businesspage/business-image(6).png";
 import Image7 from "@/assets/images/businesspage/business-image(7).png";
-import Image8 from "@/assets/images/businesspage/business-image(8).png";
-import Image9 from "@/assets/images/businesspage/business-image(9).png";
-import { StarIcon } from "@heroicons/react/24/solid";
-import Link from "next/link";
-import { GRID_ICON, ROWS_ICON } from "@/assets/icons/svgs";
-import BusinessVerticalCard from "@/components/Cards/BusinessVertical";
 import BusinessHorizantalCard from "@/components/Cards/BusinessHorizantal";
+import BusinessVerticalCard from "@/components/Cards/BusinessVertical";
+import FilterBox from "@/components/shared/FilterBox";
+import { useRef, useState } from "react";
 
 const slides = [
   {
@@ -27,7 +21,7 @@ const slides = [
     comments: 561,
     score: 5.36,
     address: "تهران، خیابان ایرانشهر، منطقه ۳، بلوار خردمند شمالی، کوچه ۲۰، پلاک ۵۰۰",
-    desc: "پوشاک یا لِباس یا جامه آنچه است که بر تن پوشیده می‌شود. پوشاک، و دیگر خطرهای موجود در طبیعت حفظ می‌کند. همچنین پوشاک می‌تواند برای راحتی، زیبایی، حفظ در برابر سرما یا دگرگونی دمایی و نیز برای ایمنی استفاده شود.",
+    desc: "پوشاک یا لِباس یا جامه آنچه است که بر تن پوشیده می‌شود. پوشاک، و دیگر خطرهای موجود در طبیعت حفظ می‌کند. همچنین پوشاک می‌تواند برای راحتی، زیبایی، حفظ در برابر سرما یا دگرگونی دمایی و نیز برای ایمنی استفاده شود. ی راحتی، زیبایی، حفظ در برابر سرما یا دگرگونی دمایی و نیز برایی راحتی، زیبایی، حفظ در برابر سرما یا دگرگونی دمایی و نیز برایی راحتی، زیبایی، حفظ در برابر سرما یا دگرگونی دمایی و نیز برایی راحتی، زیبایی، حفظ در برابر سرما یا دگرگونی دمایی و نیز برایی راحتی، زیبایی، حفظ در برابر سرما یا دگرگونی دمایی و نیز برایی راحتی، زیبایی، حفظ در برابر سرما یا دگرگونی دمایی و نیز برایی راحتی، زیبایی، حفظ در برابر سرما یا دگرگونی دمایی و نیز برایی راحتی، زیبایی، حفظ در برابر سرما یا دگرگونی دمایی و نیز برایی راحتی، زیبایی، حفظ در برابر سرما یا دگرگونی دمایی و نیز برایی راحتی، زیبایی، حفظ در برابر سرما یا دگرگونی دمایی و نیز برایی راحتی، زیبایی، حفظ در برابر سرما یا دگرگونی دمایی و نیز برای",
   },
   {
     id: 2,
@@ -108,11 +102,13 @@ const BusinessSection = () => {
 
   return (
     <section
-      className={`flex flex-col lg:flex-row w-[calc(100%-56px)] lg:w-[calc(100%-128px)] max-w-[1666px] mx-auto pt-8 pb-[64px] gap-8`}
+      className={`mx-auto flex w-[calc(100%-56px)] max-w-[1666px] flex-col gap-8 pb-[64px] pt-8 lg:w-[calc(100%-128px)] lg:flex-row`}
     >
-      <FilterBox />
-      <div className="lg:w-[calc(100%-434px)]">
-        <div className="flex w-full items-center justify-end gap-4">
+      <div className="hidden h-[429px] w-[300px] lg:block xl:w-[402px] ">
+        <FilterBox />
+      </div>
+      <div className={`lg:w-[calc(100%-334px)] xl:w-[calc(100%-434px)]`}>
+        <div className="hidden w-full items-center justify-end gap-4 lg:flex">
           <button
             onClick={() => {
               setShowContentType("grid");
@@ -134,17 +130,17 @@ const BusinessSection = () => {
           }}
           ref={containerRef}
           dir="ltr"
-          className={`w-full overflow-hidden overflow-y-auto mt-6 ${
-            showContentType === "row" ? "max-h-[556px] lg:max-h-[1188px]" : "max-h-[556px] lg:max-h-[1188px]"
+          className={`mt-6 w-full overflow-hidden overflow-y-auto ${
+            showContentType === "row" ? "max-h-[556px] lg:max-h-[1188px]" : "lg:max-h-[1188px]"
           }`}
         >
           <div
             dir="rtl"
-            className={`w-full h-full ${showContentType === "row" ? "flex flex-col gap-6" : "grid grid-cols-3 gap-6"}`}
+            className={`h-full w-full ${showContentType === "row" ? "flex flex-col gap-6" : "grid grid-cols-2 gap-6 2xl:grid-cols-3"}`}
           >
             {collections.map((item) => {
               return showContentType === "row" ? (
-                <BusinessVerticalCard
+                <BusinessHorizantalCard
                   address={item.address}
                   comments={item.comments}
                   desc={item.desc}
@@ -154,8 +150,8 @@ const BusinessSection = () => {
                   key={item.id}
                 />
               ) : (
-                <div key={item.id} className="h-[540px]">
-                  <BusinessHorizantalCard
+                <div key={item.id} className="lg:h-[490px] xl:h-[540px]">
+                  <BusinessVerticalCard
                     address={item.address}
                     comments={item.comments}
                     desc={item.desc}
@@ -168,7 +164,7 @@ const BusinessSection = () => {
             })}
           </div>
           {loading && (
-            <div className={`w-[32px] h-[32px] border-r border-r-gray-04 animate-spin rounded-full my-4 mx-auto`}></div>
+            <div className={`mx-auto my-4 h-[32px] w-[32px] animate-spin rounded-full border-r border-r-gray-04`}></div>
           )}
         </div>
       </div>

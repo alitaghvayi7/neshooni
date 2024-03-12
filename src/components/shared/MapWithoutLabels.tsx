@@ -45,16 +45,16 @@ const MapWithoutLabels = (props: Props) => {
             zoomControl={false}
             style={{ background: "transparent" }}
           >
-            <TileLayer
+            {/* <TileLayer
               attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>'
               url="https://{s}.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}{r}.png"
               subdomains="abcd"
+            /> */}
+            <TileLayer
+              url={`http://{s}.google.com/vt/lyrs=m&x={x}&y={y}&z={z}`}
+              subdomains={["mt0", "mt1", "mt2", "mt3"]}
+              attribution='&copy; <a href="http://www.thunderforest.com/">Thunderforest</a>, &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
             />
-            {/* <TileLayer
-          url={`http://{s}.google.com/vt/lyrs=m&x={x}&y={y}&z={z}`}
-          subdomains={["mt0", "mt1", "mt2", "mt3"]}
-          attribution='&copy; <a href="http://www.thunderforest.com/">Thunderforest</a>, &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-        /> */}
             {/* {locations.map((item: any) => {
           return (
             <Marker

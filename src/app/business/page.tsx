@@ -1,16 +1,15 @@
 import Footer from "@/components/shared/Footer";
-import BusinessSection from "@/features/TouristPage/BusinessSection";
-import HeaderSection from "@/features/TouristPage/HeaderSection";
-import MapSection from "@/features/TouristPage/MapSection";
+import HeaderSection from "@/features/BusinessPage/HeaderSection";
 import { Metadata } from "next";
 import dynamic from "next/dynamic";
-// const MapSection = dynamic(() => import("@/features/TouristPage/MapSection"), {
-//   ssr: false,
-// });
+const MapSection = dynamic(() => import("@/features/BusinessPage/MapSection"), { ssr: false });
+const BusinessSection = dynamic(() => import("@/features/BusinessPage/BusinessSection"), { ssr: false });
+
 export const metadata: Metadata = {
-  title: "گردشگری",
+  title: "کسب و کار",
 };
-export default function TouristPage() {
+
+export default function BusinessPage() {
   return (
     <>
       <main className={`w-full`}>
