@@ -50,38 +50,37 @@ const PalceSection = () => {
   return (
     <>
       <section
-        className={`flex flex-col items-center w-[calc(100%-56px)] lg:w-[calc(100%-128px)] max-w-[1689px] mx-auto mt-[11rem] lg:mt-[15rem] gap-8`}
+        className={`mx-auto mt-[11rem] flex w-[calc(100%-56px)] max-w-[1689px] flex-col items-center gap-8 lg:mt-[15rem] lg:w-[calc(100%-128px)]`}
       >
-        <div className={`w-full flex items-center justify-between`}>
+        <div className={`flex w-full items-center justify-between`}>
           <span
             style={{ backgroundClip: "content-box", borderRadius: "0 0 32px 0" }}
-            className={`w-fit pl-6 border-b border-r border-yellow-04 bg-yellow-06 indent-5 font-bold text-[20px] lg:text-[40px] text-write-main`}
+            className={`w-fit border-b border-r border-yellow-04 bg-yellow-06 pl-6 indent-5 text-[20px] font-bold text-write-main lg:text-[40px]`}
           >
-            {" "}
             کجاها بریم؟
           </span>
           <Link
-            href={""}
+            href={`/tourist`}
             style={{ backgroundClip: "content-box", borderRadius: "0 0 0 32px" }}
-            className={`w-fit hidden lg:flex px-6 pb-4 border-b border-l border-yellow-04 bg-transparent text-[12px] lg:text-[16px] text-write-04`}
+            className={`hidden w-fit border-b border-l border-yellow-04 bg-transparent px-6 pb-4 text-[12px] text-write-04 lg:flex lg:text-[16px]`}
           >
             مشاهده همه
           </Link>
         </div>
         <div
-          className={`w-full h-[285px] lg:h-[601px] flex items-center bg-gray-02 bg-opacity-25 rounded-[32px] overflow-hidden`}
+          className={`flex h-[285px] w-full items-center overflow-hidden rounded-[32px] bg-gray-02 bg-opacity-25 lg:h-[601px]`}
         >
-          <div className={`w-[119px] lg:w-[390px] h-full relative isolate bg-yellow-06`}>
-            <Image alt={``} src={BackGround} className={`w-full h-full object-cover absolute inset-0`} />
+          <div className={`relative isolate h-full w-[119px] bg-yellow-06 lg:w-[390px]`}>
+            <Image alt={``} src={BackGround} className={`absolute inset-0 h-full w-full object-cover`} />
             <Image
               alt={``}
               src={MapImage}
-              className={`w-full h-full object-contain absolute top-0 bottom-0 -left-4 lg:-left-10 z-[2]`}
+              className={`absolute -left-4 bottom-0 top-0 z-[2] h-full w-full object-contain lg:-left-10`}
             />
           </div>
           <div
             style={{ borderRadius: `32px 0 0 32px` }}
-            className={`w-[calc(100%-119px)] lg:w-[calc(100%-390px)] h-full bg-white border-t border-b border-l border-yellow-04 py-4 ps-5 lg:py-10 lg:ps-[85px] overflow-hidden`}
+            className={`h-full w-[calc(100%-119px)] overflow-hidden border-b border-l border-t border-yellow-04 bg-white py-4 ps-5 lg:w-[calc(100%-390px)] lg:py-10 lg:ps-[85px]`}
           >
             <Swiper
               // install Swiper modules
@@ -181,24 +180,24 @@ const PalceSection = () => {
               {slides.map((item: any) => {
                 return (
                   <SwiperSlide key={item?.id}>
-                    <div className="w-[169px] lg:w-[350px] h-full rounded-[16px] overflow-hidden flex flex-col ">
-                      <Image alt={``} src={item?.image} className={`w-full h-[66%] object-cover`} />
+                    <div className="flex h-full w-[169px] flex-col overflow-hidden rounded-[16px] lg:w-[350px] ">
+                      <Image alt={``} src={item?.image} className={`h-[66%] w-full object-cover`} />
                       <div
                         style={{ borderRadius: `0 0 16px 16px` }}
-                        className="w-full h-[34%] flex flex-col p-2 lg:pt-6 lg:px-4 lg:pb-4 border border-yellow-04"
+                        className="flex h-[34%] w-full flex-col border border-yellow-04 p-2 lg:px-4 lg:pb-4 lg:pt-6"
                       >
-                        <div className={`w-full flex items-center justify-between`}>
-                          <span className={`text-[12px] lg:text-[20px] font-[600]`}>{item?.name}</span>
+                        <div className={`flex w-full items-center justify-between`}>
+                          <span className={`text-[12px] font-[600] lg:text-[20px]`}>{item?.name}</span>
                           <div className={`flex items-center gap-2`}>
-                            <StarIcon className={`w-4 h-4 text-yellow-main`} />
+                            <StarIcon className={`h-4 w-4 text-yellow-main`} />
                             <span
-                              className={`text-[10px] lg:text-[14px] lg:leading-6 text-write-main flex items-center justify-center`}
+                              className={`flex items-center justify-center text-[10px] text-write-main lg:text-[14px] lg:leading-6`}
                             >
                               {item?.score}
                             </span>
                           </div>
                         </div>
-                        <p className={`text-[10px] lg:text-[16px] leading-[32px] text-write-main font-[400]`}>
+                        <p className={`text-[10px] font-[400] leading-[32px] text-write-main lg:text-[16px]`}>
                           {item?.desc}
                         </p>
                       </div>
@@ -212,7 +211,7 @@ const PalceSection = () => {
         <Link
           href={""}
           style={{ backgroundClip: "content-box", borderRadius: "0 0 0 32px" }}
-          className={`w-fit flex lg:hidden px-6 py-1 border-b border-l border-yellow-04 bg-transparent text-[12px] text-write-04`}
+          className={`flex w-fit border-b border-l border-yellow-04 bg-transparent px-6 py-1 text-[12px] text-write-04 lg:hidden`}
         >
           مشاهده همه
         </Link>

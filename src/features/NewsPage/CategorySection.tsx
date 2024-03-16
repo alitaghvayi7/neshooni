@@ -1,44 +1,52 @@
-import Image1 from "@/assets/images/newspage/socail-media-background.png";
 import Image2 from "@/assets/images/newspage/organ-background.png";
-import Image3 from "@/assets/images/newspage/wire-service-background.png";
+import Image1 from "@/assets/images/newspage/socail-media-background.png";
 import Image from "next/image";
 import Link from "next/link";
 
 const CategorySection = () => {
-    return (
-        <>
-            <section
-                className={`w-[calc(100%-56px)] lg:w-[calc(100%-128px)] max-w-[1662px] mx-auto gap-6 relative z-[1] isolate flex flex-wrap items-center`}
-            >
-                <Link href={`/news/social-media`} className="w-full lg:w-[538px] h-[280px] lg:h-[404px] bg-yellow-06 rounded-[32px] relative isolate flex items-center justify-center">
-                    <Image src={Image1} className="absolute w-full h-full object-center object-contain inset-0" alt="" />
-                    <button
-                        className={`truncate py-3 px-6 bg-yellow-05 text-write-03 rounded-[16px] font-[700] text-[24px] flex items-center justify-center absolute z-[2] top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%]`}
-                    >
-                        اخبار شبکه های اجتماعی
-                    </button>
-                </Link>
+  return (
+    <>
+      <section
+        className={`relative isolate z-[1] mx-auto flex w-[calc(100%-56px)] max-w-[1662px] flex-wrap items-center gap-6 lg:w-[calc(100%-128px)] xl:grid xl:grid-cols-3`}
+      >
+        <Link
+          href={`/news/social-media`}
+          className="relative isolate flex h-[280px] w-full items-center justify-center rounded-[32px] bg-yellow-06 xl:aspect-[470/360] xl:w-full"
+        >
+          <Image src={Image1} className="absolute inset-0 h-full w-full object-contain object-center" alt="" />
+          <button
+            className={`absolute left-[50%] top-[50%] z-[2] flex translate-x-[-50%] translate-y-[-50%] items-center justify-center truncate rounded-[16px] bg-yellow-05 px-6 py-3 text-[24px] font-[700] text-write-03`}
+          >
+            اخبار شبکه های اجتماعی
+          </button>
+        </Link>
 
-                <Link href={`/news/organization`} className="w-full lg:w-[538px] h-[280px] lg:h-[404px] bg-blue-06 rounded-[32px] relative isolate flex items-center justify-center">
-                    <Image src={Image2} className="absolute w-full h-full object-center object-contain inset-0" alt="" />
-                    <button
-                        className={`truncate py-3 px-6 bg-yellow-05 text-write-03 rounded-[16px] font-[700] text-[24px] flex items-center justify-center absolute z-[2] top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%]`}
-                    >
-                        اخبار شرکت‌ها وسازمان‌ها
-                    </button>
-                </Link>
+        <Link
+          href={`/news/organization`}
+          className="relative isolate flex h-[280px] w-full items-center justify-center rounded-[32px] bg-blue-06 xl:aspect-[470/360] xl:w-full"
+        >
+          <Image src={Image2} className="absolute inset-0 h-full w-full object-contain object-center" alt="" />
+          <button
+            className={`absolute left-[50%] top-[50%] z-[2] flex translate-x-[-50%] translate-y-[-50%] items-center justify-center truncate rounded-[16px] bg-yellow-05 px-6 py-3 text-[24px] font-[700] text-write-03`}
+          >
+            اخبار شرکت‌ها وسازمان‌ها
+          </button>
+        </Link>
 
-                <Link href={`/news/wire-service`} className="w-full lg:w-[538px] h-[280px] lg:h-[404px] bg-[#EBFFF4] rounded-[32px] relative isolate flex items-center justify-center">
-                    <Image src={Image2} className="absolute w-full h-full object-center object-contain inset-0" alt="" />
-                    <button
-                        className={`truncate py-3 px-6 bg-yellow-05 text-write-03 rounded-[16px] font-[700] text-[24px] flex items-center justify-center absolute z-[2] top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%]`}
-                    >
-                        اخبار خبرگزاری‌های  رسمی
-                    </button>
-                </Link>
-            </section>
-        </>
-    )
-}
+        <Link
+          href={`/news/wire-service`}
+          className="relative isolate flex h-[280px] w-full items-center justify-center rounded-[32px] bg-[#EBFFF4] xl:aspect-[470/360] xl:w-full"
+        >
+          <Image src={Image2} className="absolute inset-0 h-full w-full object-contain object-center" alt="" />
+          <button
+            className={`absolute left-[50%] top-[50%] z-[2] flex translate-x-[-50%] translate-y-[-50%] items-center justify-center truncate rounded-[16px] bg-yellow-05 px-6 py-3 text-[24px] font-[700] text-write-03`}
+          >
+            اخبار خبرگزاری‌های رسمی
+          </button>
+        </Link>
+      </section>
+    </>
+  );
+};
 
-export default CategorySection
+export default CategorySection;

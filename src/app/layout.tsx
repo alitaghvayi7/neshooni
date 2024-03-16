@@ -1,6 +1,7 @@
 import localFont from "next/font/local";
 import SessionWrapper from "@/components/SessionWrapper";
 import "@/styles/globals.css";
+import { Metadata } from "next";
 
 const fonst = localFont({
   src: [
@@ -47,6 +48,11 @@ const fonst = localFont({
     },
   ],
 });
+
+export const metadata: Metadata = {
+  title: "قم نشان",
+  description: "سایت قم نشان",
+};
 
 export default function RootLayout({
   // Layouts must accept a children prop.

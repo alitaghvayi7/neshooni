@@ -11,14 +11,14 @@ import { useState } from "react";
 function BusinessSlider() {
   const [my_swiper, set_my_swiper] = useState<any>({});
   return (
-    <div className="relative w-full mx-auto h-full">
-      <div className="absolute top-[35%] lg:top-[40%] w-full z-10">
-        <div className="w-10 h-10 clippath1 absolute bg-white top-[-27px] right-[-1px]"></div>
-        <div className="w-10 h-10 clippath1 absolute bg-white swiper-rotate1 top-[69px] right-[-1px]"></div>
-        <div className="w-10 h-10 clippath1 absolute bg-white left-[-1px] swiper-rotate2 top-[-27px]"></div>
-        <div className="w-10 h-10 clippath1 absolute bg-white left-[-1px] rotate-180 top-[4.2rem]"></div>
-        <div className="w-20 h-20 rounded-full bg-white flex justify-center items-center absolute right-[-40px]">
-          <div className="w-12 h-12 border border-[#B27C00] rounded-full flex justify-center items-center">
+    <div className="relative mx-auto h-full w-full">
+      <div className="absolute top-[35%] z-10 w-full lg:top-[40%]">
+        <div className="clippath1 absolute right-[-1px] top-[-27px] h-10 w-10 bg-white"></div>
+        <div className="clippath1 swiper-rotate1 absolute right-[-1px] top-[69px] h-10 w-10 bg-white"></div>
+        <div className="clippath1 swiper-rotate2 absolute left-[-1px] top-[-27px] h-10 w-10 bg-white"></div>
+        <div className="clippath1 absolute left-[-1px] top-[4.2rem] h-10 w-10 rotate-180 bg-white"></div>
+        <div className="absolute right-[-40px] flex h-20 w-20 items-center justify-center rounded-full bg-white">
+          <div className="flex h-12 w-12 items-center justify-center rounded-full border border-[#B27C00]">
             <svg
               onClick={() => my_swiper.slideNext()}
               xmlns="http://www.w3.org/2000/svg"
@@ -26,14 +26,14 @@ function BusinessSlider() {
               viewBox="0 0 24 24"
               strokeWidth={1.5}
               stroke="currentColor"
-              className="w-6 h-6 cursor-pointer text-[#4C3500]"
+              className="h-6 w-6 cursor-pointer text-[#4C3500]"
             >
               <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
             </svg>
           </div>
         </div>
-        <div className="w-20 h-20 rounded-full bg-white flex justify-center items-center absolute left-[-40px]">
-          <div className="w-12 h-12 border border-[#B27C00] rounded-full flex justify-center items-center">
+        <div className="absolute left-[-40px] flex h-20 w-20 items-center justify-center rounded-full bg-white">
+          <div className="flex h-12 w-12 items-center justify-center rounded-full border border-[#B27C00]">
             <svg
               onClick={() => my_swiper.slidePrev()}
               xmlns="http://www.w3.org/2000/svg"
@@ -41,7 +41,7 @@ function BusinessSlider() {
               viewBox="0 0 24 24"
               strokeWidth={1.5}
               stroke="currentColor"
-              className="w-6 h-6 cursor-pointer text-[#4C3500]"
+              className="h-6 w-6 cursor-pointer text-[#4C3500]"
             >
               <path strokeLinecap="round" strokeLinejoin="round" d="M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18" />
             </svg>
@@ -68,10 +68,10 @@ function BusinessSlider() {
         autoplay={{ delay: 3000, disableOnInteraction: true }}
       >
         <SwiperSlide>
-          <div className="w-full h-full bg-gray-400"></div>
+          <div className="h-full w-full bg-gray-400"></div>
         </SwiperSlide>
         <SwiperSlide>
-          <div className="w-full h-full bg-black"></div>
+          <div className="h-full w-full bg-black"></div>
         </SwiperSlide>
       </Swiper>
     </div>

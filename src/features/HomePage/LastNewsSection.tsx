@@ -1,78 +1,38 @@
 import Image from "next/image";
 import Link from "next/link";
-
-// images
-import Image1 from "@/assets/images/mainpage/Rectangle142.png";
-import Image2 from "@/assets/images/mainpage/Rectangle66.png";
-import Image3 from "@/assets/images/mainpage/Rectangle67.png";
-import { Fragment } from "react";
 import { imageBaseURL } from "@/data";
-
-const slides = [
-  {
-    id: Math.random(),
-    image: Image3,
-    publisher: "همشهری آنلاین",
-    date: "1402 / 11 / 02",
-    name: "وزیر اقتصاد: امضای صورت‌جلسه ابطال ",
-    desc: "لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ",
-  },
-  {
-    id: Math.random(),
-    image: Image2,
-    publisher: "همشهری آنلاین",
-    date: "1402 / 11 / 02",
-    name: "وزیر اقتصاد: امضای صورت‌جلسه ابطال ",
-    desc: "لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ",
-  },
-  {
-    id: Math.random(),
-    image: Image1,
-    publisher: "همشهری آنلاین",
-    date: "1402 / 11 / 02",
-    name: "وزیر آموزش و پرورش",
-    desc: "لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ",
-  },
-  {
-    id: Math.random(),
-    image: Image2,
-    publisher: "همشهری آنلاین",
-    date: "1402 / 11 / 02",
-    name: "وزیر اقتصاد",
-    desc: "لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ",
-  },
-];
+import { Fragment } from "react";
 
 const LastNewsSection = ({ lastNews }: { lastNews: SingleNews[] }) => {
   return (
     <>
       <section
-        className={`flex flex-col items-center w-[calc(100%-56px)] lg:w-[calc(100%-128px)] max-w-[1689px] mx-auto gap-8 my-[5rem]`}
+        className={`mx-auto my-[5rem] flex w-[calc(100%-56px)] max-w-[1689px] flex-col items-center gap-8 lg:w-[calc(100%-128px)]`}
       >
-        <div className={`w-full flex items-center justify-between`}>
+        <div className={`flex w-full items-center justify-between`}>
           <span
             style={{ backgroundClip: "content-box", borderRadius: "0 0 32px 0" }}
-            className={`w-fit pl-6 border-b border-r border-yellow-04 bg-yellow-06 indent-5 font-bold text-[20px] lg:text-[40px] text-write-main`}
+            className={`w-fit border-b border-r border-yellow-04 bg-yellow-06 pl-6 indent-5 text-[20px] font-bold text-write-main lg:text-[40px]`}
           >
             اخرین اخبار
           </span>
           <Link
-            href={""}
+            href={`/news`}
             style={{ backgroundClip: "content-box", borderRadius: "0 0 0 32px" }}
-            className={`w-fit hidden lg:flex px-6 pb-4 border-b border-l border-yellow-04 bg-transparent text-[12px] lg:text-[16px] text-write-04`}
+            className={`hidden w-fit border-b border-l border-yellow-04 bg-transparent px-6 pb-4 text-[12px] text-write-04 lg:flex lg:text-[16px]`}
           >
             مشاهده همه
           </Link>
         </div>
-        <div className={`flex flex-wrap justify-around content-around w-full mx-auto gap-3 lg:gap-4`}>
+        <div className={`mx-auto flex w-full flex-wrap content-around justify-around gap-3 lg:gap-4`}>
           {/* single Crat */}
           {lastNews.map((item) => {
             return (
               <Fragment key={item?.id}>
                 <div
-                  className={`w-full lg:w-[49%] max-w-[829px] h-[128px] lg:h-[250px] flex items-center rounded-[16px]`}
+                  className={`flex h-[128px] w-full max-w-[829px] items-center rounded-[16px] lg:h-[250px] lg:w-[49%]`}
                 >
-                  <div className="relative w-[128px] lg:w-[255px] h-full">
+                  <div className="relative h-full w-[128px] lg:w-[255px]">
                     <Image
                       style={{ borderRadius: `0 16px 16px 0` }}
                       alt=""
@@ -83,26 +43,26 @@ const LastNewsSection = ({ lastNews }: { lastNews: SingleNews[] }) => {
                   </div>
                   <div
                     style={{ borderRadius: `16px 0 0 16px` }}
-                    className={`w-[calc(100%-128px)] lg:w-[calc(100%-255px)] h-full flex flex-col justify-around px-4 py-6 lg:px-6 lg:py-10 border-b border-t border-l border-yellow-04 overflow-hidden`}
+                    className={`flex h-full w-[calc(100%-128px)] flex-col justify-around overflow-hidden border-b border-l border-t border-yellow-04 px-4 py-6 lg:w-[calc(100%-255px)] lg:px-6 lg:py-10`}
                   >
-                    <div className={`w-full flex items-center justify-between`}>
+                    <div className={`flex w-full items-center justify-between`}>
                       <div className={`flex items-center justify-center gap-3`}>
-                        <span className={`w-1 h-1 bg-gray-04`}></span>
+                        <span className={`h-1 w-1 bg-gray-04`}></span>
                         <span
-                          className={`text-[10px] lg:text-[16px] font-[400] text-gray-04 flex items-center justify-center`}
+                          className={`flex items-center justify-center text-[10px] font-[400] text-gray-04 lg:text-[16px]`}
                         >
                           {/* {item?.publisher} */}
                         </span>
                       </div>
                       <span
                         dir="ltr"
-                        className={`text-[10px] lg:text-[16px] font-[400] text-gray-04 flex items-center justify-center`}
+                        className={`flex items-center justify-center text-[10px] font-[400] text-gray-04 lg:text-[16px]`}
                       >
                         {/* {item?.date} */}
                       </span>
                     </div>
-                    <span className={`text-[14px] lg:text-[24px] font-[600]`}>{item?.title}</span>
-                    <p className={`text-[16px] leading-[32px] text-write-main font-[400] hidden lg:block`}>
+                    <span className={`text-[14px] font-[600] lg:text-[24px]`}>{item?.title}</span>
+                    <p className={`hidden text-[16px] font-[400] leading-[32px] text-write-main lg:block`}>
                       {item?.content}
                     </p>
                   </div>
@@ -115,7 +75,7 @@ const LastNewsSection = ({ lastNews }: { lastNews: SingleNews[] }) => {
         <Link
           href={""}
           style={{ backgroundClip: "content-box", borderRadius: "0 0 0 32px" }}
-          className={`w-fit flex lg:hidden px-6 py-1 border-b border-l border-yellow-04 bg-transparent text-[12px] text-write-04`}
+          className={`flex w-fit border-b border-l border-yellow-04 bg-transparent px-6 py-1 text-[12px] text-write-04 lg:hidden`}
         >
           مشاهده همه
         </Link>
