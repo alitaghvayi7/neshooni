@@ -1,3 +1,4 @@
+"use client";
 import Menu from "@/components/shared/Menu";
 import Breadcrumbs from "@/components/shared/Breadcrumbs";
 import { BookmarkIcon as BookmarkIconOutline, CalendarDaysIcon, ShareIcon } from "@heroicons/react/24/outline";
