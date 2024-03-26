@@ -11,6 +11,8 @@ const MapSection = () => {
   const parentMapRef = useRef<HTMLElement>(null);
   const resizeElementRef = useRef<HTMLDivElement>(null);
   const [percentage, setPercentage] = useState<number | null>(null);
+  const rightMapRef = useRef<any>(null);
+  const leftMapRef = useRef<any>(null);
 
   const onDrag = useCallback((e: MouseEvent | TouchEvent) => {
     e.stopImmediatePropagation();
@@ -71,6 +73,9 @@ const MapSection = () => {
       setBoundes({ lat: 34.382436, lng: 50.523504 });
     }
   }, []);
+
+
+  console.log(rightMapRef,'---------------------------')
 
   return (
     <>
@@ -147,6 +152,8 @@ const MapSection = () => {
                 color={"blue"}
                 labelTitle={"کسب و کار"}
                 direction={"left"}
+                refrence={leftMapRef}
+                sideMap={rightMapRef}
               />
             </div>
             <div
@@ -163,6 +170,8 @@ const MapSection = () => {
                 color={"yellow"}
                 labelTitle={"گردشگری"}
                 direction={"right"}
+                refrence={rightMapRef}
+                sideMap={leftMapRef}
               />
             </div>
           </section>
