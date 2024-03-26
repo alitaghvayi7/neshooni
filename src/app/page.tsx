@@ -19,8 +19,8 @@ const Page = async () => {
       <ShoppingSection />
       <MapSection />
       <PlaceSection />
-      <NewsSection newsList={allNews.data} />
-      <LastNewsSection lastNews={allNews.data.slice(0, 4)} />
+      <NewsSection newsList={allNews?.data || []} />
+      <LastNewsSection lastNews={allNews?.data?.slice(0, 4) || []} />
       <Footer />
     </main>
   );

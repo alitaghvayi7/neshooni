@@ -39,23 +39,23 @@ const NewsSection = ({ newsList }: { newsList: SingleNews[] }) => {
   return (
     <>
       <section
-        className={`flex flex-col w-[calc(100%-56px)] lg:w-[calc(100%-128px)] max-w-[1689px] mx-auto mt-[5rem] lg:mt-[8rem] gap-8`}
+        className={`mx-auto mt-[5rem] flex w-[calc(100%-56px)] max-w-[1689px] flex-col gap-8 lg:mt-[8rem] lg:w-[calc(100%-128px)]`}
       >
         <span
           style={{ backgroundClip: "content-box", borderRadius: "0 0 32px 0" }}
-          className={`w-fit pl-6 border-b border-r border-yellow-04 bg-yellow-06 indent-5 font-bold text-[20px] lg:text-[40px] text-write-main`}
+          className={`w-fit border-b border-r border-yellow-04 bg-yellow-06 pl-6 indent-5 text-[20px] font-bold text-write-main lg:text-[40px]`}
         >
           اخبار
         </span>
         {/* tabs */}
 
-        <div className="flex items-center border-b gap-6 overflow-x-auto whitespace-nowrap">
-          {newsTypes.map((tab) => (
+        <div className="flex items-center gap-6 overflow-x-auto whitespace-nowrap border-b">
+          {newsTypes?.map((tab) => (
             <button
               key={tab.id}
               onClick={() => setActiveNewsType(tab.type)}
-              className={`py-2 flex items-center justify-center gap-3 ${
-                activeNewsType === tab.type ? "text-write-main border-b border-b-yellow-02" : "text-gray-03"
+              className={`flex items-center justify-center gap-3 py-2 ${
+                activeNewsType === tab.type ? "border-b border-b-yellow-02 text-write-main" : "text-gray-03"
               }`}
             >
               <div className="relative size-4 fill-red-600 text-red-300">
@@ -65,95 +65,96 @@ const NewsSection = ({ newsList }: { newsList: SingleNews[] }) => {
             </button>
           ))}
         </div>
-        <div className={`flex flex-wrap justify-around content-around w-full mx-auto gap-6 lg:gap-4`}>
+        <div className={`mx-auto flex w-full flex-wrap content-around justify-around gap-6 lg:gap-4`}>
           <div
-            className={`w-full lg:w-[49%] max-w-[829px] flex items-center rounded-[16px] overflow-hidden h-[642px] lg:h-[515px]`}
+            className={`flex h-[642px] w-full max-w-[829px] items-center overflow-hidden rounded-[16px] lg:h-[515px] lg:w-[49%]`}
           >
             {/* main */}
             {activeNews[0] && (
               <Fragment key={activeNews[0]?.id}>
-                <div
-                  className={`w-full flex flex-col lg:flex-row items-center rounded-t-[16px] lg:rounded-t-none lg:rounded-tr-[16px] lg:rounded-br-[16px] h-full overflow-hidden`}
+                <Link
+                  href={activeNews[0]?.source}
+                  className={`flex h-full w-full flex-col items-center overflow-hidden rounded-t-[16px] lg:flex-row lg:rounded-t-none lg:rounded-br-[16px] lg:rounded-tr-[16px]`}
                 >
-                  <div className="relative w-full lg:w-[255px] h-1/2 lg:h-full ">
+                  <div className="relative h-1/2 w-full lg:h-full lg:w-[255px] ">
                     <Image
                       // style={{ borderRadius: `0 16px 16px 0` }}
                       alt=""
-                      src={`${imageBaseURL}/${activeNews[0]?.img}`}
+                      src={`${activeNews[0]?.img}`}
                       className={`object-cover`}
                       fill
                     />
                   </div>
                   <div
                     // style={{ borderRadius: `16px 0 0 16px` }}
-                    className={`w-full lg:w-[calc(100%-255px)] h-1/2 lg:h-full flex flex-col justify-around px-4 py-6 lg:px-6 lg:py-10 border-r border-b border-t border-l lg:border-r-0 border-yellow-04 overflow-hidden rounded-b-[16px] lg:rounded-b-none lg:rounded-tl-[16px] lg:rounded-bl-[16px] lg:gap-4`}
+                    className={`flex h-1/2 w-full flex-col justify-around overflow-hidden rounded-b-[16px] border-b border-l border-r border-t border-yellow-04 px-4 py-6 lg:h-full lg:w-[calc(100%-255px)] lg:gap-4 lg:rounded-b-none lg:rounded-bl-[16px] lg:rounded-tl-[16px] lg:border-r-0 lg:px-6 lg:py-10`}
                   >
-                    <div className={`w-full flex items-center justify-between`}>
+                    {/* <div className={`flex w-full items-center justify-between`}>
                       <div className={`flex items-center justify-center gap-3`}>
-                        <span className={`w-1 h-1 bg-gray-04`}></span>
+                        <span className={`h-1 w-1 bg-gray-04`}></span>
                         <span
-                          className={`text-[10px] lg:text-[16px] font-[400] text-gray-04 flex items-center justify-center`}
+                          className={`flex items-center justify-center text-[10px] font-[400] text-gray-04 lg:text-[16px]`}
                         >
                           <Link href={activeNews[0].source}>منبع</Link>
                         </span>
                       </div>
                       <span
                         dir="ltr"
-                        className={`text-[10px] lg:text-[16px] font-[400] text-gray-04 flex items-center justify-center`}
+                        className={`flex items-center justify-center text-[10px] font-[400] text-gray-04 lg:text-[16px]`}
                       >
-                        {/* {slides[0]?.date} */}
+                        {slides[0]?.date}
                       </span>
-                    </div>
-                    <span className={`text-[14px] lg:text-[24px] font-[600]`}>{activeNews[0].title}</span>
+                    </div> */}
+                    <span className={`text-[14px] font-[600] lg:text-[24px]`}>{activeNews[0].title}</span>
 
-                    <p className={`text-[16px] leading-[32px] text-write-main font-[400] grow line-clamp-6`}>
+                    <p className={`line-clamp-6 grow text-[16px] font-[400] leading-[32px] text-write-main`}>
                       {activeNews[0].content}
                     </p>
                   </div>
-                </div>
+                </Link>
               </Fragment>
             )}
           </div>
           <div
-            className={`w-full flex flex-col gap-3 lg:gap-0 lg:justify-between lg:w-[49%] max-w-[829px] rounded-[16px] overflow-hidden h-[515px]`}
+            className={`flex h-[515px] w-full max-w-[829px] flex-col gap-3 overflow-hidden rounded-[16px] lg:w-[49%] lg:justify-between lg:gap-0`}
           >
             {/* single Crad */}
-            {activeNews.slice(1, 3).map((item, index: number) => {
+            {activeNews?.slice(1, 3)?.map((item, index: number) => {
               return (
                 <Fragment key={item?.id}>
-                  <div className={`w-full flex items-center rounded-[16px] h-[128px] lg:h-[151px]`}>
-                    <div className="relative w-[128px] lg:w-[255px] h-full">
+                  <Link href={item.source} className={`flex h-[128px] w-full items-center rounded-[16px] lg:h-[151px]`}>
+                    <div className="relative h-full w-[128px] lg:w-[255px]">
                       <Image
                         style={{ borderRadius: `0 16px 16px 0` }}
                         alt=""
-                        src={`${imageBaseURL}/${item.img}`}
+                        src={`${item.img}`}
                         className={`object-cover`}
                         fill
                       />
                     </div>
                     <div
                       style={{ borderRadius: `16px 0 0 16px` }}
-                      className={`w-[calc(100%-128px)] lg:w-[calc(100%-255px)] h-full flex flex-col justify-around px-4 py-6 lg:px-6 lg:py-6 border-b border-t border-l border-yellow-04 overflow-hidden`}
+                      className={`flex h-full w-[calc(100%-128px)] flex-col justify-around overflow-hidden border-b border-l border-t border-yellow-04 px-4 py-6 lg:w-[calc(100%-255px)] lg:px-6 lg:py-6`}
                     >
-                      <div className={`w-full flex items-center justify-between`}>
+                      {/* <div className={`flex w-full items-center justify-between`}>
                         <div className={`flex items-center justify-center gap-3`}>
-                          <span className={`w-1 h-1 bg-gray-04`}></span>
+                          <span className={`h-1 w-1 bg-gray-04`}></span>
                           <span
-                            className={`text-[10px] lg:text-[16px] font-[400] text-gray-04 flex items-center justify-center`}
+                            className={`flex items-center justify-center text-[10px] font-[400] text-gray-04 lg:text-[16px]`}
                           >
                             <Link href={item.source}>منبع</Link>
                           </span>
                         </div>
                         <span
                           dir="ltr"
-                          className={`text-[10px] lg:text-[16px] font-[400] text-gray-04 flex items-center justify-center`}
+                          className={`flex items-center justify-center text-[10px] font-[400] text-gray-04 lg:text-[16px]`}
                         >
-                          {/* {item?.date} */}
+                          {item?.date}
                         </span>
-                      </div>
-                      <span className={`text-[14px] lg:text-[24px] font-[600]`}>{item?.title}</span>
+                      </div> */}
+                      <span className={`text-[14px] font-[600] lg:text-[24px]`}>{item?.title}</span>
                     </div>
-                  </div>
+                  </Link>
                 </Fragment>
               );
             })}

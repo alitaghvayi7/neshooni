@@ -102,13 +102,13 @@ const BusinessSection = () => {
 
   return (
     <section
-      className={`flex flex-col lg:flex-row w-[calc(100%-56px)] lg:w-[calc(100%-128px)] max-w-[1666px] mx-auto pt-8 pb-[64px] gap-8`}
+      className={`mx-auto flex w-[calc(100%-56px)] max-w-[1666px] flex-col gap-8 pb-[64px] pt-8 lg:w-[calc(100%-128px)] lg:flex-row`}
     >
-      <div className="hidden lg:block w-[402px] h-[429px] ">
+      <div className="sticky top-5 hidden h-[429px] w-[402px] lg:block">
         <FilterBox />
       </div>
       <div className="lg:w-[calc(100%-434px)]">
-        <div className="w-full items-center justify-end gap-4 hidden lg:flex">
+        <div className="hidden w-full items-center justify-end gap-4 lg:flex">
           <button
             onClick={() => {
               setShowContentType("grid");
@@ -130,13 +130,13 @@ const BusinessSection = () => {
           }}
           ref={containerRef}
           dir="ltr"
-          className={`w-full overflow-hidden overflow-y-auto mt-6 ${
+          className={`mt-6 w-full overflow-hidden overflow-y-auto ${
             showContentType === "row" ? "max-h-[556px] lg:max-h-[1188px]" : "max-h-[556px] lg:max-h-[1188px]"
           }`}
         >
           <div
             dir="rtl"
-            className={`w-full h-full ${showContentType === "row" ? "flex flex-col gap-6" : "grid grid-cols-3 gap-6"}`}
+            className={`h-full w-full ${showContentType === "row" ? "flex flex-col gap-6" : "grid grid-cols-3 gap-6"}`}
           >
             {collections.map((item) => {
               return showContentType === "row" ? (
@@ -164,7 +164,7 @@ const BusinessSection = () => {
             })}
           </div>
           {loading && (
-            <div className={`w-[32px] h-[32px] border-r border-r-gray-04 animate-spin rounded-full my-4 mx-auto`}></div>
+            <div className={`mx-auto my-4 h-[32px] w-[32px] animate-spin rounded-full border-r border-r-gray-04`}></div>
           )}
         </div>
       </div>

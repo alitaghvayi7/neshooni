@@ -104,7 +104,7 @@ const BusinessSection = () => {
     <section
       className={`mx-auto flex w-[calc(100%-56px)] max-w-[1666px] flex-col gap-8 pb-[64px] pt-8 lg:w-[calc(100%-128px)] lg:flex-row`}
     >
-      <div className="hidden h-[429px] w-[300px] lg:block xl:w-[402px] ">
+      <div className="sticky top-5 hidden h-[429px] w-[300px] lg:block xl:w-[402px]">
         <FilterBox />
       </div>
       <div className={`lg:w-[calc(100%-334px)] xl:w-[calc(100%-434px)]`}>

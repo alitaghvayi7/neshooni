@@ -13,6 +13,10 @@ const nextConfig = {
         hostname: "bahareshirafkan.ir",
         protocol: "https",
       },
+      {
+        hostname: "*",
+        protocol: "https",
+      },
     ],
   },
 };

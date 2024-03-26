@@ -24,61 +24,62 @@ const LastNewsSection = ({ lastNews }: { lastNews: SingleNews[] }) => {
             مشاهده همه
           </Link>
         </div>
-        <div className={`mx-auto flex w-full flex-wrap content-around justify-around gap-3 lg:gap-4`}>
+        <div className={`mx-auto grid grid-cols-1 gap-3 lg:grid-cols-2 lg:gap-4`}>
           {/* single Crat */}
           {lastNews.map((item) => {
             return (
               <Fragment key={item?.id}>
-                <div
-                  className={`flex h-[128px] w-full max-w-[829px] items-center rounded-[16px] lg:h-[250px] lg:w-[49%]`}
+                <Link
+                  href={item.source}
+                  className={`flex h-[128px] w-full max-w-[829px] items-center rounded-[16px] lg:h-[250px]`}
                 >
-                  <div className="relative h-full w-[128px] lg:w-[255px]">
+                  <div className="relative h-full min-w-[128px] lg:min-w-[255px]">
                     <Image
                       style={{ borderRadius: `0 16px 16px 0` }}
                       alt=""
-                      src={`${imageBaseURL}/${item.img}`}
+                      src={`${item.img}`}
                       className={`object-cover`}
                       fill
                     />
                   </div>
                   <div
                     style={{ borderRadius: `16px 0 0 16px` }}
-                    className={`flex h-full w-[calc(100%-128px)] flex-col justify-around overflow-hidden border-b border-l border-t border-yellow-04 px-4 py-6 lg:w-[calc(100%-255px)] lg:px-6 lg:py-10`}
+                    className={`flex h-full flex-col gap-4 border-b border-l border-t border-yellow-04 px-4 py-6`}
                   >
-                    <div className={`flex w-full items-center justify-between`}>
+                    {/* <div className={`flex w-full items-center justify-between`}>
                       <div className={`flex items-center justify-center gap-3`}>
                         <span className={`h-1 w-1 bg-gray-04`}></span>
                         <span
                           className={`flex items-center justify-center text-[10px] font-[400] text-gray-04 lg:text-[16px]`}
                         >
-                          {/* {item?.publisher} */}
+                          {item?.publisher}
                         </span>
                       </div>
                       <span
                         dir="ltr"
                         className={`flex items-center justify-center text-[10px] font-[400] text-gray-04 lg:text-[16px]`}
                       >
-                        {/* {item?.date} */}
+                        {item?.date}
                       </span>
-                    </div>
-                    <span className={`text-[14px] font-[600] lg:text-[24px]`}>{item?.title}</span>
-                    <p className={`hidden text-[16px] font-[400] leading-[32px] text-write-main lg:block`}>
+                    </div> */}
+                    <div className={`line-clamp-2 text-[14px] font-[600] lg:text-[24px]`}>{item?.title}</div>
+                    <p className={`mb-auto hidden text-[16px] font-[400] text-write-main lg:line-clamp-4`}>
                       {item?.content}
                     </p>
                   </div>
-                </div>
+                </Link>
               </Fragment>
             );
           })}
           {/* single Crat */}
         </div>
-        <Link
+        {/* <Link
           href={""}
           style={{ backgroundClip: "content-box", borderRadius: "0 0 0 32px" }}
           className={`flex w-fit border-b border-l border-yellow-04 bg-transparent px-6 py-1 text-[12px] text-write-04 lg:hidden`}
         >
           مشاهده همه
-        </Link>
+        </Link> */}
       </section>
     </>
   );

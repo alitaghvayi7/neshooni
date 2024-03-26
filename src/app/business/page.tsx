@@ -1,9 +1,9 @@
 import Footer from "@/components/shared/Footer";
+import BusinessSection from "@/features/BusinessPage/BusinessSection";
 import HeaderSection from "@/features/BusinessPage/HeaderSection";
 import { Metadata } from "next";
 import dynamic from "next/dynamic";
 const MapSection = dynamic(() => import("@/features/BusinessPage/MapSection"), { ssr: false });
-const BusinessSection = dynamic(() => import("@/features/BusinessPage/BusinessSection"), { ssr: false });
 
 export const metadata: Metadata = {
   title: "کسب و کار",

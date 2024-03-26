@@ -1,17 +1,23 @@
-
 .hero-image {
-    background-image: url("../../public/assets/images/auth/lines-background.png"),
-    url("../../public/assets/images/mainpage/Vector.png"),
-    url("../../public/assets/images/mainpage/Vector1.png"),
-    url("../../public/assets/images/mainpage/Vector2.png");
-    background-repeat: no-repeat;
-    background-size: cover, contain, contain, contain;
-    background-position: center, 95% 5%, 1% 95%, 5% 95%;
-    background-attachment: fixed;
+  background-image: url("../../../public/assets/images/auth/lines-background.png"),
+    url("../../../public/assets/images/mainpage/Vector.png"), url("../../../public/assets/images/mainpage/Vector1.png"),
+    url("../../../public/assets/images/mainpage/Vector2.png");
+  background-repeat: no-repeat;
+  background-size: cover, contain, contain, contain;
+  background-position:
+    center,
+    95% 5%,
+    1% 95%,
+    5% 95%;
+  background-attachment: fixed;
 }
 
 @media (min-width: 1024px) {
-    .hero-image {
-        background-position: center, 90% center, center, 10% center;
-    }
+  .hero-image {
+    background-position:
+      center,
+      90% center,
+      center,
+      10% center;
+  }
 }

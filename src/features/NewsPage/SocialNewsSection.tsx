@@ -64,9 +64,7 @@ const SliderSection = () => {
         <section
           className={`mx-auto flex w-[calc(100%-56px)] max-w-[1662px] flex-col items-center  rounded-[32px] border border-yellow-04 bg-transparent lg:w-[calc(100%-128px)] lg:flex-row`}
         >
-          <div className={`h-[249px] w-full lg:h-[429px] lg:w-1/2`}>
-            <BusinessSlider />
-          </div>
+          <div className={`h-[249px] w-full lg:h-[429px] lg:w-1/2`}>{/* <BusinessSlider /> */}</div>
           <div
             className={`flex h-[429px] w-full flex-col justify-between rounded-b-[32px] bg-white p-4 lg:w-1/2 lg:rounded-bl-[32px] lg:rounded-tl-[32px] lg:p-[4rem]`}
           >

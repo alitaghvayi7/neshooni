@@ -5,10 +5,10 @@ import Image from "next/image";
 import Image1 from "@/assets/images/businesspage/business-image(1).png";
 import Footer from "@/components/shared/Footer";
 import { BookmarkIcon as BookmarkIconSolid } from "@heroicons/react/24/solid";
-import { useState } from "react";
+// import { useState } from "react";
 
 export default function SingleNewsPage() {
-  const [bookmarked, setBookmarked] = useState(false);
+  // const [bookmarked, setBookmarked] = useState(false);
   return (
     <>
       <main className={`w-full`}>
@@ -139,7 +139,7 @@ export default function SingleNewsPage() {
               </div>
 
               <div className={`flex items-center gap-3`}>
-                {!bookmarked && (
+                {/* {!bookmarked && (
                   <BookmarkIconOutline
                     onClick={() => setBookmarked(!bookmarked)}
                     className={`h-6 w-6 cursor-pointer text-gray-04`}
@@ -150,7 +150,7 @@ export default function SingleNewsPage() {
                     onClick={() => setBookmarked(!bookmarked)}
                     className={`h-6 w-6 cursor-pointer text-write-04`}
                   />
-                )}
+                )} */}
                 <span className="h-8 w-[1px] bg-gray-03 lg:flex lg:h-[50px]"></span>
                 <ShareIcon className={`h-6 w-6 cursor-pointer text-gray-04`} />
               </div>
