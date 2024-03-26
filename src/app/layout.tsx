@@ -2,6 +2,7 @@ import localFont from "next/font/local";
 import SessionWrapper from "@/components/SessionWrapper";
 import "@/styles/globals.css";
 import { Metadata } from "next";
+import NextTopLoader from "nextjs-toploader";
 
 const fonst = localFont({
   src: [
@@ -64,6 +65,7 @@ export default function RootLayout({
   return (
     <html dir="rtl" lang="fa-IR">
       <body className={`${fonst.className}`}>
+        <NextTopLoader showSpinner={false} />
         <SessionWrapper>{children}</SessionWrapper>
       </body>
     </html>
