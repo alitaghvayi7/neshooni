@@ -17,7 +17,7 @@ import { useLayoutEffect, useState } from "react";
 import PlaceDetails from "@/components/shared/PlaceDetails";
 const GoogleMap = dynamic(() => import("@/components/shared/GoogleMap"), { ssr: false });
 
-const IntroductionSection = () => {
+const IntroductionSection = ({ description, name, id }: { name: string; description: string; id: number }) => {
   const [bookmarked, setBookmarked] = useState(false);
   const [boundes, setBoundes] = useState({ lat: 0, lng: 0 });
 
@@ -63,13 +63,13 @@ const IntroductionSection = () => {
           breadcumbs={[
             { href: "/", label: "خانه" },
             { href: "/business", label: "کسب و کار" },
-            { href: "/business/1", label: "هتل جمیل" },
+            { href: `/business/${id}`, label: name },
           ]}
         />
 
         {/* start title and icons */}
         <div className="flex w-full items-center justify-between">
-          <h1 className="text-[20px] font-[700] text-write-main lg:text-[32px]">رستوران فیلیا</h1>
+          <h1 className="text-[20px] font-[700] text-write-main lg:text-[32px]">{name}</h1>
           <div className="flex items-center gap-4">
             <div className={`flex items-center gap-2`}>
               <span className={`flex items-center justify-center text-[12px] leading-6 text-write-04 lg:text-[20px]`}>
@@ -111,14 +111,7 @@ const IntroductionSection = () => {
         {/* end title and icons */}
 
         {/* start description  */}
-        <p className="w-full pt-6 text-[16px] font-[400] leading-9 text-write-main lg:text-[20px]">
-          جزایر هاوایی آخرین ایالت ثبت‌شده مابین آمریکا هستند. مناطقی که در قسمت مرکزی اقیانوس آرام واقع شده‌اند و از
-          پرطرفدارترین مقصدهای تفریحی مردم دنیا به‌حساب می‌آیند. مهم‌ترین شهر و پایتخت مجمع‌الجزایز هاوایی «هونولولو»
-          نام دارد. هشت جزیره اصلی هاوائی اوآهو، مائوئی، کائوآئی، لانائی، مولوکای، نیهاو و کاهولاوی نامیده می‌شوند.
-          جزایر هاوائی با میزبانی از کوه‌های آتشفشانی، آبشارهای زیبا و پارک‌های ملی در کنار ارائه منظرهای آبی تماشایی
-          (چه خارج و چه داخل آب) به «بهشتِ جزیره‌ها» معروف شده است. همراه کجارو باشید که در تازه‌ترین قسمت از تورهای
-          مجازی قرار است به‌جزایر هاوائی سفر کنیم.
-        </p>
+        <p className="w-full pt-6 text-[16px] font-[400] leading-9 text-write-main lg:text-[20px]">{description}</p>
         {/* end description */}
 
         {/* start info & map */}
@@ -165,7 +158,7 @@ const IntroductionSection = () => {
               شما هم درباره این مغازه دیدگاه ثبت کنید
             </span>
             <Link
-              href={"/business/1/comment"}
+              href={`/business/${id}/comment`}
               className="mt-9 flex w-full items-center justify-center rounded-[16px] bg-yellow-02 py-3 text-write-main"
             >
               ثبت دیدگاه

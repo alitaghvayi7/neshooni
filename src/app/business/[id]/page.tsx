@@ -1,9 +1,21 @@
 import Footer from "@/components/shared/Footer";
 import Menu from "@/components/shared/Menu";
 import IntroductionSection from "@/features/SingleBusinessPage/IntroductionSection";
-import dynamic from "next/dynamic";
+import { getSingleBusiness } from "@/services/business";
 
-export default function SingleBusinessPage() {
+export default async function SingleBusinessPage({
+  params: { id },
+}: {
+  params: {
+    id: string;
+  };
+}) {
+  const pageData = await getSingleBusiness({
+    id,
+  });
+  if (pageData === "Error") {
+    return null;
+  }
   return (
     <>
       <main className={`w-full`}>
@@ -19,7 +31,7 @@ export default function SingleBusinessPage() {
         <section className={`w-full bg-blue-04 bg-opacity-10`}>
           {/* <MapSection />
           <BusinessSection /> */}
-          <IntroductionSection />
+          <IntroductionSection id={pageData.data.id} description={pageData.data?.desc} name={pageData.data?.name} />
         </section>
         <Footer />
       </main>
