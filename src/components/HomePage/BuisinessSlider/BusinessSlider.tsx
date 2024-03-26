@@ -1,21 +1,19 @@
 "use client";
+import "swiper/css";
+import { Autoplay, Scrollbar } from "swiper/modules";
 import { Swiper, SwiperClass, SwiperRef, SwiperSlide } from "swiper/react";
-import { Scrollbar } from "swiper/modules";
-import "swiper/css";
-import "swiper/css";
+import { singleBusiness } from "@/models/business";
+import { StarIcon } from "@heroicons/react/24/solid";
+import Link from "next/link";
+import { useMemo, useRef, useState } from "react";
+import "swiper/css/autoplay";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import "swiper/css/scrollbar";
-import { useMemo, useRef, useState } from "react";
-import { StarIcon } from "@heroicons/react/24/solid";
-import Link from "next/link";
-import { singleBusiness } from "@/models/business";
-import Image from "next/image";
 
 function BusinessSlider({ data }: { data: singleBusiness[] }) {
   const [my_swiper, set_my_swiper] = useState<SwiperClass | null>(null);
   const [activeIndex, setActiveIndex] = useState(0);
-  console.log(activeIndex);
   const swiperRef = useRef<null | SwiperRef>(null);
   const activeBusiness = useMemo(() => {
     return data[activeIndex ?? 0];
@@ -82,10 +80,12 @@ function BusinessSlider({ data }: { data: singleBusiness[] }) {
             borderRadius: "32px",
             overflow: "hidden",
           }}
-          modules={[Scrollbar]}
+          modules={[Scrollbar, Autoplay]}
           // spaceBetween={50}
           slidesPerView={1}
-          autoplay={{ delay: 3000, disableOnInteraction: true }}
+          autoplay={{ delay: 3000, disableOnInteraction: false, stopOnLastSlide: false }}
+          rewind={true}
+          // loop={true}
         >
           {data?.map((item, index) => (
             <SwiperSlide key={item.id}>
