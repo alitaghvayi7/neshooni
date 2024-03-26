@@ -59,7 +59,7 @@ const ShoppingSection = () => {
             کجاهاخرید کنم؟
           </span>
           <Link
-            href={`/tourist`}
+            href={`/business`}
             style={{ backgroundClip: "content-box", borderRadius: "0 0 0 32px" }}
             className={`hidden w-fit border-b border-l border-yellow-04 bg-transparent px-6 pb-4 text-[12px] text-write-04 lg:flex lg:text-[16px]`}
           >
