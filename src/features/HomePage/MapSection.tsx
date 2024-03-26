@@ -75,8 +75,6 @@ const MapSection = () => {
   }, []);
 
 
-  console.log(rightMapRef,'---------------------------')
-
   return (
     <>
       <section
