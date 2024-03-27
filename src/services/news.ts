@@ -11,3 +11,17 @@ export const getAllNews = async (): Promise<ListNews | []> => {
     return [];
   }
 };
+export const getSingleNews = async ({ id }: { id: string }): Promise<{ data: SingleNews } | "Error"> => {
+  try {
+    const response = await fetch(`${baseURL}/news/${id}`, {
+      next: {
+        revalidate: 0,
+      },
+    });
+    return {
+      data: { ...(await response.json()).data },
+    };
+  } catch (error) {
+    return "Error";
+  }
+};

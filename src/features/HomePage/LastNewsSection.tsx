@@ -2,6 +2,33 @@ import Image from "next/image";
 import Link from "next/link";
 import { imageBaseURL } from "@/data";
 import { Fragment } from "react";
+import { HASHTAG_ICON, NEWS_ICON, PAPER_ICON } from "@/assets/icons/svgs";
+export const newsTypes = [
+  {
+    id: 1,
+    name: "اخبار شرکت‌ها و سازمان‌ها",
+    type: "organizations",
+    activeIcon: <NEWS_ICON />,
+    inActiveIcon: <NEWS_ICON fill="#9C9C9C" />,
+    path: "organization",
+  },
+  {
+    id: 2,
+    name: "اخبار شبکه‌های اجتماعی",
+    type: "social",
+    inActiveIcon: <HASHTAG_ICON fill="#9C9C9C" />,
+    activeIcon: <HASHTAG_ICON />,
+    path: "social-media",
+  },
+  {
+    id: 3,
+    name: "اخبار سایت‌های خبری",
+    type: "newsAgancies",
+    activeIcon: <PAPER_ICON />,
+    inActiveIcon: <PAPER_ICON fill="#9C9C9C" />,
+    path: "wire-service",
+  },
+] as const;
 
 const LastNewsSection = ({ lastNews }: { lastNews: SingleNews[] }) => {
   return (
@@ -30,7 +57,7 @@ const LastNewsSection = ({ lastNews }: { lastNews: SingleNews[] }) => {
             return (
               <Fragment key={item?.id}>
                 <Link
-                  href={item.source}
+                  href={`/news/${newsTypes.find((news) => news.type === item?.type)?.path}/${item?.id}`}
                   className={`flex h-[128px] w-full max-w-[829px] items-center rounded-[16px] lg:h-[250px]`}
                 >
                   <div className="relative h-full min-w-[128px] lg:min-w-[255px]">

@@ -6,30 +6,7 @@ import Link from "next/link";
 import { HASHTAG_ICON, NEWS_ICON, PAPER_ICON } from "@/assets/icons/svgs";
 import { imageBaseURL } from "@/data";
 import { Fragment, useMemo, useState } from "react";
-
-const newsTypes = [
-  {
-    id: 1,
-    name: "اخبار شرکت‌ها و سازمان‌ها",
-    type: "organizations",
-    activeIcon: <NEWS_ICON />,
-    inActiveIcon: <NEWS_ICON fill="#9C9C9C" />,
-  },
-  {
-    id: 2,
-    name: "اخبار شبکه‌های اجتماعی",
-    type: "social",
-    inActiveIcon: <HASHTAG_ICON fill="#9C9C9C" />,
-    activeIcon: <HASHTAG_ICON />,
-  },
-  {
-    id: 3,
-    name: "اخبار سایت‌های خبری",
-    type: "newsAgancies",
-    activeIcon: <PAPER_ICON />,
-    inActiveIcon: <PAPER_ICON fill="#9C9C9C" />,
-  },
-] as const;
+import { newsTypes } from "./LastNewsSection";
 
 const NewsSection = ({ newsList }: { newsList: SingleNews[] }) => {
   const [activeNewsType, setActiveNewsType] = useState<"social" | "organizations" | "newsAgancies">("organizations");
@@ -73,7 +50,7 @@ const NewsSection = ({ newsList }: { newsList: SingleNews[] }) => {
             {activeNews[0] && (
               <Fragment key={activeNews[0]?.id}>
                 <Link
-                  href={activeNews[0]?.source}
+                  href={`/news/${newsTypes.find((item) => item.type === activeNews[0]?.type)?.path}/${activeNews[0]?.id}`}
                   className={`flex h-full w-full flex-col items-center overflow-hidden rounded-t-[16px] lg:flex-row lg:rounded-t-none lg:rounded-br-[16px] lg:rounded-tr-[16px]`}
                 >
                   <div className="relative h-1/2 w-full lg:h-full lg:w-[255px] ">
@@ -122,7 +99,10 @@ const NewsSection = ({ newsList }: { newsList: SingleNews[] }) => {
             {activeNews?.slice(1, 3)?.map((item, index: number) => {
               return (
                 <Fragment key={item?.id}>
-                  <Link href={item.source} className={`flex h-[128px] w-full items-center rounded-[16px] lg:h-[151px]`}>
+                  <Link
+                    href={`/news/${newsTypes.find((news) => news.type === item?.type)?.path}/${item?.id}`}
+                    className={`flex h-[128px] w-full items-center rounded-[16px] lg:h-[151px]`}
+                  >
                     <div className="relative h-full w-[128px] lg:w-[255px]">
                       <Image
                         style={{ borderRadius: `0 16px 16px 0` }}
