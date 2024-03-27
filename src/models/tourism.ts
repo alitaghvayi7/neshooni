@@ -1,15 +1,15 @@
-export type singleBusiness = {
+export type singleTourismCard = {
   id: number;
-  name: string;
+  title: string;
+  content: string;
+  source: string;
   address_id: null | number;
-  category_id: number;
-  bussinessman_id: null | number;
-  desc: string;
-  index: boolean;
-  open: boolean;
+  category_id: 2 | null;
+  publish: boolean;
+  favorite: boolean;
+  img: string;
   created_at: string;
   updated_at: string;
-  image: string;
   scorings: [
     {
       scorable_id: number;

@@ -6,19 +6,25 @@ import MapSection from "@/features/HomePage/MapSection";
 import NewsSection from "@/features/HomePage/NewsSection";
 import PlaceSection from "@/features/HomePage/PlaceSection";
 import ShoppingSection from "@/features/HomePage/ShoppingSection";
+import { singleBusiness } from "@/models/business";
+import { singleTourismCard } from "@/models/tourism";
+import { getTopBusiness } from "@/services/business";
 import { getAllNews } from "@/services/news";
+import { getTopPlaces } from "@/services/tourism";
 
 const Page = async () => {
-  const allNews = (await getAllNews()) as {
-    data: SingleNews[];
-  };
+  const [allNews, topBusiness, topPlaces]: [any, singleBusiness[], singleTourismCard[]] = await Promise.all([
+    getAllNews(),
+    getTopBusiness(),
+    getTopPlaces(),
+  ]);
   return (
     <main className={``}>
       <LandingSection />
       <BusinessSection />
-      <ShoppingSection />
+      <ShoppingSection data={topBusiness} />
       <MapSection />
-      <PlaceSection />
+      <PlaceSection placesList={topPlaces} />
       <NewsSection newsList={allNews?.data || []} />
       <LastNewsSection lastNews={allNews?.data?.slice(0, 4) || []} />
       <Footer />

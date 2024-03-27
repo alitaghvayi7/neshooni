@@ -14,6 +14,7 @@ import { StarIcon } from "@heroicons/react/24/solid";
 import Image1 from "@/assets/images/mainpage/Rectangle142.png";
 import Image2 from "@/assets/images/mainpage/Rectangle272.png";
 import Image3 from "@/assets/images/mainpage/Rectangle273.png";
+import { singleTourismCard } from "@/models/tourism";
 
 const slides = [
   {
@@ -46,7 +47,7 @@ const slides = [
   },
 ];
 
-const PalceSection = () => {
+const PalceSection = ({ placesList }: { placesList: singleTourismCard[] }) => {
   return (
     <>
       <section
@@ -71,12 +72,12 @@ const PalceSection = () => {
           className={`flex h-[285px] w-full items-center overflow-hidden rounded-[32px] bg-gray-02 bg-opacity-25 lg:h-[601px]`}
         >
           <div className={`relative isolate h-full w-[119px] bg-yellow-06 lg:w-[390px]`}>
-            <Image alt={``} src={BackGround} className={`absolute inset-0 h-full w-full object-cover`} />
-            <Image
-              alt={``}
-              src={MapImage}
-              className={`absolute -left-4 bottom-0 top-0 z-[2] h-full w-full object-contain lg:-left-10`}
-            />
+            <div className="absolute inset-0 h-full w-full overflow-hidden">
+              <Image alt={``} src={BackGround} className={`object-cover`} fill />
+            </div>
+            <div className="absolute -left-4 bottom-0 top-0 z-[2] h-full w-full overflow-hidden lg:-left-10">
+              <Image alt={``} src={MapImage} className={`object-contain`} fill />
+            </div>
           </div>
           <div
             style={{ borderRadius: `32px 0 0 32px` }}
@@ -177,44 +178,44 @@ const PalceSection = () => {
                 height: "100%",
               }}
             >
-              {slides.map((item: any) => {
+              {placesList.map((item) => {
                 return (
                   <SwiperSlide key={item?.id}>
-                    <div className="flex h-full w-[169px] flex-col overflow-hidden rounded-[16px] lg:w-[350px] ">
-                      <Image alt={``} src={item?.image} className={`h-[66%] w-full object-cover`} />
+                    <Link
+                      href={`/tourist/${item.id}`}
+                      className="flex h-full w-[169px] flex-col overflow-hidden rounded-[16px] lg:w-[350px]"
+                    >
+                      <div className="relative h-[66%] w-full overflow-hidden">
+                        <Image alt={``} src={item?.img} className={`object-cover`} fill />
+                      </div>
                       <div
                         style={{ borderRadius: `0 0 16px 16px` }}
                         className="flex h-[34%] w-full flex-col border border-yellow-04 p-2 lg:px-4 lg:pb-4 lg:pt-6"
                       >
                         <div className={`flex w-full items-center justify-between`}>
-                          <span className={`text-[12px] font-[600] lg:text-[20px]`}>{item?.name}</span>
+                          <span className={`line-clamp-1 text-[12px] font-[600] lg:text-[20px]`}>{item?.title}</span>
                           <div className={`flex items-center gap-2`}>
                             <StarIcon className={`h-4 w-4 text-yellow-main`} />
                             <span
                               className={`flex items-center justify-center text-[10px] text-write-main lg:text-[14px] lg:leading-6`}
                             >
-                              {item?.score}
+                              {item?.scorings[0]?.average_score?.substring(0, 3)}
                             </span>
                           </div>
                         </div>
-                        <p className={`text-[10px] font-[400] leading-[32px] text-write-main lg:text-[16px]`}>
-                          {item?.desc}
+                        <p
+                          className={`line-clamp-3 text-[10px] font-[400] leading-[32px] text-write-main lg:text-[16px]`}
+                        >
+                          {item?.content}
                         </p>
                       </div>
-                    </div>
+                    </Link>
                   </SwiperSlide>
                 );
               })}
             </Swiper>
           </div>
         </div>
-        <Link
-          href={""}
-          style={{ backgroundClip: "content-box", borderRadius: "0 0 0 32px" }}
-          className={`flex w-fit border-b border-l border-yellow-04 bg-transparent px-6 py-1 text-[12px] text-write-04 lg:hidden`}
-        >
-          مشاهده همه
-        </Link>
       </section>
     </>
   );

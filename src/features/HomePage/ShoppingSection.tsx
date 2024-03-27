@@ -13,39 +13,40 @@ import "swiper/css";
 import Image1 from "@/assets/images/mainpage/Rectangle142.png";
 import Image2 from "@/assets/images/mainpage/Rectangle265.png";
 import Image3 from "@/assets/images/mainpage/Rectangle266.png";
+import { singleBusiness } from "@/models/business";
 
-const slides = [
-  {
-    id: Math.random(),
-    image: Image1,
-    score: 1.4,
-    name: "فروشگاه جانبو",
-    desc: "خودکار فوق روان نانو آنتی باکتریال پنتر مدل یک انتخاب بی‌نظیر برای دوستداران خودکارهای با کیفیت است.",
-  },
-  {
-    id: Math.random(),
-    image: Image2,
-    score: 3.4,
-    name: "پوشاک افتاب",
-    desc: "خودکار فوق روان نانو آنتی باکتریال پنتر مدل یک انتخاب بی‌نظیر برای دوستداران خودکارهای با کیفیت است.",
-  },
-  {
-    id: Math.random(),
-    image: Image3,
-    score: 5,
-    name: "پوشاک هیراد",
-    desc: "خودکار فوق روان نانو آنتی باکتریال پنتر مدل یک انتخاب بی‌نظیر برای دوستداران خودکارهای با کیفیت است.",
-  },
-  {
-    id: Math.random(),
-    image: Image1,
-    score: 4.3,
-    name: "کوه خضر",
-    desc: "خودکار فوق روان نانو آنتی باکتریال پنتر مدل یک انتخاب بی‌نظیر برای دوستداران خودکارهای با کیفیت است.",
-  },
-];
+// const slides = [
+//   {
+//     id: Math.random(),
+//     image: Image1,
+//     score: 1.4,
+//     name: "فروشگاه جانبو",
+//     desc: "خودکار فوق روان نانو آنتی باکتریال پنتر مدل یک انتخاب بی‌نظیر برای دوستداران خودکارهای با کیفیت است.",
+//   },
+//   {
+//     id: Math.random(),
+//     image: Image2,
+//     score: 3.4,
+//     name: "پوشاک افتاب",
+//     desc: "خودکار فوق روان نانو آنتی باکتریال پنتر مدل یک انتخاب بی‌نظیر برای دوستداران خودکارهای با کیفیت است.",
+//   },
+//   {
+//     id: Math.random(),
+//     image: Image3,
+//     score: 5,
+//     name: "پوشاک هیراد",
+//     desc: "خودکار فوق روان نانو آنتی باکتریال پنتر مدل یک انتخاب بی‌نظیر برای دوستداران خودکارهای با کیفیت است.",
+//   },
+//   {
+//     id: Math.random(),
+//     image: Image1,
+//     score: 4.3,
+//     name: "کوه خضر",
+//     desc: "خودکار فوق روان نانو آنتی باکتریال پنتر مدل یک انتخاب بی‌نظیر برای دوستداران خودکارهای با کیفیت است.",
+//   },
+// ];
 
-const ShoppingSection = () => {
+const ShoppingSection = ({ data }: { data: singleBusiness[] }) => {
   return (
     <>
       <section
@@ -181,7 +182,7 @@ const ShoppingSection = () => {
                 height: "100%",
               }}
             >
-              {slides.map((item: any, index: number) => {
+              {data.map((item, index: number) => {
                 return (
                   <SwiperSlide
                     key={item?.id}
@@ -190,8 +191,13 @@ const ShoppingSection = () => {
                     //   zIndex: index + 5,
                     // }}
                   >
-                    <div className="flex h-full w-[169px] flex-col overflow-hidden rounded-[16px] lg:w-[350px] ">
-                      <Image alt={``} src={item?.image} className={`h-[66%] w-full object-cover`} />
+                    <Link
+                      href={`/business/${item.id}`}
+                      className="flex h-full w-[169px] flex-col overflow-hidden rounded-[16px] lg:w-[350px] "
+                    >
+                      <div className="relative h-[66%] w-full">
+                        <Image alt={``} src={item?.image || "/"} className={`object-cover`} fill />
+                      </div>
                       <div
                         style={{ borderRadius: `0 0 16px 16px` }}
                         className="flex h-[34%] w-full flex-col border border-yellow-04 p-2 lg:px-4 lg:pb-4 lg:pt-6"
@@ -203,7 +209,7 @@ const ShoppingSection = () => {
                             <span
                               className={`flex items-center justify-center text-[10px] text-write-main lg:text-[14px] lg:leading-6`}
                             >
-                              {item?.score}
+                              {item?.scorings[0]?.average_score?.substring(0, 3)}
                             </span>
                           </div>
                         </div>
@@ -211,7 +217,7 @@ const ShoppingSection = () => {
                           {item?.desc}
                         </p>
                       </div>
-                    </div>
+                    </Link>
                   </SwiperSlide>
                 );
               })}
