@@ -7,7 +7,7 @@ export const newsTypes = [
   {
     id: 1,
     name: "اخبار شرکت‌ها و سازمان‌ها",
-    type: "organizations",
+    type: "official",
     activeIcon: <NEWS_ICON />,
     inActiveIcon: <NEWS_ICON fill="#9C9C9C" />,
     path: "organization",
@@ -90,9 +90,12 @@ const LastNewsSection = ({ lastNews }: { lastNews: SingleNews[] }) => {
                       </span>
                     </div> */}
                     <div className={`line-clamp-2 text-[14px] font-[600] lg:text-[24px]`}>{item?.title}</div>
-                    <p className={`mb-auto hidden text-[16px] font-[400] text-write-main lg:line-clamp-4`}>
-                      {item?.content}
-                    </p>
+                    <div
+                      className={`mb-auto hidden text-[16px] font-[400] text-write-main lg:line-clamp-4`}
+                      dangerouslySetInnerHTML={{
+                        __html: item?.content || "",
+                      }}
+                    ></div>
                   </div>
                 </Link>
               </Fragment>

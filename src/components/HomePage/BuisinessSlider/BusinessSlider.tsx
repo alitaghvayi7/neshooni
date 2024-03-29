@@ -101,7 +101,7 @@ function BusinessSlider({ data }: { data: singleBusiness[] }) {
           <span className={`text-[24px] font-[600]`}>{activeBusiness?.name}</span>
           <div className={`flex items-center gap-2`}>
             <StarIcon className={`h-5 w-5 text-yellow-main`} />
-            <span className={`flex items-center justify-center text-[20px] leading-6 text-write-main`}>
+            <span className={`flex items-center justify-center text-[20px] leading-none text-write-main`}>
               {activeBusiness?.scorings[0]?.average_score.substring(0, 3)}
             </span>
           </div>

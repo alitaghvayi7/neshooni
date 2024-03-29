@@ -3,13 +3,11 @@ import Image from "next/image";
 import Link from "next/link";
 
 // images
-import { HASHTAG_ICON, NEWS_ICON, PAPER_ICON } from "@/assets/icons/svgs";
-import { imageBaseURL } from "@/data";
 import { Fragment, useMemo, useState } from "react";
 import { newsTypes } from "./LastNewsSection";
 
 const NewsSection = ({ newsList }: { newsList: SingleNews[] }) => {
-  const [activeNewsType, setActiveNewsType] = useState<"social" | "organizations" | "newsAgancies">("organizations");
+  const [activeNewsType, setActiveNewsType] = useState<"social" | "official" | "newsAgancies">("official");
   const activeNews = useMemo(() => {
     return newsList.filter((item) => item.type === activeNewsType);
   }, [activeNewsType, newsList]);
@@ -84,9 +82,12 @@ const NewsSection = ({ newsList }: { newsList: SingleNews[] }) => {
                     </div> */}
                     <span className={`text-[14px] font-[600] lg:text-[24px]`}>{activeNews[0].title}</span>
 
-                    <p className={`line-clamp-6 grow text-[16px] font-[400] leading-[32px] text-write-main`}>
-                      {activeNews[0].content}
-                    </p>
+                    <div
+                      className={`line-clamp-6 grow overflow-hidden text-[16px] font-[400] text-write-main`}
+                      dangerouslySetInnerHTML={{
+                        __html: activeNews[0].content || "",
+                      }}
+                    ></div>
                   </div>
                 </Link>
               </Fragment>
@@ -96,7 +97,7 @@ const NewsSection = ({ newsList }: { newsList: SingleNews[] }) => {
             className={`flex h-[515px] w-full max-w-[829px] flex-col gap-3 overflow-hidden rounded-[16px] lg:w-[49%] lg:justify-between lg:gap-0`}
           >
             {/* single Crad */}
-            {activeNews?.slice(1, 3)?.map((item, index: number) => {
+            {activeNews?.slice(1, 4)?.map((item, index: number) => {
               return (
                 <Fragment key={item?.id}>
                   <Link
