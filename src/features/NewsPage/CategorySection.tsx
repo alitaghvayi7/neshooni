@@ -1,5 +1,5 @@
-import Image2 from "@/assets/images/newspage/organ-background.png";
-import Image1 from "@/assets/images/newspage/socail-media-background.png";
+import Image2 from "../../assets/images/newspage/organ-background.png";
+import Image1 from "../../assets/images/newspage/socail-media-background.png";
 import Image from "next/image";
 import Link from "next/link";
 

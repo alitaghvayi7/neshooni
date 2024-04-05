@@ -7,7 +7,7 @@ import { Fragment, useMemo, useState } from "react";
 import { newsTypes } from "./LastNewsSection";
 
 const NewsSection = ({ newsList }: { newsList: SingleNews[] }) => {
-  const [activeNewsType, setActiveNewsType] = useState<"social" | "official" | "newsAgancies">("official");
+  const [activeNewsType, setActiveNewsType] = useState<"social" | "official" | "organization">("official");
   const activeNews = useMemo(() => {
     return newsList.filter((item) => item.type === activeNewsType);
   }, [activeNewsType, newsList]);

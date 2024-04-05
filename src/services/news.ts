@@ -11,6 +11,42 @@ export const getAllNews = async (): Promise<ListNews | []> => {
     return [];
   }
 };
+export const getSocialNews = async (): Promise<SingleNews[] | []> => {
+  try {
+    const response = await fetch(`${baseURL}/news?type=social`, {
+      next: {
+        revalidate: 60,
+      },
+    });
+    return (await response.json())?.data;
+  } catch (error) {
+    return [];
+  }
+};
+export const getOfficialNews = async (): Promise<SingleNews[] | []> => {
+  try {
+    const response = await fetch(`${baseURL}/news?type=official`, {
+      next: {
+        revalidate: 60,
+      },
+    });
+    return (await response.json())?.data;
+  } catch (error) {
+    return [];
+  }
+};
+export const getOrganizationNews = async (): Promise<SingleNews[] | []> => {
+  try {
+    const response = await fetch(`${baseURL}/news?type=organization`, {
+      next: {
+        revalidate: 60,
+      },
+    });
+    return (await response.json())?.data;
+  } catch (error) {
+    return [];
+  }
+};
 export const getSingleNews = async ({ id }: { id: string }): Promise<{ data: SingleNews } | "Error"> => {
   try {
     const response = await fetch(`${baseURL}/news/${id}`, {

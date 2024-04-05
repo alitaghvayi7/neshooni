@@ -3,8 +3,10 @@ import SingleHeroNews from "@/features/SocialMediaNewsPage/SingleHeroNews";
 import HorizontalNewsContainer from "@/features/SocialMediaNewsPage/HorizontalNewsContainer";
 import VerticalNewsContainer from "@/features/SocialMediaNewsPage/VerticalNewsContainer";
 import Footer from "@/components/shared/Footer";
+import { getOrganizationNews } from "@/services/news";
 
-export default function OrganizationNewsPage() {
+export default async function OrganizationNewsPage() {
+  const organizationNews = await getOrganizationNews();
   return (
     <>
       <main className={`w-full`}>
@@ -18,9 +20,9 @@ export default function OrganizationNewsPage() {
           ></div>
         </header>
         <section className={`w-full bg-blue-04 bg-opacity-10 pb-14  pt-[3rem]`}>
-          <SingleHeroNews />
-          <HorizontalNewsContainer />
-          <VerticalNewsContainer />
+          <SingleHeroNews type="organization" data={organizationNews[0]} />
+          <HorizontalNewsContainer data={organizationNews.slice(1, 5)} />
+          <VerticalNewsContainer data={organizationNews.slice(5, 11)} />
         </section>
         <Footer />
       </main>

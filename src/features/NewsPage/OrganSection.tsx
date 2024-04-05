@@ -67,7 +67,7 @@ const slides = [
   },
 ];
 
-const OrganSection = () => {
+const OrganSection = ({ data }: { data: SingleNews[] }) => {
   return (
     <>
       <section className={`mx-auto mt-[11rem] flex w-full flex-col items-center gap-8 lg:mt-12`}>
@@ -83,21 +83,21 @@ const OrganSection = () => {
         <section
           className={`mx-auto grid w-[calc(100%-56px)] max-w-[1662px] grid-cols-1 gap-4 lg:w-[calc(100%-128px)] lg:grid-cols-2 lg:gap-6`}
         >
-          {slides.map((item: any, index: number) => {
+          {data?.slice(0, 6)?.map((item, index: number) => {
             return (
               <Fragment key={item?.id}>
                 <Link
-                  href={`/news/organization/1`}
-                  className={`flex h-[128px] w-full items-center rounded-[16px] bg-white lg:h-[170px] xl:h-[229px]`}
+                  href={`/news/organization/${item.id}`}
+                  className={`flex h-[128px] w-full items-center rounded-[16px] bg-white lg:h-[170px] xl:h-[180px]`}
                 >
-                  <div className="relative h-full w-[128px] overflow-hidden rounded-r-2xl lg:w-[200px] xl:w-[255px]">
-                    <Image alt="" src={item?.image} className={`object-cover`} fill />
+                  <div className="relative h-full w-[128px] overflow-hidden rounded-r-2xl lg:w-[180px] xl:w-[200px]">
+                    <Image alt="" src={item?.img || ""} className={`object-cover`} fill />
                   </div>
                   <div
                     style={{ borderRadius: `16px 0 0 16px` }}
                     className={`flex h-full w-[calc(100%-128px)] flex-col justify-around gap-3 overflow-hidden border-b border-l border-t border-yellow-04 px-4 py-4 lg:w-[calc(100%-200px)] xl:w-[calc(100%-255px)] xl:px-6 xl:py-8`}
                   >
-                    <div className={`flex w-full items-center justify-between`}>
+                    {/* <div className={`flex w-full items-center justify-between`}>
                       <div className={`flex items-center justify-center gap-3`}>
                         <span className={`h-1 w-1 bg-gray-04`}></span>
                         <span
@@ -112,8 +112,8 @@ const OrganSection = () => {
                       >
                         {item?.date}
                       </span>
-                    </div>
-                    <span className={`mb-auto line-clamp-3 text-[14px] font-[600] lg:text-[20px]`}>{item?.name}</span>
+                    </div> */}
+                    <span className={`mb-auto line-clamp-3 text-[14px] font-[600] lg:text-[20px]`}>{item?.title}</span>
                   </div>
                 </Link>
               </Fragment>

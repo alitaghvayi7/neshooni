@@ -7,7 +7,7 @@ export const newsTypes = [
   {
     id: 1,
     name: "اخبار شرکت‌ها و سازمان‌ها",
-    type: "official",
+    type: "organization",
     activeIcon: <NEWS_ICON />,
     inActiveIcon: <NEWS_ICON fill="#9C9C9C" />,
     path: "organization",
@@ -23,7 +23,7 @@ export const newsTypes = [
   {
     id: 3,
     name: "اخبار سایت‌های خبری",
-    type: "newsAgancies",
+    type: "official",
     activeIcon: <PAPER_ICON />,
     inActiveIcon: <PAPER_ICON fill="#9C9C9C" />,
     path: "wire-service",
