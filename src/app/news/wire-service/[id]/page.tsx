@@ -1,13 +1,11 @@
-import Menu from "@/components/shared/Menu";
 import Breadcrumbs from "@/components/shared/Breadcrumbs";
-import { BookmarkIcon as BookmarkIconOutline, CalendarDaysIcon, ShareIcon } from "@heroicons/react/24/outline";
-import Image from "next/image";
-import Image1 from "@/assets/images/businesspage/business-image(1).png";
 import Footer from "@/components/shared/Footer";
-import { BookmarkIcon as BookmarkIconSolid } from "@heroicons/react/24/solid";
+import Menu from "@/components/shared/Menu";
 import { getSingleNews } from "@/services/news";
-import { notFound } from "next/navigation";
+import { CalendarDaysIcon, ShareIcon } from "@heroicons/react/24/outline";
+import Image from "next/image";
 import Link from "next/link";
+import { notFound } from "next/navigation";
 // import { useState } from "react";
 
 export default async function SingleNewsPage({ params: { id } }: { params: { id: string } }) {
@@ -42,9 +40,9 @@ export default async function SingleNewsPage({ params: { id } }: { params: { id:
                 },
               ]}
             />
-            <div className="flex w-full items-center justify-between">
+            <div className="flex w-full items-start justify-between gap-10">
               <h1 className="text-[20px] font-[700] text-write-main lg:text-[32px]">{newsData.data.title}</h1>
-              <div className="flex items-center gap-4">
+              <div className="flex items-center gap-4 whitespace-nowrap">
                 <div className={`flex items-center gap-2`}>
                   <Link
                     href={newsData.data.source}

@@ -18,3 +18,17 @@ export type singleTourismCard = {
     },
   ];
 };
+
+export type SingleTourism = {
+  id: number;
+  title: string;
+  content: string;
+  source: string;
+  address_id: null | number;
+  category_id: number;
+  publish: boolean;
+  favorite: boolean;
+  img: string;
+  average_score: string;
+  comments_count: number;
+};

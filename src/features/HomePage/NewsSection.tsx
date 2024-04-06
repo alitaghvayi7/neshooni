@@ -5,6 +5,7 @@ import Link from "next/link";
 // images
 import { Fragment, useMemo, useState } from "react";
 import { newsTypes } from "./LastNewsSection";
+import { SingleNews } from "@/models/news";
 
 const NewsSection = ({ newsList }: { newsList: SingleNews[] }) => {
   const [activeNewsType, setActiveNewsType] = useState<"social" | "official" | "organization">("official");

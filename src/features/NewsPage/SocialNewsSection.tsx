@@ -1,54 +1,10 @@
-import BusinessSlider from "@/components/HomePage/BuisinessSlider/BusinessSlider";
 import { HashtagIcon } from "@heroicons/react/24/outline";
-import { StarIcon } from "@heroicons/react/24/solid";
 import Link from "next/link";
 // images
-import Image1 from "@/assets/images/mainpage/Rectangle142.png";
-import Image2 from "@/assets/images/mainpage/Rectangle66.png";
-import Image3 from "@/assets/images/mainpage/Rectangle67.png";
-import { Fragment } from "react";
+import { SingleNews } from "@/models/news";
 import Image from "next/image";
+import { Fragment } from "react";
 import SocialNewsSlider from "./SocialNewsCarousel";
-
-const slides = [
-  {
-    id: 1,
-    image: Image3,
-    publisher: "همشهری آنلاین",
-    date: "1402 / 11 / 02",
-    name: `عضو هیات رئیسه مجلس: خودروسازان
- با چراغ سبز شورای رقابت قیمت‌ها را 
-افزایش دادند`,
-    desc: "پوشاک یا لِباس یا جامه آنچه است که بر تن پوشیده می‌شود. پوشاک، و دیگر خطرهای موجود در طبیعت حفظ می‌کند. همچنین پوشاک می‌تواند برای راحتی، زیبایی، حفظ در برابر سرما یا دگرگونی دمایی و نیز برای ایمنی استفاده شود.",
-  },
-  {
-    id: 2,
-    image: Image2,
-    publisher: "همشهری آنلاین",
-    date: "1402 / 11 / 02",
-    name: `سرلشکر موسوی: اقدامات وحشیانه‌ رژیم صهیونیستی در نوار
- غزه کوچک‍ترین ارزش نظامی ندارد`,
-    desc: "لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ",
-  },
-  {
-    id: 3,
-    image: Image1,
-    publisher: "همشهری آنلاین",
-    date: "1402 / 11 / 02",
-    name: `سرلشکر موسوی: اقدامات وحشیانه‌ رژیم صهیونیستی در نوار
- غزه کوچک‍ترین ارزش نظامی ندارد`,
-    desc: "لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ",
-  },
-  {
-    id: 4,
-    image: Image2,
-    publisher: "همشهری آنلاین",
-    date: "1402 / 11 / 02",
-    name: `سرلشکر موسوی: اقدامات وحشیانه‌ رژیم صهیونیستی در نوار
- غزه کوچک‍ترین ارزش نظامی ندارد`,
-    desc: "لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ",
-  },
-];
 
 const SliderSection = ({ data }: { data: SingleNews[] }) => {
   return (

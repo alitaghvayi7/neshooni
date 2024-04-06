@@ -1,4 +1,4 @@
-import { singleTourismCard } from "@/models/tourism";
+import { SingleTourism, singleTourismCard } from "@/models/tourism";
 import { baseURL } from "./news";
 
 export const getTopPlaces = async (): Promise<singleTourismCard[]> => {
@@ -51,6 +51,33 @@ export const getSingleTourism = async ({
         },
         statusCode: req.status,
       };
+    }
+  } catch (error) {
+    return "Error";
+  }
+};
+
+export const getTourismList = async ({
+  page,
+}: {
+  page: number;
+}): Promise<
+  | {
+      data: SingleTourism[];
+      total: number;
+    }
+  | "Error"
+> => {
+  try {
+    const req = await fetch(`${baseURL}/tourism?page=${page}`);
+    if (req.ok) {
+      const res = await req.json();
+      return {
+        data: res?.data,
+        total: res?.meta?.total,
+      };
+    } else {
+      throw new Error();
     }
   } catch (error) {
     return "Error";

@@ -7,37 +7,37 @@ import styles from "../../styles/Home/Home.module.css";
 const LandingSection = () => {
   return (
     <>
-      <header className={`flex w-full h-[590px] lg:h-[623px] items-center justify-between relative isolate bg-white`}>
+      <header className={`relative isolate flex h-[590px] w-full items-center justify-between bg-white lg:h-[623px]`}>
         <section
           style={{
             backgroundImage: "linear-gradient(255.75deg,rgba(255,255,255,0.3) 20.33%, rgba(255,255,255,0.05) 100%)",
           }}
-          className={`w-full pb-6 h-full bg-blue-06 bg-opacity-40 absolute z-[2] inset-0 flex flex-col justify-between isolate`}
+          className={`absolute inset-0 isolate z-[2] flex h-full w-full flex-col justify-between bg-blue-06 bg-opacity-40 pb-6`}
         >
           <Menu />
 
           <div
             className={
-              "w-full max-w-[1689px] mx-auto flex flex-col lg:flex-row gap-4 lg:px-[128px] lg:items-center relative z-[2]"
+              "relative z-[2] mx-auto flex w-full max-w-[1689px] flex-col gap-4 lg:flex-row lg:items-center lg:px-[128px]"
             }
           >
             <Image
               src={heroMainImage}
               alt={""}
-              className={`object-cover w-[385px] mx-auto h-[266px] lg:w-[700px] lg:h-[500px] lg:order-2`}
+              className={`mx-auto h-[266px] w-[385px] object-cover lg:order-2 lg:h-[500px] lg:w-[700px]`}
             />
 
-            <div className={"w-full flex flex-col gap-4 lg:gap-10 lg:order-1 lg:h-full"}>
-              <h1 className={"text-[24px] lg:text-[64px] font-bold text-write-main ps-6 font-peydaBold"}>
+            <div className={"flex w-full flex-col gap-4 lg:order-1 lg:h-full lg:gap-10"}>
+              <h1 className={"font-peydaBold ps-6 text-[24px] font-bold text-write-main lg:text-[64px]"}>
                 جای جای &nbsp;
                 <span className={`${styles["gradiant-color"]}`}>شهرتو</span>
-                &nbsp; بشناش!
+                &nbsp; بشناس!
               </h1>
-              <p className={`text-[16px] ps-6 text-write-04 max-w-[293px] lg:max-w-[593px] lg:text-[24px]`}>
+              <p className={`max-w-[293px] ps-6 text-[16px] text-write-04 lg:max-w-[593px] lg:text-[24px]`}>
                 تو این سایت اخبار، گردشگری، کسب و کارهای شهرتو به راحتی پیدا کن
               </p>
               <button
-                className={`bg-white w-[260px] ms-6 border border-yellow-04 text-write-03 py-4 px-10 rounded-[8px] items-center justify-center hidden lg:flex`}
+                className={`ms-6 hidden w-[260px] items-center justify-center rounded-[8px] border border-yellow-04 bg-white px-10 py-4 text-write-03 lg:flex`}
               >
                 صاحب کسب و کار هستم
               </button>
@@ -48,7 +48,7 @@ const LandingSection = () => {
             style={{
               backgroundImage: `linear-gradient(180deg, #D7E3FF 0%, #C3D5FF 100%)`,
             }}
-            className={`absolute bottom-[-10%] lg:bottom-[-25%] left-0 right-0 w-full h-[65px] lg:h-[156px] z-[1]`}
+            className={`absolute bottom-[-10%] left-0 right-0 z-[1] h-[65px] w-full lg:bottom-[-25%] lg:h-[156px]`}
           >
             <div className="mt-8 xl:mt-28">
               <SearchBox />
@@ -57,7 +57,7 @@ const LandingSection = () => {
         </section>
 
         <section
-          className={`w-full h-full flex flex-col gap-4 justify-center absolute z-[1] left-0 top-0 bottom-0 ${styles["hero-image"]}`}
+          className={`absolute bottom-0 left-0 top-0 z-[1] flex h-full w-full flex-col justify-center gap-4 ${styles["hero-image"]}`}
         ></section>
       </header>
     </>

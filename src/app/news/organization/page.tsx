@@ -21,8 +21,8 @@ export default async function OrganizationNewsPage() {
         </header>
         <section className={`w-full bg-blue-04 bg-opacity-10 pb-14  pt-[3rem]`}>
           <SingleHeroNews type="organization" data={organizationNews[0]} />
-          <HorizontalNewsContainer data={organizationNews.slice(1, 5)} />
-          <VerticalNewsContainer data={organizationNews.slice(5, 11)} />
+          <HorizontalNewsContainer type="organization" data={organizationNews.slice(1, 5)} />
+          <VerticalNewsContainer type="organization" data={organizationNews.slice(5, 11)} />
         </section>
         <Footer />
       </main>

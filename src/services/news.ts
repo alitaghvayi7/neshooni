@@ -1,3 +1,5 @@
+import { ListNews, SingleNews } from "@/models/news";
+
 export const baseURL = `${process.env.BACKEND_URL}/${process.env.BACKEND_VERSION}`;
 export const getAllNews = async (): Promise<ListNews | []> => {
   try {

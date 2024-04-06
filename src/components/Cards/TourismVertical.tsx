@@ -2,7 +2,7 @@ import { ChatBubbleLeftIcon, StarIcon } from "@heroicons/react/24/solid";
 import Image, { StaticImageData } from "next/image";
 import Link from "next/link";
 
-const BusinessVerticalCard = ({
+const TourismVerticalCard = ({
   address,
   comments,
   desc,
@@ -61,7 +61,7 @@ const BusinessVerticalCard = ({
               </span>
             </div>
           </div>
-          <Link href={"/business/1"} className={`w-fit rounded-[16px] border border-yellow-main px-6`}>
+          <Link href={"/tourist/1"} className={`w-fit rounded-[16px] border border-yellow-main px-6`}>
             بیشتر
           </Link>
         </div>
@@ -70,4 +70,4 @@ const BusinessVerticalCard = ({
   );
 };
 
-export default BusinessVerticalCard;
+export default TourismVerticalCard;

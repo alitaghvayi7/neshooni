@@ -1,4 +1,4 @@
-type SingleNews = {
+export type SingleNews = {
   id: number;
   title: string;
   content: string;
@@ -9,6 +9,8 @@ type SingleNews = {
   img: string;
 };
 
-type ListNews = {
+export type ListNews = {
   data: SingleNews[] | [];
 };
+
+export type NewsType = "social" | "official" | "organization";

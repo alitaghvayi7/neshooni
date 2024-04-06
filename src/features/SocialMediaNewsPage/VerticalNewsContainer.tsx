@@ -1,7 +1,10 @@
+import { NewsType, SingleNews } from "@/models/news";
 import Image from "next/image";
+import Link from "next/link";
 import { Fragment } from "react";
+import { newsPageTypeInfo } from "./SingleHeroNews";
 
-const VerticalNewsContainer = ({ data }: { data: SingleNews[] }) => {
+const VerticalNewsContainer = ({ data, type }: { data: SingleNews[]; type: NewsType }) => {
   return (
     <>
       <section
@@ -10,7 +13,8 @@ const VerticalNewsContainer = ({ data }: { data: SingleNews[] }) => {
         {data?.map((item, index: number) => {
           return (
             <Fragment key={item?.id}>
-              <div
+              <Link
+                href={`${newsPageTypeInfo[type].href}/${item.id}`}
                 className={`flex h-[128px] w-full items-center rounded-[16px] border-b border-l border-t border-yellow-04 bg-white lg:h-[190px]`}
               >
                 <div className="relative h-full w-[128px] overflow-hidden rounded-r-2xl lg:w-[200px] xl:w-[255px]">
@@ -40,7 +44,7 @@ const VerticalNewsContainer = ({ data }: { data: SingleNews[] }) => {
                     </span>
                   </div> */}
                 </div>
-              </div>
+              </Link>
             </Fragment>
           );
         })}

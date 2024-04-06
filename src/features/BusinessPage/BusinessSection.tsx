@@ -146,7 +146,7 @@ const BusinessSection = () => {
                   desc={item.desc}
                   image={item.image}
                   name={item.name}
-                  score={item.score}
+                  score={`${item.score}`}
                   key={item.id}
                 />
               ) : (
@@ -157,7 +157,7 @@ const BusinessSection = () => {
                     desc={item.desc}
                     image={item.image}
                     name={item.name}
-                    score={item.score}
+                    score={`${item.score}`}
                   />
                 </div>
               );

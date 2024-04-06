@@ -21,8 +21,8 @@ export default async function SocialMediaNewsPage() {
         </header>
         <section className={`w-full bg-blue-04 bg-opacity-10 pb-14 pt-[3rem]`}>
           <SingleHeroNews type="social" data={socialNews[0]} />
-          <HorizontalNewsContainer data={socialNews.slice(1, 5)} />
-          <VerticalNewsContainer data={socialNews.slice(5, 11)} />
+          <HorizontalNewsContainer type="social" data={socialNews.slice(1, 5)} />
+          <VerticalNewsContainer type="social" data={socialNews.slice(5, 11)} />
         </section>
         <Footer />
       </main>

@@ -21,8 +21,8 @@ export default async function WireServiceNewsPage() {
         </header>
         <section className={`w-full bg-blue-04 bg-opacity-10 pb-14  pt-[3rem]`}>
           <SingleHeroNews data={officialNews[0]} type="official" />
-          <HorizontalNewsContainer data={officialNews.slice(1, 5)} />
-          <VerticalNewsContainer data={officialNews.slice(5, 11)} />
+          <HorizontalNewsContainer type="official" data={officialNews.slice(1, 5)} />
+          <VerticalNewsContainer type="official" data={officialNews.slice(5, 11)} />
         </section>
         <Footer />
       </main>

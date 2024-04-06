@@ -1,4 +1,5 @@
 "use client";
+import { SingleNews } from "@/models/news";
 import Image from "next/image";
 import Link from "next/link";
 import { useMemo, useRef, useState } from "react";

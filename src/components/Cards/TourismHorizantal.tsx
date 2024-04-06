@@ -2,7 +2,7 @@ import { ChatBubbleLeftIcon, StarIcon } from "@heroicons/react/24/solid";
 import Image, { StaticImageData } from "next/image";
 import Link from "next/link";
 
-const BusinessHorizantalCard = ({
+const TourismHorizantalCard = ({
   address,
   comments,
   desc,
@@ -64,7 +64,7 @@ const BusinessHorizantalCard = ({
             {desc}
           </p>
           <Link
-            href={"/business/1"}
+            href={"/tourist/1"}
             className={`mt-auto hidden w-fit self-end rounded-[16px] border border-yellow-main px-[38px] py-[6px] text-[16px] lg:block lg:px-[38px] lg:py-[9px]`}
           >
             بیشتر
@@ -75,4 +75,4 @@ const BusinessHorizantalCard = ({
   );
 };
 
-export default BusinessHorizantalCard;
+export default TourismHorizantalCard;

@@ -1,6 +1,9 @@
 import Image from "next/image";
+import Link from "next/link";
+import { newsPageTypeInfo } from "./SingleHeroNews";
+import { NewsType, SingleNews } from "@/models/news";
 
-const HorizontalNewsContainer = ({ data }: { data: SingleNews[] }) => {
+const HorizontalNewsContainer = ({ data, type }: { data: SingleNews[]; type: NewsType }) => {
   return (
     <>
       <section
@@ -8,7 +11,8 @@ const HorizontalNewsContainer = ({ data }: { data: SingleNews[] }) => {
       >
         {data?.map((item, index: number) => {
           return (
-            <div
+            <Link
+              href={`${newsPageTypeInfo[type].href}/${item?.id}`}
               key={item?.id}
               className="h-[500px] w-full overflow-hidden rounded-[16px] rounded-b-[16px] border border-yellow-04 bg-white lg:h-[650px] lg:rounded-[32px] xl:h-[450px] 2xl:h-[500px]"
             >
@@ -40,7 +44,7 @@ const HorizontalNewsContainer = ({ data }: { data: SingleNews[] }) => {
                   }}
                 ></div>
               </div>
-            </div>
+            </Link>
           );
         })}
       </section>

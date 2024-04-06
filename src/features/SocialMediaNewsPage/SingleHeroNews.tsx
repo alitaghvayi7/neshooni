@@ -1,8 +1,10 @@
 import Breadcrumbs from "@/components/shared/Breadcrumbs";
+import { NewsType, SingleNews } from "@/models/news";
 import Image from "next/image";
+import Link from "next/link";
 import { Fragment } from "react";
 
-const pageTypeInfo = {
+export const newsPageTypeInfo = {
   social: {
     label: "اخبار شبکه‌های اجتماعی",
     href: "/news/social-media",
@@ -17,7 +19,7 @@ const pageTypeInfo = {
   },
 };
 
-const SingleHeroNews = ({ data, type }: { data: SingleNews; type: "social" | "official" | "organization" }) => {
+const SingleHeroNews = ({ data, type }: { data: SingleNews; type: NewsType }) => {
   return (
     <>
       <section
@@ -27,13 +29,14 @@ const SingleHeroNews = ({ data, type }: { data: SingleNews; type: "social" | "of
           breadcumbs={[
             { href: "/", label: "خانه" },
             { href: "/news", label: "اخبار" },
-            { href: pageTypeInfo[type].href, label: pageTypeInfo[type].label },
+            { href: newsPageTypeInfo[type].href, label: newsPageTypeInfo[type].label },
           ]}
         />
-        <h1 className={`text-[40px] font-[700] text-write-main`}>{pageTypeInfo[type].label}</h1>
+        <h1 className={`text-[40px] font-[700] text-write-main`}>{newsPageTypeInfo[type].label}</h1>
         {data && (
           <Fragment key={data?.id}>
-            <div
+            <Link
+              href={`${newsPageTypeInfo[type].href}/${data?.id}`}
               className={`flex h-[440px] w-full flex-col items-center overflow-hidden rounded-t-[16px] lg:h-[340px] lg:flex-row lg:rounded-t-none lg:rounded-br-[16px] lg:rounded-tr-[16px]`}
             >
               <div className="relative h-1/2 w-full lg:h-full lg:w-[50%]">
@@ -74,7 +77,7 @@ const SingleHeroNews = ({ data, type }: { data: SingleNews; type: "social" | "of
               </span>
             </div> */}
               </div>
-            </div>
+            </Link>
           </Fragment>
         )}
       </section>

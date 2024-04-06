@@ -43,7 +43,7 @@ export default async function SingleNewsPage({ params: { id } }: { params: { id:
                 },
               ]}
             />
-            <div className="flex w-full items-start justify-between gap-6">
+            <div className="flex w-full items-start justify-between gap-10">
               <h1 className="text-[20px] font-[700] text-write-main lg:text-[32px]">{newsData.data.title} </h1>
               <div className="flex items-center gap-4 whitespace-nowrap">
                 <div className={`flex items-center gap-2`}>
