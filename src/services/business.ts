@@ -1,7 +1,7 @@
-import { singleBusiness } from "@/models/business";
+import { businessSlider, singleBusiness } from "@/models/business";
 import { baseURL } from "./news";
 
-export const getTopBusiness = async (): Promise<singleBusiness[]> => {
+export const getTopBusiness = async (): Promise<businessSlider[]> => {
   try {
     const req = await fetch(`${baseURL}/shop/top`, {
       next: {
@@ -51,6 +51,33 @@ export const getSingleBusiness = async ({
         },
         statusCode: req.status,
       };
+    }
+  } catch (error) {
+    return "Error";
+  }
+};
+
+export const getBusinessList = async ({
+  page,
+}: {
+  page: number;
+}): Promise<
+  | {
+      data: singleBusiness[];
+      total: number;
+    }
+  | "Error"
+> => {
+  try {
+    const req = await fetch(`${baseURL}/shop?page=${page}`);
+    if (req.ok) {
+      const res = await req.json();
+      return {
+        data: res?.data,
+        total: res?.meta?.total,
+      };
+    } else {
+      throw new Error();
     }
   } catch (error) {
     return "Error";

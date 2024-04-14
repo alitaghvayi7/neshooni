@@ -7,9 +7,11 @@ import Footer from "@/components/shared/Footer";
 // import GoogleMapNoControll from "@/components/shared/GoogleMapNoControll";
 import dynamic from "next/dynamic";
 import { CloseIcon } from "next/dist/client/components/react-dev-overlay/internal/icons/CloseIcon";
+// import GoogleMapNoControll from "@/components/shared/GoogleMapNoControll";
+// import GoogleMapWithControll from "@/components/shared/GoogleMap";
 // import GoogleMapWithControll from "@/components/shared/GoogleMapWithControll";
 const GoogleMapNoControll = dynamic(import("@/components/shared/GoogleMapNoControll"), { ssr: false });
-const GoogleMapWithControll = dynamic(import("@/components/shared/GoogleMapWithControll"), { ssr: false });
+const GoogleMapWithControll = dynamic(import("@/components/shared/GoogleMap"), { ssr: false });
 
 export default function IntroductionPage() {
   const [selected, setSelected] = useState<null | string>(null);
@@ -26,7 +28,7 @@ export default function IntroductionPage() {
     };
 
     fetch(
-      `https://api.geoapify.com/v1/geocode/reverse?lat=${finalLocation?.lat}&lon=${finalLocation?.lng}&apiKey=${process.env.GEOAPIFY_API_KEY}`,
+      `https://api.geoapify.com/v1/geocode/reverse?lat=${finalLocation?.lat}&lon=${finalLocation?.lng}&apiKey=${process.env.GEOAPIFY_API_KEY}&lang=fa`,
       requestOptions,
     )
       .then((response) => response.json())
@@ -38,7 +40,7 @@ export default function IntroductionPage() {
     <>
       {showFirstMap && (
         <div
-          className={`fixed inset-0 z-[100] flex h-screen w-screen items-center justify-center bg-[rgba(255,255,255,.1)] backdrop-blur-[4px]`}
+          className={`fffffff fixed inset-0 z-[100] flex h-screen w-screen items-center justify-center bg-[rgba(255,255,255,.1)] backdrop-blur-[4px]`}
         >
           <XMarkIcon
             onClick={() => setShowFirstMap(false)}
@@ -64,7 +66,7 @@ export default function IntroductionPage() {
       )}
       {showSecondMap && (
         <div
-          className={`fixed inset-0 z-[100] flex h-screen w-screen items-center justify-center bg-[rgba(255,255,255,.1)] backdrop-blur-[4px]`}
+          className={`sssssss fixed inset-0 z-[100] flex h-screen w-screen items-center justify-center bg-[rgba(255,255,255,.1)] backdrop-blur-[4px]`}
         >
           <XMarkIcon
             onClick={() => setShowSecondMap(false)}
@@ -74,7 +76,7 @@ export default function IntroductionPage() {
             className={`flex h-[60%]  w-[90%] flex-col justify-between rounded-[32px] bg-white px-6 py-4 shadow-2xl lg:w-[40%]`}
           >
             <div className={`h-[80%] w-full overflow-hidden rounded-[16px]`}>
-              <GoogleMapWithControll boundes={userLocation} setBoundes={setUserLocation} />
+              <GoogleMapWithControll boundes={userLocation} labelTitle="نمایش در گوگل" />
             </div>
             <button
               onClick={() => {
@@ -137,9 +139,9 @@ export default function IntroductionPage() {
                 </li>
               </ul>
             </details>
-            <form className={`mt-6 flex w-full flex-col items-center gap-6`}>
+            <form className={`mt-6 flex w-full flex-col items-center justify-center gap-6`}>
               <div
-                className={`flex h-max w-full flex-wrap items-center justify-between gap-4 rounded-[32px] bg-transparent lg:h-[470px] lg:gap-0 lg:border lg:border-yellow-04 lg:bg-white lg:px-[64px] lg:py-10`}
+                className={`mx-auto flex h-max w-full flex-wrap items-center justify-center gap-4 rounded-[32px] bg-transparent lg:h-[470px] lg:flex-nowrap lg:justify-between lg:gap-6 lg:border lg:border-yellow-04 lg:bg-white lg:px-[64px] lg:py-10`}
               >
                 <div className={`flex h-full w-full max-w-[539px] flex-col justify-between gap-4 lg:gap-0`}>
                   <input
@@ -172,7 +174,7 @@ export default function IntroductionPage() {
                     <PhotoIcon className={`h-[56px] w-[56px] self-center text-blue-06`} />
                   </label>
                 </div>
-                <div className={`flex h-full w-full max-w-[539px] flex-col gap-4 lg:gap-6`}>
+                <div className={`flex h-full w-full max-w-[539px] flex-col justify-between gap-4 lg:gap-6`}>
                   <textarea
                     placeholder={"توضیحات"}
                     className={`h-[136px] w-full resize-none rounded-[16px] border border-gray-02 bg-white p-6 text-[16px] font-[400] text-write-main placeholder:text-gray-03`}
@@ -186,7 +188,7 @@ export default function IntroductionPage() {
                       className={`absolute inset-0 z-[1] h-full w-full resize-none bg-white p-6 text-[16px] font-[400] text-write-main placeholder:text-gray-03`}
                     ></textarea>
                     <div
-                      className={`absolute bottom-4 left-0 right-0 z-[2] flex h-[56px] w-full items-center justify-between px-6`}
+                      className={`absolute bottom-4 left-0 right-0 z-[2] flex h-[56px] w-full items-center justify-between gap-4 px-6`}
                     >
                       <button
                         type={"button"}

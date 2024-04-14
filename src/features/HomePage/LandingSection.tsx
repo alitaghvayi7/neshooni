@@ -7,7 +7,7 @@ import styles from "../../styles/Home/Home.module.css";
 const LandingSection = () => {
   return (
     <>
-      <header className={`relative isolate flex h-[590px] w-full items-center justify-between bg-white lg:h-[623px]`}>
+      <header className={`relative flex h-[590px] w-full items-center justify-between bg-white lg:h-[623px]`}>
         <section
           style={{
             backgroundImage: "linear-gradient(255.75deg,rgba(255,255,255,0.3) 20.33%, rgba(255,255,255,0.05) 100%)",

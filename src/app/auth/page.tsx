@@ -84,11 +84,11 @@ export default function Auth() {
                 </button>
               ))} */}
 
-              <div className={`mt-6 flex w-full items-center justify-between`}>
+              {/* <div className={`mt-6 flex w-full items-center justify-between`}>
                 <span className={`h-[1px] w-[40%] bg-gray-01`}></span>
                 <span className={`text-[14px] text-write-main`}>یا</span>
                 <span className={`h-[1px] w-[40%] bg-gray-01`}></span>
-              </div>
+              </div> */}
 
               <span className={`mt-6 w-full self-start text-[16px] text-write-main`}>
                 سلام!

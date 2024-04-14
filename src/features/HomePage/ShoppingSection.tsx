@@ -13,7 +13,7 @@ import "swiper/css";
 import Image1 from "@/assets/images/mainpage/Rectangle142.png";
 import Image2 from "@/assets/images/mainpage/Rectangle265.png";
 import Image3 from "@/assets/images/mainpage/Rectangle266.png";
-import { singleBusiness } from "@/models/business";
+import { businessSlider, singleBusiness } from "@/models/business";
 
 // const slides = [
 //   {
@@ -46,7 +46,7 @@ import { singleBusiness } from "@/models/business";
 //   },
 // ];
 
-const ShoppingSection = ({ data }: { data: singleBusiness[] }) => {
+const ShoppingSection = ({ data }: { data: businessSlider[] }) => {
   return (
     <>
       <section
@@ -196,7 +196,7 @@ const ShoppingSection = ({ data }: { data: singleBusiness[] }) => {
                       className="flex h-full w-[169px] flex-col overflow-hidden rounded-[16px] lg:w-[350px] "
                     >
                       <div className="relative h-[66%] w-full">
-                        <Image alt={``} src={item?.image || "/"} className={`object-cover`} fill />
+                        <Image alt={``} src={"/"} className={`object-cover`} fill />
                       </div>
                       <div
                         style={{ borderRadius: `0 0 16px 16px` }}
@@ -209,7 +209,7 @@ const ShoppingSection = ({ data }: { data: singleBusiness[] }) => {
                             <span
                               className={`flex items-center justify-center text-[10px] text-write-main lg:text-[14px] lg:leading-6`}
                             >
-                              {item?.scorings[0]?.average_score?.substring(0, 3)}
+                              {item?.scorings[0]?.average_score?.substring(0, 3) || "0"}
                             </span>
                           </div>
                         </div>
@@ -224,13 +224,13 @@ const ShoppingSection = ({ data }: { data: singleBusiness[] }) => {
             </Swiper>
           </div>
         </div>
-        <Link
+        {/* <Link
           href={""}
           style={{ backgroundClip: "content-box", borderRadius: "0 0 0 32px" }}
           className={`flex w-fit border-b border-l border-yellow-04 bg-transparent px-6 py-1 text-[12px] text-write-04 lg:hidden`}
         >
           مشاهده همه
-        </Link>
+        </Link> */}
       </section>
     </>
   );

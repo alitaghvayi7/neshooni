@@ -9,6 +9,7 @@ const BusinessHorizantalCard = ({
   image,
   name,
   score,
+  id,
 }: {
   image: string | StaticImageData;
   score: string;
@@ -16,6 +17,7 @@ const BusinessHorizantalCard = ({
   comments: number;
   address: string;
   desc: string;
+  id: number;
 }) => {
   return (
     <div className={`flex h-[137px] w-full items-center overflow-hidden rounded-[16px] md:h-[190px] lg:min-h-[302px]`}>
@@ -64,7 +66,7 @@ const BusinessHorizantalCard = ({
             {desc}
           </p>
           <Link
-            href={"/business/1"}
+            href={`/business/${id}`}
             className={`mt-auto hidden w-fit self-end rounded-[16px] border border-yellow-main px-[38px] py-[6px] text-[16px] lg:block lg:px-[38px] lg:py-[9px]`}
           >
             بیشتر

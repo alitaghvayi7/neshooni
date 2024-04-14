@@ -6,14 +6,14 @@ import MapSection from "@/features/HomePage/MapSection";
 import NewsSection from "@/features/HomePage/NewsSection";
 import PlaceSection from "@/features/HomePage/PlaceSection";
 import ShoppingSection from "@/features/HomePage/ShoppingSection";
-import { singleBusiness } from "@/models/business";
+import { businessSlider, singleBusiness } from "@/models/business";
 import { singleTourismCard } from "@/models/tourism";
 import { getTopBusiness } from "@/services/business";
 import { getAllNews } from "@/services/news";
 import { getTopPlaces } from "@/services/tourism";
 
 const Page = async () => {
-  const [allNews, topBusiness, topPlaces]: [any, singleBusiness[], singleTourismCard[]] = await Promise.all([
+  const [allNews, topBusiness, topPlaces]: [any, businessSlider[], singleTourismCard[]] = await Promise.all([
     getAllNews(),
     getTopBusiness(),
     getTopPlaces(),

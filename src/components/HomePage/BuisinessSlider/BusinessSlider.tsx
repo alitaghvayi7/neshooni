@@ -1,24 +1,24 @@
 "use client";
-import "swiper/css";
-import { Autoplay, Scrollbar } from "swiper/modules";
-import { Swiper, SwiperClass, SwiperRef, SwiperSlide } from "swiper/react";
-import { singleBusiness } from "@/models/business";
+import { businessSlider } from "@/models/business";
 import { StarIcon } from "@heroicons/react/24/solid";
 import Link from "next/link";
 import { useMemo, useRef, useState } from "react";
+import "swiper/css";
 import "swiper/css/autoplay";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import "swiper/css/scrollbar";
+import { Autoplay, Scrollbar } from "swiper/modules";
+import { Swiper, SwiperClass, SwiperRef, SwiperSlide } from "swiper/react";
 
-function BusinessSlider({ data }: { data: singleBusiness[] }) {
+function BusinessSlider({ data }: { data: businessSlider[] }) {
   const [my_swiper, set_my_swiper] = useState<SwiperClass | null>(null);
   const [activeIndex, setActiveIndex] = useState(0);
   const swiperRef = useRef<null | SwiperRef>(null);
   const activeBusiness = useMemo(() => {
     return data[activeIndex ?? 0];
   }, [activeIndex, data]);
-
+  console.log(activeBusiness);
   return (
     <div className="flex h-full w-full flex-col gap-6 lg:flex-row">
       <div className="relative mx-auto h-[249px] w-full lg:h-[429px] lg:w-1/2">
@@ -102,7 +102,7 @@ function BusinessSlider({ data }: { data: singleBusiness[] }) {
           <div className={`flex items-center gap-2`}>
             <StarIcon className={`h-5 w-5 text-yellow-main`} />
             <span className={`flex items-center justify-center text-[20px] leading-none text-write-main`}>
-              {activeBusiness?.scorings[0]?.average_score.substring(0, 3)}
+              {activeBusiness?.scorings[0]?.average_score?.substring(0, 3) || 0}
             </span>
           </div>
         </div>

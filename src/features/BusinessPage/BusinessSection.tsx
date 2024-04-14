@@ -11,6 +11,7 @@ import Image7 from "@/assets/images/businesspage/business-image(7).png";
 import BusinessHorizantalCard from "@/components/Cards/BusinessHorizantal";
 import BusinessVerticalCard from "@/components/Cards/BusinessVertical";
 import FilterBox from "@/components/shared/FilterBox";
+import { singleBusiness } from "@/models/business";
 import { useRef, useState } from "react";
 
 const slides = [
@@ -79,7 +80,7 @@ const slides = [
   },
 ];
 
-const BusinessSection = () => {
+const BusinessSection = ({ data }: { data: singleBusiness[] }) => {
   const [collections, setCollections] = useState([...slides.slice(0, 4)]);
   const [showContentType, setShowContentType] = useState<"row" | "grid">("row");
   const [loading, setloading] = useState(false);
@@ -138,26 +139,29 @@ const BusinessSection = () => {
             dir="rtl"
             className={`h-full w-full ${showContentType === "row" ? "flex flex-col gap-6" : "grid grid-cols-3 gap-6"}`}
           >
-            {collections.map((item) => {
+            {data.map((item) => {
               return showContentType === "row" ? (
                 <BusinessHorizantalCard
-                  address={item.address}
-                  comments={item.comments}
+                  address={item.address || ""}
+                  comments={item.comments_count}
                   desc={item.desc}
-                  image={item.image}
+                  image={item.img || "/"}
                   name={item.name}
-                  score={`${item.score}`}
+                  score={`${item.average_score[0]?.average_score || 0}`.substring(0, 3)}
                   key={item.id}
+                  id={item.id}
                 />
               ) : (
                 <div key={item.id} className="h-[540px]">
                   <BusinessVerticalCard
-                    address={item.address}
-                    comments={item.comments}
+                    address={item.address || ""}
+                    comments={item.comments_count}
                     desc={item.desc}
-                    image={item.image}
+                    image={item.img || "/"}
                     name={item.name}
-                    score={`${item.score}`}
+                    score={`${item.average_score[0]?.average_score || 0}`.substring(0, 3)}
+                    key={item.id}
+                    id={item.id}
                   />
                 </div>
               );
