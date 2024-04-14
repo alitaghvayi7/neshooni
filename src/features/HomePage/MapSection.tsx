@@ -1,7 +1,7 @@
 "use client";
 import { useCallback, useLayoutEffect, useRef, useState } from "react";
 import dynamic from "next/dynamic";
-import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/24/outline";
+import {ChevronLeftIcon, ChevronRightIcon, MinusIcon, PlusIcon} from "@heroicons/react/24/outline";
 
 const MapComponent = dynamic(() => import("@/components/HomePage/Map/Map"), {
   ssr: false,
@@ -103,6 +103,30 @@ const MapSection = () => {
             ref={parentMapRef}
             className={`w-full h-[329px] lg:h-[414px] mx-auto overflow-hidden rounded-[16px]  flex items-center justify-center relative isolate`}
           >
+            {/*Map Zoom Controls*/}
+
+            <div className={`w-[50px] h-[120px] bg-white absolute left-4 top-4 z-[4] shadow-2xl rounded-[8px]`}>
+              <button
+                  onClick={()=>{
+                    rightMapRef?.current?.setZoom(rightMapRef.current.getZoom() + 1);
+                    leftMapRef?.current?.setZoom(leftMapRef.current.getZoom() + 1);
+                  }}
+                  className={`w-full h-1/2 flex items-center justify-center border-b border-write-main`}>
+                <PlusIcon className={`w-6 h-6 text-write-main`}/>
+              </button>
+              <button
+                  onClick={()=>{
+                    rightMapRef?.current?.setZoom(rightMapRef.current.getZoom() - 1);
+                    leftMapRef?.current?.setZoom(leftMapRef.current.getZoom() - 1);
+                  }}
+                  className={`w-full h-1/2 flex items-center justify-center`}>
+                <MinusIcon className={`w-6 h-6 text-write-main`}/>
+              </button>
+
+
+            </div>
+
+            {/*Map Zoom Controls*/}
             <div
               ref={resizeElementRef}
               onMouseDown={(e) => {
