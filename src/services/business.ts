@@ -1,6 +1,15 @@
 import { businessSlider, singleBusiness } from "@/models/business";
 import { baseURL } from "./news";
 
+export const getBusinessPointsFromLocation = async (lat: any, lng: any) => {
+  try {
+    const req = await fetch(`${baseURL}/search/map?lat=34.63935180663382&long=50.878894309208384&radius=30`);
+    return req.json();
+  } catch (error) {
+    return [];
+  }
+};
+
 export const getTopBusiness = async (): Promise<businessSlider[]> => {
   try {
     const req = await fetch(`${baseURL}/shop/top`, {

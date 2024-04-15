@@ -1,7 +1,8 @@
 "use client";
-import { useCallback, useLayoutEffect, useRef, useState } from "react";
+import {useCallback, useEffect, useLayoutEffect, useRef, useState} from "react";
 import dynamic from "next/dynamic";
-import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/24/outline";
+import {ChevronLeftIcon, ChevronRightIcon, MinusIcon, PlusIcon} from "@heroicons/react/24/outline";
+import {getBusinessPointsFromLocation} from "@/services/business";
 
 const MapComponent = dynamic(() => import("@/components/HomePage/Map/Map"), {
   ssr: false,
@@ -51,7 +52,7 @@ const MapSection = () => {
       // Prompt user for permission to access their location
       navigator.geolocation.getCurrentPosition(
         // Success callback function
-        (position) => {
+        async (position) => {
           // Get the user's latitude and longitude coordinates
           const lat = position.coords.latitude;
           const lng = position.coords.longitude;
@@ -59,6 +60,8 @@ const MapSection = () => {
           // Do something with the location data, e.g. display on a map
           // console.log(`Latitude: ${lat}, longitude: ${lng}`);
           setBoundes({ lat, lng });
+          const res = await getBusinessPointsFromLocation(lat, lng);
+          console.log(res,'-----------------')
         },
         // Error callback function
         (error) => {
@@ -73,6 +76,8 @@ const MapSection = () => {
       setBoundes({ lat: 34.382436, lng: 50.523504 });
     }
   }, []);
+
+
 
 
   return (
@@ -103,6 +108,30 @@ const MapSection = () => {
             ref={parentMapRef}
             className={`w-full h-[329px] lg:h-[414px] mx-auto overflow-hidden rounded-[16px]  flex items-center justify-center relative isolate`}
           >
+            {/*Map Zoom Controls*/}
+
+            <div className={`w-[50px] h-[120px] bg-white absolute left-4 top-4 z-[4] shadow-2xl rounded-[8px]`}>
+              <button
+                  onClick={()=>{
+                    rightMapRef?.current?.setZoom(rightMapRef.current.getZoom() + 1);
+                    leftMapRef?.current?.setZoom(leftMapRef.current.getZoom() + 1);
+                  }}
+                  className={`w-full h-1/2 flex items-center justify-center border-b border-write-main`}>
+                <PlusIcon className={`w-6 h-6 text-write-main`}/>
+              </button>
+              <button
+                  onClick={()=>{
+                    rightMapRef?.current?.setZoom(rightMapRef.current.getZoom() - 1);
+                    leftMapRef?.current?.setZoom(leftMapRef.current.getZoom() - 1);
+                  }}
+                  className={`w-full h-1/2 flex items-center justify-center`}>
+                <MinusIcon className={`w-6 h-6 text-write-main`}/>
+              </button>
+
+
+            </div>
+
+            {/*Map Zoom Controls*/}
             <div
               ref={resizeElementRef}
               onMouseDown={(e) => {
