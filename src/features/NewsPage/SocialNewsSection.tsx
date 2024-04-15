@@ -26,7 +26,7 @@ const SliderSection = ({ data }: { data: SingleNews[] }) => {
         <section
           className={`mx-auto flex w-[calc(100%-56px)] max-w-[1662px] flex-wrap items-center justify-between gap-4 lg:w-[calc(100%-128px)] lg:gap-0`}
         >
-          {data.slice(4, 6).map((item: any, index: number) => {
+          {data.slice(4, 6).map((item, index: number) => {
             return (
               <Fragment key={item?.id}>
                 <Link
@@ -34,7 +34,7 @@ const SliderSection = ({ data }: { data: SingleNews[] }) => {
                   href={`/news/social-media/1`}
                 >
                   <div className="relative h-full w-[128px] overflow-hidden rounded-r-2xl lg:w-[200px] xl:w-[255px]">
-                    <Image alt="" src={item?.image} className={`object-cover`} fill />
+                    <Image alt="" src={item?.img} className={`object-cover`} fill />
                   </div>
                   <div
                     style={{ borderRadius: `16px 0 0 16px` }}
@@ -46,20 +46,20 @@ const SliderSection = ({ data }: { data: SingleNews[] }) => {
                         <span
                           className={`flex items-center justify-center text-[10px] font-[400] text-gray-04 lg:text-[12px] xl:text-[16px]`}
                         >
-                          {item?.publisher}
+                          {/* {item?.publisher} */}
                         </span>
                       </div>
                       <span
                         dir="ltr"
                         className={`flex items-center justify-center text-[10px] font-[400] text-gray-04 lg:text-[12px] xl:text-[16px]`}
                       >
-                        {item?.date}
+                        {/* {item?.date} */}
                       </span>
                     </div>
                     <span
                       className={`mb-auto text-[14px] font-[600] lg:line-clamp-3 lg:text-[16px] xl:line-clamp-2 xl:text-[20px]`}
                     >
-                      {item?.name}
+                      {/* {item?.name} */}
                     </span>
                   </div>
                 </Link>

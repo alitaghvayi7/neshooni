@@ -1,4 +1,5 @@
 import Breadcrumbs from "@/components/shared/Breadcrumbs";
+import { attributeRegex } from "@/lib/utils/HtmlParser";
 import { NewsType, SingleNews } from "@/models/news";
 import Image from "next/image";
 import Link from "next/link";
@@ -57,7 +58,7 @@ const SingleHeroNews = ({ data, type }: { data: SingleNews; type: NewsType }) =>
                 <div
                   className={`line-clamp-3 overflow-hidden text-[16px] font-[400] leading-[26px] text-write-main xl:line-clamp-4`}
                   dangerouslySetInnerHTML={{
-                    __html: data?.content || "",
+                    __html: data?.content.replaceAll(attributeRegex, "") || "",
                   }}
                 ></div>
                 {/* <div className={`flex w-full items-center justify-between`}>

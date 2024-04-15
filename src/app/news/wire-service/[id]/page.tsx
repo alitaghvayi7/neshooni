@@ -1,6 +1,7 @@
 import Breadcrumbs from "@/components/shared/Breadcrumbs";
 import Footer from "@/components/shared/Footer";
 import Menu from "@/components/shared/Menu";
+import { attributeRegex } from "@/lib/utils/HtmlParser";
 import { getSingleNews } from "@/services/news";
 import { CalendarDaysIcon, ShareIcon } from "@heroicons/react/24/outline";
 import Image from "next/image";
@@ -86,7 +87,7 @@ export default async function SingleNewsPage({ params: { id } }: { params: { id:
             <div
               className={`text-justify text-[20px] font-[400] leading-9 text-write-main`}
               dangerouslySetInnerHTML={{
-                __html: newsData.data.content || "",
+                __html: newsData.data.content.replaceAll(attributeRegex, "") || "",
               }}
             ></div>
             <div className="flex w-full items-center justify-between">

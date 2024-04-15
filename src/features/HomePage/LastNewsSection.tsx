@@ -1,8 +1,9 @@
+import { HASHTAG_ICON, NEWS_ICON, PAPER_ICON } from "@/assets/icons/svgs";
+import { attributeRegex } from "@/lib/utils/HtmlParser";
+import { SingleNews } from "@/models/news";
 import Image from "next/image";
 import Link from "next/link";
-import { imageBaseURL } from "@/data";
 import { Fragment } from "react";
-import { HASHTAG_ICON, NEWS_ICON, PAPER_ICON } from "@/assets/icons/svgs";
 export const newsTypes = [
   {
     id: 1,
@@ -93,7 +94,7 @@ const LastNewsSection = ({ lastNews }: { lastNews: SingleNews[] }) => {
                     <div
                       className={`mb-auto hidden text-[16px] font-[400] text-write-main lg:line-clamp-4`}
                       dangerouslySetInnerHTML={{
-                        __html: item?.content || "",
+                        __html: item?.content.replaceAll(attributeRegex, "") || "",
                       }}
                     ></div>
                   </div>

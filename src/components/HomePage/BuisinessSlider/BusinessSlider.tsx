@@ -18,7 +18,7 @@ function BusinessSlider({ data }: { data: businessSlider[] }) {
   const activeBusiness = useMemo(() => {
     return data[activeIndex ?? 0];
   }, [activeIndex, data]);
-  console.log(activeBusiness);
+
   return (
     <div className="flex h-full w-full flex-col gap-6 lg:flex-row">
       <div className="relative mx-auto h-[249px] w-full lg:h-[429px] lg:w-1/2">

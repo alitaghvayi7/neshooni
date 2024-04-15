@@ -1,4 +1,5 @@
 "use client";
+import { attributeRegex } from "@/lib/utils/HtmlParser";
 import { SingleNews } from "@/models/news";
 import Image from "next/image";
 import Link from "next/link";
@@ -106,7 +107,7 @@ function SocialNewsSlider({ data }: { data: SingleNews[] | [] }) {
         <p
           className={`line-clamp-4 overflow-hidden text-[16px] font-[400] leading-[32px] text-write-main`}
           dangerouslySetInnerHTML={{
-            __html: activeNews?.content,
+            __html: activeNews?.content.replaceAll(attributeRegex, ""),
           }}
         ></p>
         <Link

@@ -1,3 +1,4 @@
+import { attributeRegex } from "@/lib/utils/HtmlParser";
 import { SingleNews } from "@/models/news";
 import { NewspaperIcon } from "@heroicons/react/24/outline";
 import Image from "next/image";
@@ -50,7 +51,7 @@ const WireServiceSection = ({ data }: { data: SingleNews[] }) => {
                   <span
                     className={`mb-auto line-clamp-4 overflow-hidden text-justify text-[10px] font-[400] text-write-main lg:text-[14px]`}
                     dangerouslySetInnerHTML={{
-                      __html: item.content || "",
+                      __html: item.content.replaceAll(attributeRegex, "") || "",
                     }}
                   ></span>
                 </div>

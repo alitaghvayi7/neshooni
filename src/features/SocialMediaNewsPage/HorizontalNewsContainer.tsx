@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { newsPageTypeInfo } from "./SingleHeroNews";
 import { NewsType, SingleNews } from "@/models/news";
+import { attributeRegex } from "@/lib/utils/HtmlParser";
 
 const HorizontalNewsContainer = ({ data, type }: { data: SingleNews[]; type: NewsType }) => {
   return (
@@ -40,7 +41,7 @@ const HorizontalNewsContainer = ({ data, type }: { data: SingleNews[]; type: New
                 <div
                   className={`line-clamp-4 overflow-hidden text-justify text-[10px] font-[400] text-write-main lg:line-clamp-3 lg:text-[16px] xl:line-clamp-4`}
                   dangerouslySetInnerHTML={{
-                    __html: item.content || "",
+                    __html: item.content.replaceAll(attributeRegex, "") || "",
                   }}
                 ></div>
               </div>

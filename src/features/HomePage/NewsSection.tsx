@@ -3,9 +3,10 @@ import Image from "next/image";
 import Link from "next/link";
 
 // images
+import { attributeRegex } from "@/lib/utils/HtmlParser";
+import { SingleNews } from "@/models/news";
 import { Fragment, useMemo, useState } from "react";
 import { newsTypes } from "./LastNewsSection";
-import { SingleNews } from "@/models/news";
 
 const NewsSection = ({ newsList }: { newsList: SingleNews[] }) => {
   const [activeNewsType, setActiveNewsType] = useState<"social" | "official" | "organization">("official");
@@ -84,9 +85,9 @@ const NewsSection = ({ newsList }: { newsList: SingleNews[] }) => {
                     <span className={`text-[14px] font-[600] lg:text-[24px]`}>{activeNews[0].title}</span>
 
                     <div
-                      className={`line-clamp-6 grow overflow-hidden text-[16px] font-[400] text-write-main`}
+                      className={`mb-auto line-clamp-[7] text-[16px] font-[400] text-write-main`}
                       dangerouslySetInnerHTML={{
-                        __html: activeNews[0].content || "",
+                        __html: activeNews[0].content.replaceAll(attributeRegex, "") || "",
                       }}
                     ></div>
                   </div>
