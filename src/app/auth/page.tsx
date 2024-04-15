@@ -6,6 +6,9 @@ import { signIn } from "next-auth/react";
 import Image from "next/image";
 import { Fragment, useEffect, useRef, useState } from "react";
 
+import backgroundImage from "../../../public/assets/images/auth/lines-background.png";
+import abs from "../../../public/assets/images/auth/main-bg.png";
+
 export default function Auth() {
   const maxLength = 6;
   const [change, setChange] = useState(false);
@@ -61,7 +64,7 @@ export default function Auth() {
           e.preventDefault();
           setStep(2);
         }}
-        className={`absolute inset-0 isolate z-[2] flex h-full w-full items-center justify-center bg-[#FAFBFF] bg-opacity-40`}
+        className={`absolute inset-0 isolate z-[5] flex h-full w-full items-center justify-center bg-[#FAFBFF] bg-opacity-40`}
       >
         <div className={`flex h-fit w-[342px] flex-col items-center rounded-[32px] bg-white px-6 py-8`}>
           <div>
@@ -233,8 +236,11 @@ export default function Auth() {
       </form>
 
       <section
-        className={`absolute bottom-0 left-0 top-0 z-[1] flex h-full w-full flex-col justify-center gap-4 ${styles["hero-image"]}`}
-      ></section>
+        className={`absolute bottom-0 left-0 top-0 z-[3] flex h-full w-full flex-col justify-center gap-4 overflow-hidden`}
+      >
+        <Image src={backgroundImage} alt="background" fill />
+        <Image src={abs} alt="background" />
+      </section>
     </main>
   );
 }

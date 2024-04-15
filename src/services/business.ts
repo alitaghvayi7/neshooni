@@ -3,7 +3,11 @@ import { baseURL } from "./news";
 
 export const getBusinessPointsFromLocation = async (lat: any, lng: any) => {
   try {
-    const req = await fetch(`${baseURL}/search/map?lat=34.63935180663382&long=50.878894309208384&radius=30`);
+    const req = await fetch(`${baseURL}/search/map?lat=34.63935180663382&long=50.878894309208384&radius=30`, {
+      next: {
+        revalidate: 0,
+      },
+    });
     return req.json();
   } catch (error) {
     return [];

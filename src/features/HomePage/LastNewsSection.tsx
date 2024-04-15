@@ -72,7 +72,7 @@ const LastNewsSection = ({ lastNews }: { lastNews: SingleNews[] }) => {
                   </div>
                   <div
                     style={{ borderRadius: `16px 0 0 16px` }}
-                    className={`flex h-full flex-col gap-4 border-b border-l border-t border-yellow-04 px-4 py-6`}
+                    className={`flex h-full flex-col gap-4 overflow-hidden border-b border-l border-t border-yellow-04 px-4 py-6`}
                   >
                     {/* <div className={`flex w-full items-center justify-between`}>
                       <div className={`flex items-center justify-center gap-3`}>
