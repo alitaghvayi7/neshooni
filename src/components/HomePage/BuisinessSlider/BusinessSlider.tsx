@@ -1,6 +1,9 @@
 "use client";
+import { imagePlaceHolders } from "@/data";
+import { attributeRegex } from "@/lib/utils/HtmlParser";
 import { businessSlider } from "@/models/business";
 import { StarIcon } from "@heroicons/react/24/solid";
+import Image from "next/image";
 import Link from "next/link";
 import { useMemo, useRef, useState } from "react";
 import "swiper/css";
@@ -89,7 +92,14 @@ function BusinessSlider({ data }: { data: businessSlider[] }) {
         >
           {data?.map((item, index) => (
             <SwiperSlide key={item.id}>
-              <div className="relative h-full w-full bg-black">{/* <Image src={} alt="business" fill/> */}</div>
+              <div className="relative h-full w-full">
+                <Image
+                  src={`${item?.img || imagePlaceHolders.business}`}
+                  alt="business"
+                  fill
+                  className="object-cover"
+                />
+              </div>
             </SwiperSlide>
           ))}
         </Swiper>
@@ -107,7 +117,12 @@ function BusinessSlider({ data }: { data: businessSlider[] }) {
           </div>
         </div>
         {/* <span className={`text-[20px] font-[400] text-write-main`}>آدرس: {activeBusiness}</span> */}
-        <p className={`line-clamp-4 text-[16px] font-[400] leading-[32px] text-write-main`}>{activeBusiness?.desc}</p>
+        <div
+          className={`line-clamp-4 text-[16px] font-[400] leading-[32px] text-write-main`}
+          dangerouslySetInnerHTML={{
+            __html: activeBusiness?.desc ? activeBusiness?.desc.replaceAll(attributeRegex, "") : "",
+          }}
+        ></div>
         <Link
           href={`/business/${activeBusiness?.id}`}
           className={`w-fit self-end rounded-[16px] border border-yellow-main px-[38px] py-[6px] text-[16px] lg:px-[54px] lg:py-[14px]`}

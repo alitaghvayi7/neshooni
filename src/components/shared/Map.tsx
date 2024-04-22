@@ -22,22 +22,23 @@ const MapComponent = (props: Props) => {
     shadowUrl: IconShadowImage.src,
     shadowAnchor: [33, 33],
   });
+  console.log(process.env.THUNDERFOREST_API_KEY);
 
   return (
     <>
-      <section className={`w-full h-full overflow-hidden relative isolate`}>
+      <section className={`relative isolate h-full w-full overflow-hidden`}>
         <div
-          className={`w-full h-full absolute inset-0 pointer-events-none z-[3] bg-transparent flex items-end justify-center pb-[48px]`}
+          className={`pointer-events-none absolute inset-0 z-[3] flex h-full w-full items-end justify-center bg-transparent pb-[48px]`}
         >
           <span
-            className={`h-[58px] py-3 px-5 bg-yellow-06 text-write-03 rounded-[16px] font-[700] text-[24px] flex items-center justify-center `}
+            className={`flex h-[58px] items-center justify-center rounded-[16px] bg-yellow-06 px-5 py-3 text-[24px] font-[700] text-write-03 `}
           >
             {labelTitle}
           </span>
         </div>
         <MapContainer
           ref={mapRef}
-          className={`w-full h-full absolute inset-0 z-[1]`}
+          className={`absolute inset-0 z-[1] h-full w-full`}
           center={[boundes?.lat, boundes?.lng]}
           zoom={30}
           scrollWheelZoom={false}

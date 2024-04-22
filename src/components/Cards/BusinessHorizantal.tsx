@@ -1,3 +1,4 @@
+import { attributeRegex } from "@/lib/utils/HtmlParser";
 import { ChatBubbleLeftIcon, StarIcon } from "@heroicons/react/24/solid";
 import Image, { StaticImageData } from "next/image";
 import Link from "next/link";
@@ -60,11 +61,12 @@ const BusinessHorizantalCard = ({
           >
             {address}
           </span>
-          <p
+          <div
             className={`line-clamp-2 text-[12px] font-[200] text-write-main md:line-clamp-4 md:text-[14px] lg:line-clamp-3 lg:text-[16px] lg:leading-6 xl:line-clamp-4`}
-          >
-            {desc}
-          </p>
+            dangerouslySetInnerHTML={{
+              __html: desc.replaceAll(attributeRegex, "") || "",
+            }}
+          ></div>
           <Link
             href={`/business/${id}`}
             className={`mt-auto hidden w-fit self-end rounded-[16px] border border-yellow-main px-[38px] py-[6px] text-[16px] lg:block lg:px-[38px] lg:py-[9px]`}

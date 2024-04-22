@@ -11,7 +11,22 @@ export type singleBusiness = {
     icon: string;
     color: null;
   };
-  address: null | string;
+  address: null | {
+    id: number;
+    parent_id: number;
+    type: "shop";
+    type_fn: "مغازه";
+    toward: boolean;
+    index: string;
+    relation_id: null;
+    desc: string;
+    name: string;
+    region: string;
+    lat: null | string;
+    long: null | string;
+    address: string;
+    parent: any;
+  };
   bussinessman: null;
   index: boolean;
   open: boolean;
@@ -35,6 +50,7 @@ export type businessSlider = {
   desc: string;
   index: boolean;
   open: boolean;
+  img: string | null;
   created_at: string;
   updated_at: string;
   scorings: [

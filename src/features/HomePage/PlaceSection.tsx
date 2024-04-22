@@ -1,53 +1,23 @@
 "use client";
 
+import MapImage from "@/assets/images/mainpage/mapdark.png";
+import BackGround from "@/assets/images/mainpage/slider-background.png";
 import Image from "next/image";
 import Link from "next/link";
-import BackGround from "@/assets/images/mainpage/slider-background.png";
-import MapImage from "@/assets/images/mainpage/mapdark.png";
-import { Keyboard, Mousewheel, Autoplay, EffectFade, Pagination, Scrollbar } from "swiper/modules";
+import { Autoplay, EffectFade, Keyboard, Mousewheel, Pagination } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 // Import Swiper styles
-import "swiper/css";
 import { StarIcon } from "@heroicons/react/24/solid";
+import "swiper/css";
 
 // import Images
-import Image1 from "@/assets/images/mainpage/Rectangle142.png";
-import Image2 from "@/assets/images/mainpage/Rectangle272.png";
-import Image3 from "@/assets/images/mainpage/Rectangle273.png";
 import { singleTourismCard } from "@/models/tourism";
-
-const slides = [
-  {
-    id: Math.random(),
-    image: Image1,
-    score: 1.4,
-    name: "کوه خضر",
-    desc: "خودکار فوق روان نانو آنتی باکتریال پنتر مدل یک انتخاب بی‌نظیر برای دوستداران خودکارهای با کیفیت است.",
-  },
-  {
-    id: Math.random(),
-    image: Image2,
-    score: 3.4,
-    name: "بوستان علوی",
-    desc: "خودکار فوق روان نانو آنتی باکتریال پنتر مدل یک انتخاب بی‌نظیر برای دوستداران خودکارهای با کیفیت است.",
-  },
-  {
-    id: Math.random(),
-    image: Image3,
-    score: 5,
-    name: "بوستان مهدی",
-    desc: "خودکار فوق روان نانو آنتی باکتریال پنتر مدل یک انتخاب بی‌نظیر برای دوستداران خودکارهای با کیفیت است.",
-  },
-  {
-    id: Math.random(),
-    image: Image1,
-    score: 4.3,
-    name: "کوه خضر",
-    desc: "خودکار فوق روان نانو آنتی باکتریال پنتر مدل یک انتخاب بی‌نظیر برای دوستداران خودکارهای با کیفیت است.",
-  },
-];
+import { attributeRegex } from "@/lib/utils/HtmlParser";
+import { imageBaseURL, imagePlaceHolders } from "@/data";
+import { baseURL } from "@/services/news";
 
 const PalceSection = ({ placesList }: { placesList: singleTourismCard[] }) => {
+  console.log(placesList);
   return (
     <>
       <section
@@ -186,7 +156,12 @@ const PalceSection = ({ placesList }: { placesList: singleTourismCard[] }) => {
                       className="flex h-full w-[169px] flex-col overflow-hidden rounded-[16px] lg:w-[350px]"
                     >
                       <div className="relative h-[66%] w-full overflow-hidden">
-                        <Image alt={``} src={item?.img} className={`object-cover`} fill />
+                        <Image
+                          alt={``}
+                          src={`${item?.img ? `${imageBaseURL}${item.img}` : imagePlaceHolders.tourist}`}
+                          className={`object-cover`}
+                          fill
+                        />
                       </div>
                       <div
                         style={{ borderRadius: `0 0 16px 16px` }}
@@ -203,11 +178,12 @@ const PalceSection = ({ placesList }: { placesList: singleTourismCard[] }) => {
                             </span>
                           </div>
                         </div>
-                        <p
+                        <div
                           className={`line-clamp-3 text-[10px] font-[400] leading-[32px] text-write-main lg:text-[16px]`}
-                        >
-                          {item?.content}
-                        </p>
+                          dangerouslySetInnerHTML={{
+                            __html: item?.content.replaceAll(attributeRegex, "") || "",
+                          }}
+                        ></div>
                       </div>
                     </Link>
                   </SwiperSlide>

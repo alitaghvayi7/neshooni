@@ -9,6 +9,7 @@ const TourismVerticalCard = ({
   image,
   name,
   score,
+  id,
 }: {
   image: string | StaticImageData;
   score: string;
@@ -16,6 +17,7 @@ const TourismVerticalCard = ({
   comments: number;
   address: string;
   desc: string;
+  id: number;
 }) => {
   return (
     <div className={`flex h-full w-full flex-col items-center overflow-hidden rounded-t-[16px]`}>
@@ -61,7 +63,7 @@ const TourismVerticalCard = ({
               </span>
             </div>
           </div>
-          <Link href={"/tourist/1"} className={`w-fit rounded-[16px] border border-yellow-main px-6`}>
+          <Link href={`/tourist/${id}`} className={`w-fit rounded-[16px] border border-yellow-main px-6`}>
             بیشتر
           </Link>
         </div>

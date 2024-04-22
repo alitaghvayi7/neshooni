@@ -1,14 +1,67 @@
-import Menu from "@/components/shared/Menu";
 import Breadcrumbs from "@/components/shared/Breadcrumbs";
-import { BookmarkIcon as BookmarkIconOutline, CalendarDaysIcon, ShareIcon } from "@heroicons/react/24/outline";
-import Image from "next/image";
-import Image1 from "@/assets/images/businesspage/business-image(1).png";
 import Footer from "@/components/shared/Footer";
-import { BookmarkIcon as BookmarkIconSolid } from "@heroicons/react/24/solid";
-import { getSingleNews } from "@/services/news";
-import { notFound } from "next/navigation";
-import Link from "next/link";
+import Menu from "@/components/shared/Menu";
 import { attributeRegex } from "@/lib/utils/HtmlParser";
+import { getSingleNews } from "@/services/news";
+import { CalendarDaysIcon, ShareIcon } from "@heroicons/react/24/outline";
+import { Metadata, ResolvingMetadata } from "next";
+import Image from "next/image";
+import Link from "next/link";
+import { notFound } from "next/navigation";
+
+export async function generateMetadata(
+  { params: { id }, searchParams }: any,
+  parent: ResolvingMetadata,
+): Promise<Metadata> {
+  const [newsData, parentData] = await Promise.all([getSingleNews({ id }), parent]);
+
+  if (newsData === "Error") return {};
+
+  return {
+    title: newsData.data.title,
+    description: newsData.data.content,
+    openGraph: {
+      locale: "fa-IR",
+      type: "article",
+      title: newsData.data.title,
+      description: newsData.data.content,
+      url: `${process.env.NEXTAUTH_URL}/wire-service/${id}`,
+      siteName: `${parentData?.title?.absolute}`,
+      images: [
+        {
+          url: newsData.data.img || "",
+          width: 400,
+          height: 300,
+        },
+      ],
+    },
+    other: {
+      author: new URL(newsData.data.source).hostname,
+      // "article:published_time": newsData.data.yoast_head_json.article_published_time,
+      // "article:modified_time": newsData.data.yoast_head_json.article_modified_time,
+    },
+  };
+  // return {
+  //     ...newsData.data.yoast_head_json,
+  //     openGraph: {
+  //         locale: newsData.data.yoast_head_json.og_locale,
+  //         type: newsData.data.yoast_head_json.og_type,
+  //         title: newsData.data.yoast_head_json.og_title,
+  //         description: newsData.data.yoast_head_json.og_description,
+  //         url: newsData.data.yoast_head_json.og_url.replace('https://blog.avir.co.com/', 'https://avir.co.com/blog/'),
+  //         siteName: newsData.data.yoast_head_json.og_site_name
+  //     },
+  //     other: {
+  //         author: newsData.data.yoast_head_json.author,
+  //         "article:published_time": newsData.data.yoast_head_json.article_published_time,
+  //         "article:modified_time": newsData.data.yoast_head_json.article_modified_time,
+  //         "og:image": newsData.data.yoast_head_json.og_image[0].url,
+  //         "og:image:width": newsData.data.yoast_head_json.og_image[0].width,
+  //         "og:image:height": newsData.data.yoast_head_json.og_image[0].height,
+  //         "og:image:type": newsData.data.yoast_head_json.og_image[0].type,
+  //     }
+  // }
+}
 
 export default async function SingleNewsPage({ params: { id } }: { params: { id: string } }) {
   // const [bookmarked, setBookmarked] = useState(false);

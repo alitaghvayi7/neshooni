@@ -6,6 +6,7 @@ import { Metadata } from "next";
 import dynamic from "next/dynamic";
 import { notFound } from "next/navigation";
 const MapSection = dynamic(() => import("@/features/BusinessPage/MapSection"), { ssr: false });
+// import MapSection from "@/features/BusinessPage/MapSection";
 
 export const metadata: Metadata = {
   title: "کسب و کار",
@@ -14,6 +15,7 @@ export const metadata: Metadata = {
 export default async function BusinessPage() {
   const businessList = await getBusinessList({ page: 1 });
   if (businessList === "Error") throw new Error();
+
   return (
     <>
       <main className={`w-full`}>

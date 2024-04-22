@@ -28,6 +28,8 @@ export default async function SingleTouristPage({ params: { id } }: { params: { 
             description={singleTourismData.data.content}
             id={singleTourismData.data.id}
             name={singleTourismData.data.title}
+            img={singleTourismData.data.img}
+            score={singleTourismData.data.average_score[0]?.average_score || "0"}
           />
         </section>
         <Footer />

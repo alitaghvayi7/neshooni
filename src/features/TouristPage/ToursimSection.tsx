@@ -76,6 +76,7 @@ const TourismSection = ({ data }: { data: SingleTourism[] }) => {
                   name={item.title}
                   score={item.average_score.substring(0, 3)}
                   key={item.id}
+                  id={item.id}
                 />
               ) : (
                 <div key={item.id} className="lg:h-[490px] xl:h-[540px]">
@@ -86,6 +87,7 @@ const TourismSection = ({ data }: { data: SingleTourism[] }) => {
                     image={item.img}
                     name={item.title}
                     score={item.average_score.substring(0, 3)}
+                    id={item.id}
                   />
                 </div>
               );

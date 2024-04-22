@@ -56,9 +56,13 @@ export const getSingleNews = async ({ id }: { id: string }): Promise<{ data: Sin
         revalidate: 0,
       },
     });
-    return {
-      data: { ...(await response.json()).data },
-    };
+    if (response.ok) {
+      return {
+        data: { ...(await response.json()).data },
+      };
+    } else {
+      return "Error";
+    }
   } catch (error) {
     return "Error";
   }

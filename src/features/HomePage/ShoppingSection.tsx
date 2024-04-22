@@ -10,41 +10,9 @@ import { StarIcon } from "@heroicons/react/24/solid";
 import "swiper/css";
 
 // import Images
-import Image1 from "@/assets/images/mainpage/Rectangle142.png";
-import Image2 from "@/assets/images/mainpage/Rectangle265.png";
-import Image3 from "@/assets/images/mainpage/Rectangle266.png";
-import { businessSlider, singleBusiness } from "@/models/business";
-
-// const slides = [
-//   {
-//     id: Math.random(),
-//     image: Image1,
-//     score: 1.4,
-//     name: "فروشگاه جانبو",
-//     desc: "خودکار فوق روان نانو آنتی باکتریال پنتر مدل یک انتخاب بی‌نظیر برای دوستداران خودکارهای با کیفیت است.",
-//   },
-//   {
-//     id: Math.random(),
-//     image: Image2,
-//     score: 3.4,
-//     name: "پوشاک افتاب",
-//     desc: "خودکار فوق روان نانو آنتی باکتریال پنتر مدل یک انتخاب بی‌نظیر برای دوستداران خودکارهای با کیفیت است.",
-//   },
-//   {
-//     id: Math.random(),
-//     image: Image3,
-//     score: 5,
-//     name: "پوشاک هیراد",
-//     desc: "خودکار فوق روان نانو آنتی باکتریال پنتر مدل یک انتخاب بی‌نظیر برای دوستداران خودکارهای با کیفیت است.",
-//   },
-//   {
-//     id: Math.random(),
-//     image: Image1,
-//     score: 4.3,
-//     name: "کوه خضر",
-//     desc: "خودکار فوق روان نانو آنتی باکتریال پنتر مدل یک انتخاب بی‌نظیر برای دوستداران خودکارهای با کیفیت است.",
-//   },
-// ];
+import { businessSlider } from "@/models/business";
+import { attributeRegex } from "@/lib/utils/HtmlParser";
+import { imagePlaceHolders } from "@/data";
 
 const ShoppingSection = ({ data }: { data: businessSlider[] }) => {
   return (
@@ -196,7 +164,12 @@ const ShoppingSection = ({ data }: { data: businessSlider[] }) => {
                       className="flex h-full w-[169px] flex-col overflow-hidden rounded-[16px] lg:w-[350px] "
                     >
                       <div className="relative h-[66%] w-full">
-                        <Image alt={``} src={"/"} className={`object-cover`} fill />
+                        <Image
+                          alt={``}
+                          src={`${item?.img || imagePlaceHolders.tourist}`}
+                          className={`object-cover`}
+                          fill
+                        />
                       </div>
                       <div
                         style={{ borderRadius: `0 0 16px 16px` }}
@@ -213,9 +186,12 @@ const ShoppingSection = ({ data }: { data: businessSlider[] }) => {
                             </span>
                           </div>
                         </div>
-                        <p className={`text-[10px] font-[400] leading-[32px] text-write-main lg:text-[16px]`}>
-                          {item?.desc}
-                        </p>
+                        <div
+                          className={`line-clamp-4 max-w-full text-[10px] font-[400] text-write-main lg:text-[16px]`}
+                          dangerouslySetInnerHTML={{
+                            __html: item?.desc.replaceAll(attributeRegex, "") || "",
+                          }}
+                        ></div>
                       </div>
                     </Link>
                   </SwiperSlide>

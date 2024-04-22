@@ -17,7 +17,19 @@ import { useLayoutEffect, useState } from "react";
 import PlaceDetails from "@/components/shared/PlaceDetails";
 const GoogleMap = dynamic(() => import("@/components/shared/GoogleMap"), { ssr: false });
 
-const IntroductionSection = ({ description, name, id }: { name: string; description: string; id: number }) => {
+const IntroductionSection = ({
+  description,
+  name,
+  id,
+  img,
+  score,
+}: {
+  name: string;
+  description: string;
+  id: number;
+  img: string | null;
+  score: string;
+}) => {
   const [bookmarked, setBookmarked] = useState(false);
   const [boundes, setBoundes] = useState({ lat: 0, lng: 0 });
 
@@ -57,7 +69,10 @@ const IntroductionSection = ({ description, name, id }: { name: string; descript
         <div
           className={`flex h-[342px] w-full items-center justify-center overflow-hidden rounded-[16px] lg:h-[657px]`}
         >
-          <Image alt="" src={Image1} className={`h-full w-full object-cover`} />
+          <div className="relative h-full w-full">
+            {/* add image placeholder */}
+            <Image alt="" src={img || ""} className={`object-cover`} fill />
+          </div>
         </div>
         <Breadcrumbs
           breadcumbs={[
@@ -76,7 +91,7 @@ const IntroductionSection = ({ description, name, id }: { name: string; descript
                 امتیاز
               </span>
               <span className={`flex items-center justify-center text-[12px] leading-6 text-write-04 lg:text-[20px]`}>
-                ۴
+                {score.substring(0, 3)}
               </span>
               <span className={`flex items-center justify-center text-[12px] leading-6 text-gray-03 lg:text-[20px]`}>
                 از ۵
@@ -137,7 +152,7 @@ const IntroductionSection = ({ description, name, id }: { name: string; descript
                   <span
                     className={`flex items-center justify-center text-[16px] leading-6 text-write-04 lg:text-[20px]`}
                   >
-                    ۴
+                    {score.substring(0, 3)}
                   </span>
                   <span
                     className={`flex items-center justify-center text-[16px] leading-6 text-gray-03 lg:text-[20px]`}

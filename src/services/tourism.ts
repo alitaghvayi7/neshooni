@@ -24,6 +24,15 @@ export const getSingleTourism = async ({
         id: number;
         title: string;
         content: string;
+        img: string | null;
+        average_score: [
+          {
+            scorable_id: number;
+            scorable_type: "App\\Modules\\Tourism\\Models\\Tourism";
+            average_score: string | null;
+          },
+        ];
+        comments_count: number;
       };
       statusCode: number;
     }
@@ -43,14 +52,7 @@ export const getSingleTourism = async ({
         statusCode: req.status,
       };
     } else {
-      return {
-        data: {
-          content: "",
-          id: 0,
-          title: "",
-        },
-        statusCode: req.status,
-      };
+      return "Error";
     }
   } catch (error) {
     return "Error";

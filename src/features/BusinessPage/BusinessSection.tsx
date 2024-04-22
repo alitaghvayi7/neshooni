@@ -11,77 +11,12 @@ import Image7 from "@/assets/images/businesspage/business-image(7).png";
 import BusinessHorizantalCard from "@/components/Cards/BusinessHorizantal";
 import BusinessVerticalCard from "@/components/Cards/BusinessVertical";
 import FilterBox from "@/components/shared/FilterBox";
+import { imageBaseURL, imagePlaceHolders } from "@/data";
 import { singleBusiness } from "@/models/business";
 import { useRef, useState } from "react";
 
-const slides = [
-  {
-    id: 1,
-    image: Image1,
-    name: "نانوایی سید",
-    comments: 561,
-    score: 5.36,
-    address: "تهران، خیابان ایرانشهر، منطقه ۳، بلوار خردمند شمالی، کوچه ۲۰، پلاک ۵۰۰",
-    desc: "پوشاک یا لِباس یا جامه آنچه است که بر تن پوشیده می‌شود. پوشاک، و دیگر خطرهای موجود در طبیعت حفظ می‌کند. همچنین پوشاک می‌تواند برای راحتی، زیبایی، حفظ در برابر سرما یا دگرگونی دمایی و نیز برای ایمنی استفاده شود.",
-  },
-  {
-    id: 2,
-    image: Image2,
-    name: "لبنیات سید اصغر",
-    comments: 651,
-    score: 4.65,
-    address: "تهران، خیابان جمهوری اسلامی، منطقه ۲۴، بلوار نیایش، کوچه ۵، پلاک ۲۰۰",
-    desc: "پوشاک یا لِباس یا جامه آنچه است که بر تن پوشیده می‌شود. پوشاک، و دیگر خطرهای موجود در طبیعت حفظ می‌کند. همچنین پوشاک می‌تواند برای راحتی، زیبایی، حفظ در برابر سرما یا دگرگونی دمایی و نیز برای ایمنی استفاده شود.",
-  },
-  {
-    id: 3,
-    image: Image3,
-    name: "پوشاک فروردین",
-    comments: 471,
-    score: 2.45,
-    address: "تهران، خیابان انقلاب، منطقه ۴، بلوار جمهوری، کوچه ۲۰، پلاک ۵۰۰",
-    desc: "پوشاک یا لِباس یا جامه آنچه است که بر تن پوشیده می‌شود. پوشاک، و دیگر خطرهای موجود در طبیعت حفظ می‌کند. همچنین پوشاک می‌تواند برای راحتی، زیبایی، حفظ در برابر سرما یا دگرگونی دمایی و نیز برای ایمنی استفاده شود.",
-  },
-  {
-    id: 4,
-    image: Image4,
-    name: "پوشاک هیراد",
-    comments: 154,
-    score: 2.45,
-    address: "تهران، خیابان انقلاب، منطقه ۴، بلوار جمهوری، کوچه ۲۰، پلاک ۵۰۰",
-    desc: "پوشاک یا لِباس یا جامه آنچه است که بر تن پوشیده می‌شود. پوشاک، و دیگر خطرهای موجود در طبیعت حفظ می‌کند. همچنین پوشاک می‌تواند برای راحتی، زیبایی، حفظ در برابر سرما یا دگرگونی دمایی و نیز برای ایمنی استفاده شود.",
-  },
-  {
-    id: 5,
-    image: Image5,
-    name: "لبنیات اسماعیلی",
-    comments: 354,
-    score: 2.87,
-    address: "تهران، خیابان انقلاب، منطقه ۴، بلوار جمهوری، کوچه ۲۰، پلاک ۵۰۰",
-    desc: "پوشاک یا لِباس یا جامه آنچه است که بر تن پوشیده می‌شود. پوشاک، و دیگر خطرهای موجود در طبیعت حفظ می‌کند. همچنین پوشاک می‌تواند برای راحتی، زیبایی، حفظ در برابر سرما یا دگرگونی دمایی و نیز برای ایمنی استفاده شود.",
-  },
-  {
-    id: 6,
-    image: Image6,
-    name: "نانوایی رضایی و برادران",
-    comments: 641,
-    score: 4.25,
-    address: "تهران، خیابان انقلاب، منطقه ۴، بلوار جمهوری، کوچه ۲۰، پلاک ۵۰۰",
-    desc: "پوشاک یا لِباس یا جامه آنچه است که بر تن پوشیده می‌شود. پوشاک، و دیگر خطرهای موجود در طبیعت حفظ می‌کند. همچنین پوشاک می‌تواند برای راحتی، زیبایی، حفظ در برابر سرما یا دگرگونی دمایی و نیز برای ایمنی استفاده شود.",
-  },
-  {
-    id: 7,
-    image: Image7,
-    name: "پوشاک ملودی",
-    comments: 324,
-    score: 4.9,
-    address: "تهران، خیابان انقلاب، منطقه ۴، بلوار جمهوری، کوچه ۲۰، پلاک ۵۰۰",
-    desc: "پوشاک یا لِباس یا جامه آنچه است که بر تن پوشیده می‌شود. پوشاک، و دیگر خطرهای موجود در طبیعت حفظ می‌کند. همچنین پوشاک می‌تواند برای راحتی، زیبایی، حفظ در برابر سرما یا دگرگونی دمایی و نیز برای ایمنی استفاده شود.",
-  },
-];
-
 const BusinessSection = ({ data }: { data: singleBusiness[] }) => {
-  const [collections, setCollections] = useState([...slides.slice(0, 4)]);
+  const [collections, setCollections] = useState([]);
   const [showContentType, setShowContentType] = useState<"row" | "grid">("row");
   const [loading, setloading] = useState(false);
   const containerRef = useRef<HTMLDivElement | null>(null);
@@ -91,7 +26,7 @@ const BusinessSection = ({ data }: { data: singleBusiness[] }) => {
       if (containerRef.current.scrollTop + containerRef.current.clientHeight === containerRef.current.scrollHeight) {
         setloading(true);
         try {
-          setCollections((prev) => [...prev, ...slides.slice(prev.length, prev.length + 4)]);
+          setCollections((prev) => [...prev]);
         } catch (e) {
           console.log(e);
         } finally {
@@ -142,10 +77,10 @@ const BusinessSection = ({ data }: { data: singleBusiness[] }) => {
             {data.map((item) => {
               return showContentType === "row" ? (
                 <BusinessHorizantalCard
-                  address={item.address || ""}
+                  address={item.address?.address || ""}
                   comments={item.comments_count}
-                  desc={item.desc}
-                  image={item.img || "/"}
+                  desc={item.desc || ""}
+                  image={item?.img ? `${imageBaseURL}${item.img}` : imagePlaceHolders.business}
                   name={item.name}
                   score={`${item.average_score[0]?.average_score || 0}`.substring(0, 3)}
                   key={item.id}
@@ -154,10 +89,10 @@ const BusinessSection = ({ data }: { data: singleBusiness[] }) => {
               ) : (
                 <div key={item.id} className="h-[540px]">
                   <BusinessVerticalCard
-                    address={item.address || ""}
+                    address={item.address?.address || ""}
                     comments={item.comments_count}
-                    desc={item.desc}
-                    image={item.img || "/"}
+                    desc={item.desc || ""}
+                    image={item?.img ? `${imageBaseURL}${item.img}` : imagePlaceHolders.business}
                     name={item.name}
                     score={`${item.average_score[0]?.average_score || 0}`.substring(0, 3)}
                     key={item.id}

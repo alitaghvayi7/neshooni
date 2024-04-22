@@ -11,7 +11,7 @@ const searchTypes = [
   },
   {
     name: "کسب و کار",
-    value: "business",
+    value: "shop",
   },
   {
     name: "اخبار",
@@ -60,11 +60,12 @@ function SearchBox() {
       abortRef.current = controller;
 
       const search = async () => {
-        const req = await fetch(`${baseURL}/address?name=${searchInputValue}`, {
+        const req = await fetch(`${baseURL}/search?search_term=${searchInputValue}&type=${searchQuery.value}`, {
           signal: controller.signal,
         });
         if (req.ok) {
           const res = await req.json();
+          console.log(res);
           setSearchData(res?.data);
         } else {
           toast({
@@ -80,7 +81,7 @@ function SearchBox() {
       return () => controller.abort();
     }, 700);
     return () => clearTimeout(delayDebounceFn);
-  }, [searchInputValue, toast]);
+  }, [searchInputValue, toast, searchQuery]);
 
   return (
     <div className="relative z-[9999] flex h-full w-full flex-col items-center gap-2">
