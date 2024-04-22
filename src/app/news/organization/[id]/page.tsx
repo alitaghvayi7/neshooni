@@ -41,26 +41,6 @@ export async function generateMetadata(
       // "article:modified_time": newsData.data.yoast_head_json.article_modified_time,
     },
   };
-  // return {
-  //     ...newsData.data.yoast_head_json,
-  //     openGraph: {
-  //         locale: newsData.data.yoast_head_json.og_locale,
-  //         type: newsData.data.yoast_head_json.og_type,
-  //         title: newsData.data.yoast_head_json.og_title,
-  //         description: newsData.data.yoast_head_json.og_description,
-  //         url: newsData.data.yoast_head_json.og_url.replace('https://blog.avir.co.com/', 'https://avir.co.com/blog/'),
-  //         siteName: newsData.data.yoast_head_json.og_site_name
-  //     },
-  //     other: {
-  //         author: newsData.data.yoast_head_json.author,
-  //         "article:published_time": newsData.data.yoast_head_json.article_published_time,
-  //         "article:modified_time": newsData.data.yoast_head_json.article_modified_time,
-  //         "og:image": newsData.data.yoast_head_json.og_image[0].url,
-  //         "og:image:width": newsData.data.yoast_head_json.og_image[0].width,
-  //         "og:image:height": newsData.data.yoast_head_json.og_image[0].height,
-  //         "og:image:type": newsData.data.yoast_head_json.og_image[0].type,
-  //     }
-  // }
 }
 
 export default async function SingleNewsPage({ params: { id } }: { params: { id: string } }) {
@@ -101,6 +81,7 @@ export default async function SingleNewsPage({ params: { id } }: { params: { id:
                 <div className={`flex items-center gap-2`}>
                   <Link
                     href={newsData.data.source}
+                    rel="nofollow"
                     className={`flex items-center justify-center text-[12px] leading-6 text-blue-main lg:text-[20px]`}
                   >
                     منبع

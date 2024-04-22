@@ -12,14 +12,17 @@ const searchTypes = [
   {
     name: "کسب و کار",
     value: "shop",
+    route: "/business",
   },
   {
     name: "اخبار",
     value: "news",
+    route: "/news",
   },
   {
     name: "گردشگری",
     value: "tourism",
+    route: "/tourist",
   },
 ];
 
