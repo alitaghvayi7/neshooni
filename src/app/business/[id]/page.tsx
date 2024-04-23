@@ -13,9 +13,10 @@ export default async function SingleBusinessPage({
   const pageData = await getSingleBusiness({
     id,
   });
-  if (pageData === "Error") {
+  if (pageData === "Error" || pageData.data === null) {
     return null;
   }
+
   return (
     <>
       <main className={`w-full`}>
@@ -31,7 +32,13 @@ export default async function SingleBusinessPage({
         <section className={`w-full bg-blue-04 bg-opacity-10`}>
           {/* <MapSection />
           <BusinessSection /> */}
-          <IntroductionSection id={pageData.data.id} description={pageData.data?.desc} name={pageData.data?.name} />
+          <IntroductionSection
+            id={pageData.data.id}
+            description={pageData.data?.desc || ""}
+            name={pageData.data?.name}
+            score={pageData.data?.average_score[0]?.average_score ?? "0"}
+            image={pageData.data?.img}
+          />
         </section>
         <Footer />
       </main>

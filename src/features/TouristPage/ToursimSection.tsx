@@ -71,10 +71,10 @@ const TourismSection = ({ data }: { data: SingleTourism[] }) => {
                 <TourismHorizantalCard
                   address={""}
                   comments={item.comments_count}
-                  desc={item.content}
+                  desc={item.content || ""}
                   image={item.img}
                   name={item.title}
-                  score={item.average_score.substring(0, 3)}
+                  score={item.average_score[0] ? item.average_score[0].average_score.substring(0, 3) : "0"}
                   key={item.id}
                   id={item.id}
                 />
@@ -83,10 +83,10 @@ const TourismSection = ({ data }: { data: SingleTourism[] }) => {
                   <TourismVerticalCard
                     address={""}
                     comments={item.comments_count}
-                    desc={item.content}
+                    desc={item.content || ""}
                     image={item.img}
                     name={item.title}
-                    score={item.average_score.substring(0, 3)}
+                    score={item.average_score[0] ? item.average_score[0].average_score.substring(0, 3) : "0"}
                     id={item.id}
                   />
                 </div>

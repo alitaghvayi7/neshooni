@@ -17,7 +17,6 @@ import { imageBaseURL, imagePlaceHolders } from "@/data";
 import { baseURL } from "@/services/news";
 
 const PalceSection = ({ placesList }: { placesList: singleTourismCard[] }) => {
-  console.log(placesList);
   return (
     <>
       <section

@@ -102,6 +102,7 @@ export default async function SingleNewsPage({ params: { id } }: { params: { id:
                   <Link
                     href={newsData.data.source}
                     rel="nofollow"
+                    target="_blank"
                     className={`flex items-center justify-center text-[12px] leading-6 text-blue-main lg:text-[20px]`}
                   >
                     منبع

@@ -1,3 +1,4 @@
+import { attributeRegex } from "@/lib/utils/HtmlParser";
 import { ChatBubbleLeftIcon, StarIcon } from "@heroicons/react/24/solid";
 import Image, { StaticImageData } from "next/image";
 import Link from "next/link";
@@ -40,11 +41,12 @@ const TourismVerticalCard = ({
         <span className={`line-clamp-2 text-ellipsis text-[12px] font-[500] leading-6 text-write-main lg:text-[14px]`}>
           {address}
         </span>
-        <p
+        <div
           className={`line-clamp-3 text-ellipsis text-[12px] font-[200] leading-6 text-write-main lg:text-[16px] lg:leading-6`}
-        >
-          {desc}
-        </p>
+          dangerouslySetInnerHTML={{
+            __html: desc.replaceAll(attributeRegex, "") || "",
+          }}
+        ></div>
         <div className="mt-auto flex items-center justify-between">
           <div className={`flex items-center gap-2`}>
             <div className={`flex items-center gap-2`}>

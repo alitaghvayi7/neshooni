@@ -15,9 +15,23 @@ import {
 import { BookmarkIcon as BookmarkIconSolid, StarIcon as StarIconSolid } from "@heroicons/react/24/solid";
 import { useLayoutEffect, useState } from "react";
 import PlaceDetails from "@/components/shared/PlaceDetails";
+import { attributeRegex } from "@/lib/utils/HtmlParser";
+import { imagePlaceHolders } from "@/data";
 const GoogleMap = dynamic(() => import("@/components/shared/GoogleMap"), { ssr: false });
 
-const IntroductionSection = ({ description, name, id }: { name: string; description: string; id: number }) => {
+const IntroductionSection = ({
+  description,
+  name,
+  id,
+  score,
+  image,
+}: {
+  name: string;
+  description: string;
+  id: number;
+  score: string;
+  image: string | null;
+}) => {
   const [bookmarked, setBookmarked] = useState(false);
   const [boundes, setBoundes] = useState({ lat: 0, lng: 0 });
 
@@ -57,7 +71,9 @@ const IntroductionSection = ({ description, name, id }: { name: string; descript
         <div
           className={`flex h-[342px] w-full items-center justify-center overflow-hidden rounded-[16px] lg:h-[657px]`}
         >
-          <Image alt="" src={Image1} className={`h-full w-full object-cover`} />
+          <div className="relative h-full w-full">
+            <Image alt="" src={image || imagePlaceHolders.business} className={`object-cover`} fill />
+          </div>
         </div>
         <Breadcrumbs
           breadcumbs={[
@@ -111,7 +127,12 @@ const IntroductionSection = ({ description, name, id }: { name: string; descript
         {/* end title and icons */}
 
         {/* start description  */}
-        <p className="w-full pt-6 text-[16px] font-[400] leading-9 text-write-main lg:text-[20px]">{description}</p>
+        <div
+          className="w-full pt-6 text-[16px] font-[400] leading-9 text-write-main lg:text-[20px]"
+          dangerouslySetInnerHTML={{
+            __html: description.replaceAll(attributeRegex, ""),
+          }}
+        ></div>
         {/* end description */}
 
         {/* start info & map */}

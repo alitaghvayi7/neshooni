@@ -53,6 +53,15 @@ const fonst = localFont({
 export const metadata: Metadata = {
   title: "قم نشان",
   description: "سایت قم نشان",
+  openGraph: {
+    type: "website",
+    url: process.env.NEXTAUTH_URL,
+    title: "قم نشان",
+    description: "سایت قم نشان",
+    images: `${process.env.NEXTAUTH_URL}/favicon.ico`,
+    siteName: "قم نشان",
+    locale: "fa-IR",
+  },
 };
 
 export default function RootLayout({

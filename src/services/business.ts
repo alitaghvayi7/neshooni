@@ -33,11 +33,7 @@ export const getSingleBusiness = async ({
   id: string;
 }): Promise<
   | {
-      data: {
-        id: number;
-        name: string;
-        desc: string;
-      };
+      data: singleBusiness | null;
       statusCode: number;
     }
   | "Error"
@@ -57,11 +53,7 @@ export const getSingleBusiness = async ({
       };
     } else {
       return {
-        data: {
-          desc: "",
-          id: 0,
-          name: "",
-        },
+        data: null,
         statusCode: req.status,
       };
     }

@@ -15,6 +15,8 @@ import {
 import { BookmarkIcon as BookmarkIconSolid, StarIcon as StarIconSolid } from "@heroicons/react/24/solid";
 import { useLayoutEffect, useState } from "react";
 import PlaceDetails from "@/components/shared/PlaceDetails";
+import { attributeRegex } from "@/lib/utils/HtmlParser";
+import { imagePlaceHolders } from "@/data";
 const GoogleMap = dynamic(() => import("@/components/shared/GoogleMap"), { ssr: false });
 
 const IntroductionSection = ({
@@ -71,7 +73,7 @@ const IntroductionSection = ({
         >
           <div className="relative h-full w-full">
             {/* add image placeholder */}
-            <Image alt="" src={img || ""} className={`object-cover`} fill />
+            <Image alt="" src={img || imagePlaceHolders.tourist} className={`object-cover`} fill />
           </div>
         </div>
         <Breadcrumbs
@@ -126,7 +128,12 @@ const IntroductionSection = ({
         {/* end title and icons */}
 
         {/* start description  */}
-        <p className="w-full pt-6 text-[16px] font-[400] leading-9 text-write-main lg:text-[20px]">{description}</p>
+        <div
+          className="w-full pt-6 text-[16px] font-[400] leading-9 text-write-main lg:text-[20px]"
+          dangerouslySetInnerHTML={{
+            __html: description.replaceAll(attributeRegex, ""),
+          }}
+        ></div>
         {/* end description */}
 
         {/* start info & map */}

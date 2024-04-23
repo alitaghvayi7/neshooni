@@ -9,6 +9,7 @@ export default async function SingleTouristPage({ params: { id } }: { params: { 
   if (singleTourismData === "Error") {
     return null;
   }
+
   return (
     <>
       <main className={`w-full`}>
@@ -25,10 +26,10 @@ export default async function SingleTouristPage({ params: { id } }: { params: { 
           {/* <MapSection />
           <BusinessSection /> */}
           <IntroductionSection
-            description={singleTourismData.data.content}
+            description={singleTourismData.data.content ?? ""}
             id={singleTourismData.data.id}
             name={singleTourismData.data.title}
-            img={singleTourismData.data.img}
+            img={singleTourismData.data.img ?? ""}
             score={singleTourismData.data.average_score[0]?.average_score || "0"}
           />
         </section>
