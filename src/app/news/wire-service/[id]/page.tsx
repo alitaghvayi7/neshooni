@@ -101,6 +101,7 @@ export default async function SingleNewsPage({ params: { id } }: { params: { id:
                 <div className={`flex items-center gap-2`}>
                   <Link
                     href={newsData.data.source}
+                    rel="nofollow"
                     className={`flex items-center justify-center text-[12px] leading-6 text-blue-main lg:text-[20px]`}
                   >
                     منبع
