@@ -20,20 +20,7 @@ export const getSingleTourism = async ({
   id: string;
 }): Promise<
   | {
-      data: {
-        id: number;
-        title: string;
-        content: string;
-        img: string | null;
-        average_score: [
-          {
-            scorable_id: number;
-            scorable_type: "App\\Modules\\Tourism\\Models\\Tourism";
-            average_score: string | null;
-          },
-        ];
-        comments_count: number;
-      };
+      data: SingleTourism | null;
       statusCode: number;
     }
   | "Error"
@@ -44,6 +31,7 @@ export const getSingleTourism = async ({
         revalidate: 60,
       },
     });
+
     if (req.ok) {
       return {
         data: {
@@ -52,7 +40,10 @@ export const getSingleTourism = async ({
         statusCode: req.status,
       };
     } else {
-      return "Error";
+      return {
+        data: null,
+        statusCode: req.status,
+      };
     }
   } catch (error) {
     return "Error";

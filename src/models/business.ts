@@ -1,18 +1,20 @@
-export type singleBusiness = {
+export type BusinessDetails = {
+  id: number;
+  key: string;
+  value: string;
+  type: null;
+  shop_id: number;
+  created_at: string;
+  updated_at: string;
+};
+
+export type SingleBusiness = {
   id: number;
   name: string;
   address_id: 3 | null;
   desc: string;
   bussinessman_id: number | null;
-  details: {
-    id: number;
-    key: string;
-    value: string;
-    type: null;
-    shop_id: number;
-    created_at: string;
-    updated_at: string;
-  }[];
+  details: BusinessDetails[];
   category_id: number;
   category: {
     id: 5;

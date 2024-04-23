@@ -1,11 +1,13 @@
 "use client";
+import dynamic from "next/dynamic";
 import Image from "next/image";
 import Link from "next/link";
-import dynamic from "next/dynamic";
 // import SourceImage from "@/assets/images/singlebusinesspage/singlebusiness.png";
-import Image1 from "@/assets/images/businesspage/business-image(1).png";
 import Breadcrumbs from "@/components/shared/Breadcrumbs";
-import { useRouter } from "next/navigation";
+import PlaceDetails from "@/components/shared/PlaceDetails";
+import { imagePlaceHolders } from "@/data";
+import { convertToPersianNumber } from "@/lib/utils";
+import { attributeRegex } from "@/lib/utils/HtmlParser";
 import {
   BookmarkIcon as BookmarkIconOutline,
   ShareIcon,
@@ -14,9 +16,7 @@ import {
 } from "@heroicons/react/24/outline";
 import { BookmarkIcon as BookmarkIconSolid, StarIcon as StarIconSolid } from "@heroicons/react/24/solid";
 import { useLayoutEffect, useState } from "react";
-import PlaceDetails from "@/components/shared/PlaceDetails";
-import { attributeRegex } from "@/lib/utils/HtmlParser";
-import { imagePlaceHolders } from "@/data";
+import { BusinessDetails } from "@/models/business";
 const GoogleMap = dynamic(() => import("@/components/shared/GoogleMap"), { ssr: false });
 
 const IntroductionSection = ({
@@ -25,12 +25,14 @@ const IntroductionSection = ({
   id,
   score,
   image,
+  details,
 }: {
   name: string;
   description: string;
   id: number;
   score: string;
   image: string | null;
+  details: BusinessDetails[];
 }) => {
   const [bookmarked, setBookmarked] = useState(false);
   const [boundes, setBoundes] = useState({ lat: 0, lng: 0 });
@@ -72,7 +74,7 @@ const IntroductionSection = ({
           className={`flex h-[342px] w-full items-center justify-center overflow-hidden rounded-[16px] lg:h-[657px]`}
         >
           <div className="relative h-full w-full">
-            <Image alt="" src={image || imagePlaceHolders.business} className={`object-cover`} fill />
+            <Image alt={`${name}`} src={image || imagePlaceHolders.business} className={`object-cover`} fill />
           </div>
         </div>
         <Breadcrumbs
@@ -92,7 +94,7 @@ const IntroductionSection = ({
                 امتیاز
               </span>
               <span className={`flex items-center justify-center text-[12px] leading-6 text-write-04 lg:text-[20px]`}>
-                ۴
+                {convertToPersianNumber(score.substring(0, 3))}
               </span>
               <span className={`flex items-center justify-center text-[12px] leading-6 text-gray-03 lg:text-[20px]`}>
                 از ۵
@@ -138,7 +140,7 @@ const IntroductionSection = ({
         {/* start info & map */}
         <div className="flex w-full flex-col justify-between gap-5 pt-12 lg:h-[300px] lg:flex-row lg:items-center lg:gap-0">
           <div className="h-full w-full lg:w-[40%]">
-            <PlaceDetails />
+            <PlaceDetails details={details} />
           </div>
           <div className="h-[300px] w-full overflow-hidden rounded-[16px] lg:h-full lg:w-[55%]">
             <GoogleMap boundes={boundes} labelTitle="برای مسیریابی کلیک کنید" />

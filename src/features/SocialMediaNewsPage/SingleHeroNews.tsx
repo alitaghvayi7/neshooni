@@ -43,7 +43,7 @@ const SingleHeroNews = ({ data, type }: { data: SingleNews; type: NewsType }) =>
               <div className="relative h-1/2 w-full lg:h-full lg:w-[50%]">
                 <Image
                   // style={{ borderRadius: `0 16px 16px 0` }}
-                  alt=""
+                  alt={`${data?.title}`}
                   src={data?.img || "/"}
                   className={`object-cover`}
                   fill

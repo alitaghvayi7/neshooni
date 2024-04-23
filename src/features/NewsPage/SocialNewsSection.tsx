@@ -34,7 +34,7 @@ const SliderSection = ({ data }: { data: SingleNews[] }) => {
                   href={`/news/social-media/1`}
                 >
                   <div className="relative h-full w-[128px] overflow-hidden rounded-r-2xl lg:w-[200px] xl:w-[255px]">
-                    <Image alt="" src={item?.img} className={`object-cover`} fill />
+                    <Image alt={`${item.title}`} src={item?.img} className={`object-cover`} fill />
                   </div>
                   <div
                     style={{ borderRadius: `16px 0 0 16px` }}

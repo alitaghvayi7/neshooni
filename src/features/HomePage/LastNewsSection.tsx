@@ -64,7 +64,7 @@ const LastNewsSection = ({ lastNews }: { lastNews: SingleNews[] }) => {
                   <div className="relative h-full min-w-[128px] lg:min-w-[255px]">
                     <Image
                       style={{ borderRadius: `0 16px 16px 0` }}
-                      alt=""
+                      alt={`${item.title}`}
                       src={`${item.img}`}
                       className={`object-cover`}
                       fill

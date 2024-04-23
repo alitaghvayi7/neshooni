@@ -2,6 +2,7 @@ import Footer from "@/components/shared/Footer";
 import Menu from "@/components/shared/Menu";
 import IntroductionSection from "@/features/SingleBusinessPage/IntroductionSection";
 import { getSingleBusiness } from "@/services/business";
+import { notFound } from "next/navigation";
 
 export default async function SingleBusinessPage({
   params: { id },
@@ -13,10 +14,13 @@ export default async function SingleBusinessPage({
   const pageData = await getSingleBusiness({
     id,
   });
-  if (pageData === "Error" || pageData.data === null) {
-    return null;
+  if (pageData === "Error") {
+    throw new Error("خطایی رخ داده است.");
   }
-
+  if (pageData.statusCode === 404 || pageData.data === null) {
+    return notFound();
+  }
+  console.log(pageData.data.address);
   return (
     <>
       <main className={`w-full`}>
@@ -38,6 +42,7 @@ export default async function SingleBusinessPage({
             name={pageData.data?.name}
             score={pageData.data?.average_score[0]?.average_score ?? "0"}
             image={pageData.data?.img}
+            details={pageData.data?.details}
           />
         </section>
         <Footer />

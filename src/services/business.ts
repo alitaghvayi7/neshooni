@@ -1,4 +1,4 @@
-import { businessSlider, singleBusiness } from "@/models/business";
+import { SingleBusiness, businessSlider } from "@/models/business";
 import { baseURL } from "./news";
 
 export const getBusinessPointsFromLocation = async (lat: any, lng: any) => {
@@ -33,7 +33,7 @@ export const getSingleBusiness = async ({
   id: string;
 }): Promise<
   | {
-      data: singleBusiness | null;
+      data: SingleBusiness | null;
       statusCode: number;
     }
   | "Error"
@@ -68,7 +68,7 @@ export const getBusinessList = async ({
   page: number;
 }): Promise<
   | {
-      data: singleBusiness[];
+      data: SingleBusiness[];
       total: number;
     }
   | "Error"

@@ -17,6 +17,7 @@ import { useLayoutEffect, useState } from "react";
 import PlaceDetails from "@/components/shared/PlaceDetails";
 import { attributeRegex } from "@/lib/utils/HtmlParser";
 import { imagePlaceHolders } from "@/data";
+import { convertToPersianNumber } from "@/lib/utils";
 const GoogleMap = dynamic(() => import("@/components/shared/GoogleMap"), { ssr: false });
 
 const IntroductionSection = ({
@@ -73,7 +74,7 @@ const IntroductionSection = ({
         >
           <div className="relative h-full w-full">
             {/* add image placeholder */}
-            <Image alt="" src={img || imagePlaceHolders.tourist} className={`object-cover`} fill />
+            <Image alt={`${name}`} src={img || imagePlaceHolders.tourist} className={`object-cover`} fill />
           </div>
         </div>
         <Breadcrumbs
@@ -93,7 +94,7 @@ const IntroductionSection = ({
                 امتیاز
               </span>
               <span className={`flex items-center justify-center text-[12px] leading-6 text-write-04 lg:text-[20px]`}>
-                {score.substring(0, 3)}
+                {convertToPersianNumber(score.substring(0, 3))}
               </span>
               <span className={`flex items-center justify-center text-[12px] leading-6 text-gray-03 lg:text-[20px]`}>
                 از ۵
@@ -138,9 +139,7 @@ const IntroductionSection = ({
 
         {/* start info & map */}
         <div className="flex w-full flex-col justify-between gap-5 pt-12 lg:h-[300px] lg:flex-row lg:items-center lg:gap-0">
-          <div className="h-full w-full lg:w-[40%]">
-            <PlaceDetails />
-          </div>
+          <div className="h-full w-full lg:w-[40%]">{/* <PlaceDetails /> */}</div>
           <div className="h-[300px] w-full overflow-hidden rounded-[16px] lg:h-full lg:w-[55%]">
             <GoogleMap boundes={boundes} labelTitle="برای مسیریابی کلیک کنید" />
           </div>

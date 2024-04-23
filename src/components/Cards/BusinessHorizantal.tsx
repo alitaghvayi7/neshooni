@@ -28,7 +28,7 @@ const BusinessHorizantalCard = ({
         <div className="relative h-full w-[40%]">
           <Image
             // style={{ borderRadius: `0 16px 16px 0` }}
-            alt=""
+            alt={`${name}`}
             src={image}
             className={`object-cover`}
             fill

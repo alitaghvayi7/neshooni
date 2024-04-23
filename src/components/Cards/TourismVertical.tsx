@@ -25,7 +25,7 @@ const TourismVerticalCard = ({
       <div className="relative h-1/2 w-full">
         <Image
           // style={{ borderRadius: `0 16px 16px 0` }}
-          alt=""
+          alt={`${name}`}
           src={image}
           className={`object-cover`}
           fill

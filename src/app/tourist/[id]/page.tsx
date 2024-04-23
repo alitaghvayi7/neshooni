@@ -3,11 +3,15 @@ import Menu from "@/components/shared/Menu";
 import IntroductionSection from "@/features/SingleTourismPage/IntroductionSection";
 import { getSingleTourism } from "@/services/tourism";
 import dynamic from "next/dynamic";
+import { notFound } from "next/navigation";
 
 export default async function SingleTouristPage({ params: { id } }: { params: { id: string } }) {
   const singleTourismData = await getSingleTourism({ id });
   if (singleTourismData === "Error") {
-    return null;
+    throw new Error("خطایی رخ داده است.");
+  }
+  if (singleTourismData.statusCode === 404 || singleTourismData.data === null) {
+    notFound();
   }
 
   return (

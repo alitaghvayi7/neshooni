@@ -18,7 +18,7 @@ const VerticalNewsContainer = ({ data, type }: { data: SingleNews[]; type: NewsT
                 className={`flex h-[128px] w-full items-center rounded-[16px] border-b border-l border-t border-yellow-04 bg-white lg:h-[190px]`}
               >
                 <div className="relative h-full w-[128px] overflow-hidden rounded-r-2xl lg:w-[200px] xl:w-[255px]">
-                  <Image alt="" src={item?.img || "/"} className={`object-cover`} fill />
+                  <Image alt={`${item.title}`} src={item?.img || "/"} className={`object-cover`} fill />
                 </div>
                 <div
                   style={{ borderRadius: `16px 0 0 16px` }}

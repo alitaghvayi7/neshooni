@@ -140,7 +140,7 @@ export default async function SingleNewsPage({ params: { id } }: { params: { id:
               className={`flex h-[342px] w-full items-center justify-center overflow-hidden rounded-[16px] lg:h-[700px]`}
             >
               <div className="relative h-full w-full">
-                <Image alt="" src={newsData.data.img} className={`object-cover`} fill />
+                <Image alt={`${newsData.data.title}`} src={newsData.data.img} className={`object-cover`} fill />
               </div>
             </div>
 

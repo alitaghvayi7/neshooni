@@ -29,8 +29,10 @@ export type SingleTourism = {
   publish: boolean;
   favorite: boolean;
   img: string;
-  average_score: {
-    average_score: string;
-  }[];
+  average_score: [
+    {
+      average_score: string;
+    },
+  ];
   comments_count: number;
 };

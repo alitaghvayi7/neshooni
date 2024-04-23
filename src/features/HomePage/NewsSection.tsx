@@ -56,7 +56,7 @@ const NewsSection = ({ newsList }: { newsList: SingleNews[] }) => {
                   <div className="relative h-1/2 w-full lg:h-full lg:w-[255px] ">
                     <Image
                       // style={{ borderRadius: `0 16px 16px 0` }}
-                      alt=""
+                      alt={`${activeNews[0].title}`}
                       src={`${activeNews[0]?.img}`}
                       className={`object-cover`}
                       fill
@@ -109,7 +109,7 @@ const NewsSection = ({ newsList }: { newsList: SingleNews[] }) => {
                     <div className="relative h-full w-[128px] lg:w-[255px]">
                       <Image
                         style={{ borderRadius: `0 16px 16px 0` }}
-                        alt=""
+                        alt={`${item.title}`}
                         src={`${item.img}`}
                         className={`object-cover`}
                         fill

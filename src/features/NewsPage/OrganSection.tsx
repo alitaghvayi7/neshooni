@@ -29,7 +29,7 @@ const OrganSection = ({ data }: { data: SingleNews[] }) => {
                   className={`flex h-[128px] w-full items-center rounded-[16px] bg-white lg:h-[170px] xl:h-[180px]`}
                 >
                   <div className="relative h-full w-[128px] overflow-hidden rounded-r-2xl lg:w-[180px] xl:w-[200px]">
-                    <Image alt="" src={item?.img || ""} className={`object-cover`} fill />
+                    <Image alt={`${item.title}`} src={item?.img || ""} className={`object-cover`} fill />
                   </div>
                   <div
                     style={{ borderRadius: `16px 0 0 16px` }}
