@@ -1,8 +1,42 @@
 import Footer from "@/components/shared/Footer";
 import Menu from "@/components/shared/Menu";
+import { mainConfig } from "@/configs/WebsiteMainConfigs";
 import IntroductionSection from "@/features/SingleBusinessPage/IntroductionSection";
 import { getSingleBusiness } from "@/services/business";
+import { Metadata } from "next";
 import { notFound } from "next/navigation";
+
+export const generateMetadata = async ({
+  params: { id },
+}: {
+  params: {
+    id: string;
+  };
+}): Promise<Metadata> => {
+  const [businessData] = await Promise.all([getSingleBusiness({ id })]);
+  if (businessData === "Error") return {};
+  return {
+    title: businessData.data?.name || "",
+    description: businessData.data?.desc || "",
+    openGraph: {
+      url: `${mainConfig.WebsiteDomain}/business/${id}`,
+      title: businessData.data?.name || "",
+      description: businessData.data?.desc || "",
+      images: businessData.data?.img || "",
+      type: "article",
+    },
+    twitter: {
+      card: "summary",
+      title: businessData.data?.name || "",
+      description: businessData.data?.desc || "",
+      images: businessData.data?.img || "",
+    },
+    other: {
+      "business:contact_data:street_address": businessData.data?.address?.address || "",
+      "twitter:url": `${mainConfig.WebsiteDomain}/business/${id}`,
+    },
+  };
+};
 
 export default async function SingleBusinessPage({
   params: { id },

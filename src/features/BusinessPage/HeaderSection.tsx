@@ -9,9 +9,9 @@ const HeaderSection = () => {
         style={{
           backgroundImage: `linear-gradient(180deg, #D7E3FF 0%, #C3D5FF 100%)`,
         }}
-        className={`relative w-full h-[65px] lg:h-[156px] z-[1] isolate`}
+        className={`relative isolate z-[10] h-[65px] w-full lg:h-[156px]`}
       >
-        <div className="w-full h-full absolute left-0 right-0 bottom-[-75%]">
+        <div className="absolute bottom-[-75%] left-0 right-0 h-full w-full">
           <SearchBox />
         </div>
       </div>

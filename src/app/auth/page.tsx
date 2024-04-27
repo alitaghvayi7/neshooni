@@ -8,6 +8,7 @@ import { Fragment, useEffect, useRef, useState } from "react";
 
 import backgroundImage from "../../../public/assets/images/auth/lines-background.png";
 import abs from "../../../public/assets/images/auth/main-bg.png";
+import Link from "next/link";
 
 export default function Auth() {
   const maxLength = 6;
@@ -67,9 +68,9 @@ export default function Auth() {
         className={`absolute inset-0 isolate z-[5] flex h-full w-full items-center justify-center bg-[#FAFBFF] bg-opacity-40`}
       >
         <div className={`flex h-fit w-[342px] flex-col items-center rounded-[32px] bg-white px-6 py-8`}>
-          <div>
+          <Link href={`/`}>
             <Image src={Logo} alt={"qom-neshan-logo"} className={`h-8 w-8 object-cover`} />
-          </div>
+          </Link>
 
           <h1 className={`text-write-01 mt-8 self-start text-[16px] font-bold`}>ورود / ثبت نام</h1>
 

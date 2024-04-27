@@ -1,7 +1,7 @@
 "use client";
 import { baseURL } from "@/services/news";
 import { motion } from "framer-motion";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { useToast } from "../ui/use-toast";
 
 const searchTypes = [
@@ -26,7 +26,7 @@ const searchTypes = [
   },
 ];
 
-const variant = {
+const menuVariants = {
   close: {
     maxHeight: "0px",
     opacity: 0,
@@ -42,6 +42,23 @@ const variant = {
     },
   },
 };
+const resultsVariants = {
+  close: {
+    maxHeight: "0px",
+    opacity: 0,
+    transition: {
+      duration: 0.5,
+    },
+  },
+  open: {
+    opacity: 1,
+    maxHeight: "400px",
+    transition: {
+      duration: 0.5,
+    },
+  },
+};
+
 function SearchBox() {
   const { toast } = useToast();
   const [isSearchTypeOpen, setIsSearchTypeOpen] = useState(false);
@@ -86,6 +103,23 @@ function SearchBox() {
     return () => clearTimeout(delayDebounceFn);
   }, [searchInputValue, toast, searchQuery]);
 
+  const business: any[] = useMemo(() => {
+    if (!searchData) return [];
+    return searchData.filter((item: any) => "bussinessman_id" in item).slice(0, 4);
+  }, [searchData]);
+  const tourism: any[] = useMemo(() => {
+    if (!searchData) return [];
+    return searchData.filter((item: any) => "address_id" in item && "source" in item).slice(0, 4);
+  }, [searchData]);
+  const news: any[] = useMemo(() => {
+    if (!searchData) return [];
+    return searchData.filter((item: any) => "type" in item && "source" in item).slice(0, 4);
+  }, [searchData]);
+  const mainStreets: any[] = useMemo(() => {
+    if (!searchData) return [];
+    return searchData.filter((item: any) => item.parent_id === null).slice(0, 4);
+  }, [searchData]);
+
   return (
     <div className="relative z-[9999] flex h-full w-full flex-col items-center gap-2">
       <div className="relative mx-auto flex h-16 w-[80%] min-w-[342px] max-w-[966px] items-center justify-between gap-10 rounded-[16px] border border-gray-01 bg-white 2xl:h-[72px] 2xl:min-w-[966px]">
@@ -110,7 +144,7 @@ function SearchBox() {
             <motion.div
               className="absolute right-0 top-[110%] h-fit items-center overflow-hidden whitespace-nowrap rounded-[16px] border border-gray-01 bg-white"
               initial="close"
-              variants={variant}
+              variants={menuVariants}
               animate={isSearchTypeOpen ? "open" : "close"}
             >
               <div className="flex flex-col p-1">
@@ -147,20 +181,68 @@ function SearchBox() {
       <motion.div
         className="flex h-fit w-[80%] min-w-[342px] max-w-[966px] flex-col whitespace-nowrap rounded-[16px] border border-gray-01 bg-white px-2 py-2"
         initial="close"
-        variants={variant}
+        variants={resultsVariants}
         animate={searchInputValue.length >= 3 ? "open" : "close"}
       >
         {isLoading ? (
-          <div>در حال جستجو...</div>
+          <div className="mx-auto">در حال جستجو...</div>
         ) : searchData?.length > 0 ? (
-          <div>
-            <span>
-              نتایج جستجو در <span>{searchInputValue}</span>
-            </span>
-            <div></div>
+          <div className="">
+            <div className="flex flex-col gap-4 p-2">
+              {mainStreets.length > 0 && (
+                <div className="flex flex-col gap-2">
+                  <span className="text-[18px] font-medium text-write-main">جستجوی {searchInputValue} در معابر</span>
+                  <ul className="flex flex-col gap-2 text-[16px] font-normal text-write-03">
+                    {mainStreets.map((item, i) => (
+                      <li key={item.id} className="line-clamp-1">
+                        {item.name}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+              {tourism.length > 0 && (
+                <div className="flex flex-col gap-2">
+                  <span className="text-[18px] font-medium text-write-main">جستجوی {searchInputValue} در گردشگری</span>
+                  <ul className="flex flex-col gap-2 text-[16px] font-normal text-write-03">
+                    {tourism.map((item, i) => (
+                      <li key={item.id} className="line-clamp-1">
+                        {item.title}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+              {business.length > 0 && (
+                <div className="flex flex-col gap-2">
+                  <span className="text-[18px] font-medium text-write-main">
+                    جستجوی {searchInputValue} در کسب و کارها
+                  </span>
+                  <ul className="flex flex-col gap-2 text-[16px] font-normal text-write-03">
+                    {business.map((item, i) => (
+                      <li key={item.id} className="line-clamp-1">
+                        {item.name}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+              {news.length > 0 && (
+                <div className="flex flex-col gap-2">
+                  <span className="text-[18px] font-medium text-write-main">جستجوی {searchInputValue} در اخبار</span>
+                  <ul className="flex flex-col gap-2 text-[16px] font-normal text-write-03">
+                    {news.map((item, i) => (
+                      <li key={item.id} className="line-clamp-1">
+                        {item.title}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+            </div>
           </div>
         ) : (
-          <div>نتیجه‌ای یافت نشد</div>
+          <div className="mx-auto">نتیجه‌ای یافت نشد</div>
         )}
       </motion.div>
     </div>

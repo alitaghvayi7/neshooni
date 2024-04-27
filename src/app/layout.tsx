@@ -3,6 +3,8 @@ import SessionWrapper from "@/components/SessionWrapper";
 import "@/styles/globals.css";
 import { Metadata } from "next";
 import NextTopLoader from "nextjs-toploader";
+import Script from "next/script";
+import { googleAnalyticsConfig } from "@/configs/WebsiteMainConfigs";
 
 const fonst = localFont({
   src: [
@@ -76,6 +78,15 @@ export default function RootLayout({
       <body className={`${fonst.className}`}>
         <NextTopLoader showSpinner={false} />
         <SessionWrapper>{children}</SessionWrapper>
+        {/* <!-- Google tag (gtag.js) --> */}
+        <Script async src={`https://www.googletagmanager.com/gtag/js?id=${googleAnalyticsConfig.id}`}></Script>
+        <Script id="google-analytics">
+          {` window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', '${googleAnalyticsConfig.id}');`}
+        </Script>
       </body>
     </html>
   );

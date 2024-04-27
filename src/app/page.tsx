@@ -1,4 +1,5 @@
 import Footer from "@/components/shared/Footer";
+import { homePageSchema } from "@/configs/HomePage";
 import { mainConfig } from "@/configs/WebsiteMainConfigs";
 import BusinessSection from "@/features/HomePage/BusinessSection";
 import LandingSection from "@/features/HomePage/LandingSection";
@@ -12,7 +13,6 @@ import { singleTourismCard } from "@/models/tourism";
 import { getTopBusiness } from "@/services/business";
 import { getAllNews } from "@/services/news";
 import { getTopPlaces } from "@/services/tourism";
-import Script from "next/script";
 
 const Page = async () => {
   const [allNews, topBusiness, topPlaces]: [any, businessSlider[], singleTourismCard[]] = await Promise.all([
@@ -20,6 +20,7 @@ const Page = async () => {
     getTopBusiness(),
     getTopPlaces(),
   ]);
+
   return (
     <>
       <main className={``}>
@@ -32,35 +33,13 @@ const Page = async () => {
         <LastNewsSection lastNews={allNews?.data?.slice(0, 4) || []} />
         <Footer />
       </main>
-      <Script id="schema.org" type="application/ld+json">
-        {` {"@context": "https://schema.org",
- "@type": "WebSite",
- "name": "${mainConfig.WebsiteName}",
- "url": "${mainConfig.WebsiteDomain}",
- "potentialAction": {
-    "@type": "SearchAction",
-    "target": "https://www.yourwebsite.com/search?q={search_term_string}",
-    "query-input": "required name=search_term_string"
- },
- "about": "${mainConfig.WebsiteDescription}",
- "hasPart": [
-    {
-      "@type": "WebPage",
-      "name": "Local Businesses",
-      "url": "https://www.yourwebsite.com/locations"
-    },
-    {
-      "@type": "WebPage",
-      "name": "Local News",
-      "url": "https://www.yourwebsite.com/news"
-    },
-    {
-      "@type": "WebPage",
-      "name": "Tourism Locations",
-      "url": "https://www.yourwebsite.com/tourism"
-    }
- ]}`}
-      </Script>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(homePageSchema),
+        }}
+        defer
+      />
     </>
   );
 };

@@ -68,6 +68,7 @@ export default async function SingleNewsPage({ params: { id } }: { params: { id:
   const newsData = await getSingleNews({ id });
 
   if (newsData === "Error") return notFound();
+  // console.log(newsData.data);
   return (
     <>
       <main className={`w-full`}>

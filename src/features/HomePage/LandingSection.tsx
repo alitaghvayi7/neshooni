@@ -36,11 +36,11 @@ const LandingSection = () => {
               <p className={`max-w-[293px] ps-6 text-[16px] text-write-04 lg:max-w-[593px] lg:text-[24px]`}>
                 تو این سایت اخبار، گردشگری، کسب و کارهای شهرتو به راحتی پیدا کن
               </p>
-              <button
+              {/* <button
                 className={`ms-6 hidden w-[260px] items-center justify-center rounded-[8px] border border-yellow-04 bg-white px-10 py-4 text-write-03 lg:flex`}
               >
                 صاحب کسب و کار هستم
-              </button>
+              </button> */}
             </div>
           </div>
 
