@@ -1,10 +1,11 @@
-import localFont from "next/font/local";
 import SessionWrapper from "@/components/SessionWrapper";
+import { Toaster } from "@/components/ui/toaster";
+import { googleAnalyticsConfig } from "@/configs/WebsiteMainConfigs";
 import "@/styles/globals.css";
 import { Metadata } from "next";
-import NextTopLoader from "nextjs-toploader";
+import localFont from "next/font/local";
 import Script from "next/script";
-import { googleAnalyticsConfig } from "@/configs/WebsiteMainConfigs";
+import NextTopLoader from "nextjs-toploader";
 
 const fonst = localFont({
   src: [
@@ -77,6 +78,7 @@ export default function RootLayout({
     <html dir="rtl" lang="fa-IR">
       <body className={`${fonst.className}`}>
         <NextTopLoader showSpinner={false} />
+        <Toaster />
         <SessionWrapper>{children}</SessionWrapper>
         {/* <!-- Google tag (gtag.js) --> */}
         <Script async src={`https://www.googletagmanager.com/gtag/js?id=${googleAnalyticsConfig.id}`}></Script>

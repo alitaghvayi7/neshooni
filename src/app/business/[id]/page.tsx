@@ -23,7 +23,6 @@ export const generateMetadata = async ({
       title: businessData.data?.name || "",
       description: businessData.data?.desc || "",
       images: businessData.data?.img || "",
-      type: "article",
     },
     twitter: {
       card: "summary",
@@ -54,9 +53,17 @@ export default async function SingleBusinessPage({
   if (pageData.statusCode === 404 || pageData.data === null) {
     return notFound();
   }
+
   console.log(pageData.data.address);
   return (
     <>
+      <script
+        dangerouslySetInnerHTML={{
+          __html: `const ogType = Array.from(document.getElementsByTagName("meta")).filter((item) => item.attributes.getNamedItem("property")?.value === "og:type")[0];if(ogType){ogType.attributes.getNamedItem("content").value = "business.business";}else{
+            const meta = document.createElement("meta");meta.setAttribute("property", "og:type");meta.setAttribute("content", "business.business");
+          }`,
+        }}
+      ></script>
       <main className={`w-full`}>
         <header className={`w-full bg-blue-04 bg-opacity-20`}>
           <Menu />

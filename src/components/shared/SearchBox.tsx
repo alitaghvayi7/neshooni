@@ -1,8 +1,11 @@
 "use client";
 import { baseURL } from "@/services/news";
 import { motion } from "framer-motion";
+import Link from "next/link";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { useToast } from "../ui/use-toast";
+
+const searchLength = 2;
 
 const searchTypes = [
   {
@@ -15,16 +18,22 @@ const searchTypes = [
     route: "/business",
   },
   {
-    name: "اخبار",
-    value: "news",
-    route: "/news",
-  },
-  {
     name: "گردشگری",
     value: "tourism",
     route: "/tourist",
   },
+  {
+    name: "اخبار",
+    value: "news",
+    route: "/news",
+  },
 ];
+
+const newsTypes = {
+  social: "social-media",
+  official: "wire-service",
+  organization: "organization",
+};
 
 const menuVariants = {
   close: {
@@ -61,15 +70,21 @@ const resultsVariants = {
 
 function SearchBox() {
   const { toast } = useToast();
+
   const [isSearchTypeOpen, setIsSearchTypeOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [searchQuery, setSearchQuery] = useState(searchTypes[0]);
   const [searchInputValue, setSearchInputValue] = useState("");
-  const [searchData, setSearchData] = useState<any>();
+  const [searchData, setSearchData] = useState({
+    news: [],
+    address: [],
+    shop: [],
+    tourism: [],
+  });
   const abortRef = useRef<null | AbortController>(null);
 
   useEffect(() => {
-    if (searchInputValue.trim().length < 3) return;
+    if (searchInputValue.trim().length < searchLength) return;
     setIsLoading(true);
     const delayDebounceFn = setTimeout(() => {
       // console.log(searchInputValue);
@@ -86,10 +101,49 @@ function SearchBox() {
         if (req.ok) {
           const res = await req.json();
           console.log(res);
-          setSearchData(res?.data);
+          switch (searchQuery.value) {
+            case "all":
+              setSearchData({
+                address: res.data.address.slice(0, 4),
+                news: res.data.news.slice(0, 4),
+                shop: res.data.shop.slice(0, 4),
+                tourism: res.data.tourism.slice(0, 4),
+              });
+              break;
+            case "shop":
+              setSearchData((prev) => ({
+                address: [],
+                news: [],
+                tourism: [],
+                shop: res.data.slice(0, 4),
+              }));
+              break;
+
+            case "tourism":
+              setSearchData((prev) => ({
+                address: [],
+                news: [],
+                shop: [],
+                tourism: res.data.slice(0, 4),
+              }));
+              break;
+
+            case "news":
+              setSearchData((prev) => ({
+                address: [],
+                shop: [],
+                tourism: [],
+                news: res.data.slice(0, 4),
+              }));
+              break;
+
+            default:
+              break;
+          }
         } else {
           toast({
-            title: "خطای جستجو",
+            title: "خطا",
+            description: "مشکلی پیش آمده است.",
             variant: "destructive",
           });
         }
@@ -103,27 +157,10 @@ function SearchBox() {
     return () => clearTimeout(delayDebounceFn);
   }, [searchInputValue, toast, searchQuery]);
 
-  const business: any[] = useMemo(() => {
-    if (!searchData) return [];
-    return searchData.filter((item: any) => "bussinessman_id" in item).slice(0, 4);
-  }, [searchData]);
-  const tourism: any[] = useMemo(() => {
-    if (!searchData) return [];
-    return searchData.filter((item: any) => "address_id" in item && "source" in item).slice(0, 4);
-  }, [searchData]);
-  const news: any[] = useMemo(() => {
-    if (!searchData) return [];
-    return searchData.filter((item: any) => "type" in item && "source" in item).slice(0, 4);
-  }, [searchData]);
-  const mainStreets: any[] = useMemo(() => {
-    if (!searchData) return [];
-    return searchData.filter((item: any) => item.parent_id === null).slice(0, 4);
-  }, [searchData]);
-
   return (
     <div className="relative z-[9999] flex h-full w-full flex-col items-center gap-2">
       <div className="relative mx-auto flex h-16 w-[80%] min-w-[342px] max-w-[966px] items-center justify-between gap-10 rounded-[16px] border border-gray-01 bg-white 2xl:h-[72px] 2xl:min-w-[966px]">
-        <div className=" mr-[3%] flex h-full grow items-center gap-4">
+        <div className="mr-[3%] flex h-full grow items-center gap-4 lg:min-h-[55px]">
           <div className="">
             <button
               className="flex items-center justify-center gap-2"
@@ -174,26 +211,37 @@ function SearchBox() {
             className="h-full w-full grow text-[12px] outline-none placeholder:text-[#AFAFAF] xl:text-[18px]"
           />
         </div>
-        <button className="font-peydaBold ml-[3%] h-8 w-[77px] rounded-[8px] bg-blue-02 text-[16px] text-white xl:w-[103px] 2xl:h-10">
+        <Link
+          onClick={() => {
+            setSearchInputValue("");
+            setSearchQuery(searchTypes[0]);
+            setIsSearchTypeOpen(false);
+          }}
+          href={`/search${searchInputValue.length > 0 ? `?q=${searchInputValue}` : ""}`}
+          className="font-peydaBold ml-[3%] flex h-8 w-[77px] items-center justify-center rounded-[8px] bg-blue-02 text-[16px] text-white xl:w-[103px] 2xl:h-10"
+        >
           جستجو
-        </button>
+        </Link>
       </div>
       <motion.div
         className="flex h-fit w-[80%] min-w-[342px] max-w-[966px] flex-col whitespace-nowrap rounded-[16px] border border-gray-01 bg-white px-2 py-2"
         initial="close"
         variants={resultsVariants}
-        animate={searchInputValue.length >= 3 ? "open" : "close"}
+        animate={searchInputValue.length >= searchLength ? "open" : "close"}
       >
         {isLoading ? (
           <div className="mx-auto">در حال جستجو...</div>
-        ) : searchData?.length > 0 ? (
+        ) : searchData.news.length ||
+          searchData.tourism.length > 0 ||
+          searchData.shop.length > 0 ||
+          searchData.address.length > 0 ? (
           <div className="">
             <div className="flex flex-col gap-4 p-2">
-              {mainStreets.length > 0 && (
+              {searchData.address.length > 0 && (
                 <div className="flex flex-col gap-2">
                   <span className="text-[18px] font-medium text-write-main">جستجوی {searchInputValue} در معابر</span>
                   <ul className="flex flex-col gap-2 text-[16px] font-normal text-write-03">
-                    {mainStreets.map((item, i) => (
+                    {searchData.address.map((item: any, i) => (
                       <li key={item.id} className="line-clamp-1">
                         {item.name}
                       </li>
@@ -201,39 +249,45 @@ function SearchBox() {
                   </ul>
                 </div>
               )}
-              {tourism.length > 0 && (
+              {searchData.tourism.length > 0 && (
                 <div className="flex flex-col gap-2">
                   <span className="text-[18px] font-medium text-write-main">جستجوی {searchInputValue} در گردشگری</span>
                   <ul className="flex flex-col gap-2 text-[16px] font-normal text-write-03">
-                    {tourism.map((item, i) => (
+                    {searchData.tourism.map((item: any, i) => (
                       <li key={item.id} className="line-clamp-1">
-                        {item.title}
+                        <Link href={`/tourist/${item.id}`}> {item.title}</Link>
                       </li>
                     ))}
                   </ul>
                 </div>
               )}
-              {business.length > 0 && (
+              {searchData.shop.length > 0 && (
                 <div className="flex flex-col gap-2">
                   <span className="text-[18px] font-medium text-write-main">
                     جستجوی {searchInputValue} در کسب و کارها
                   </span>
                   <ul className="flex flex-col gap-2 text-[16px] font-normal text-write-03">
-                    {business.map((item, i) => (
+                    {searchData.shop.map((item: any, i) => (
                       <li key={item.id} className="line-clamp-1">
-                        {item.name}
+                        <Link href={`/business/${item.id}`}> {item.name}</Link>
                       </li>
                     ))}
                   </ul>
                 </div>
               )}
-              {news.length > 0 && (
+              {searchData.news.length > 0 && (
                 <div className="flex flex-col gap-2">
                   <span className="text-[18px] font-medium text-write-main">جستجوی {searchInputValue} در اخبار</span>
                   <ul className="flex flex-col gap-2 text-[16px] font-normal text-write-03">
-                    {news.map((item, i) => (
+                    {searchData.news.map((item: any, i) => (
                       <li key={item.id} className="line-clamp-1">
-                        {item.title}
+                        {newsTypes[item.type as keyof typeof newsTypes] ? (
+                          <Link href={`/news/${newsTypes[item.type as keyof typeof newsTypes]}/${item.id}`}>
+                            {item.title}
+                          </Link>
+                        ) : (
+                          <Link href={`/news`}> {item.title}</Link>
+                        )}
                       </li>
                     ))}
                   </ul>

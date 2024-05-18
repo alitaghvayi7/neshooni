@@ -12,10 +12,10 @@ import BusinessHorizantalCard from "@/components/Cards/BusinessHorizantal";
 import BusinessVerticalCard from "@/components/Cards/BusinessVertical";
 import FilterBox from "@/components/shared/FilterBox";
 import { imageBaseURL, imagePlaceHolders } from "@/data";
-import { singleBusiness } from "@/models/business";
+import { SingleBusiness } from "@/models/business";
 import { useRef, useState } from "react";
 
-const BusinessSection = ({ data }: { data: singleBusiness[] }) => {
+const BusinessSection = ({ data }: { data: SingleBusiness[] }) => {
   const [collections, setCollections] = useState([]);
   const [showContentType, setShowContentType] = useState<"row" | "grid">("row");
   const [loading, setloading] = useState(false);
