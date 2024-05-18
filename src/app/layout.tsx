@@ -65,6 +65,11 @@ export const metadata: Metadata = {
     siteName: "قم نشان",
     locale: "fa-IR",
   },
+  metadataBase: new URL('https://neshooni.city'), // Replace with your website URL
+  robots: {
+    index: false,
+     
+  },
 };
 
 export default function RootLayout({
