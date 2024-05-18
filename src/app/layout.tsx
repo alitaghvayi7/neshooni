@@ -10,7 +10,7 @@ import NextTopLoader from "nextjs-toploader";
 const fonst = localFont({
   src: [
     {
-      path: "../../public/assets/fonts/Peyda-extralight.ttf",
+      path: "../../public/assets/fonts/peyda-extralight.ttf",
       weight: "100",
       style: "normal",
     },
