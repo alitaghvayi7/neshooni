@@ -1,6 +1,6 @@
 "use client";
 import { imagePlaceHolders } from "@/data";
-import { attributeRegex } from "@/lib/utils/HtmlParser";
+import { attributeRegex } from "@/lib/HtmlParser";
 import { businessSlider } from "@/models/business";
 import { StarIcon } from "@heroicons/react/24/solid";
 import Image from "next/image";

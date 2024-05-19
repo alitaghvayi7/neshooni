@@ -1,5 +1,5 @@
 import Breadcrumbs from "@/components/shared/Breadcrumbs";
-import { attributeRegex } from "@/lib/utils/HtmlParser";
+import { attributeRegex } from "@/lib/HtmlParser";
 import { NewsType, SingleNews } from "@/models/news";
 import Image from "next/image";
 import Link from "next/link";

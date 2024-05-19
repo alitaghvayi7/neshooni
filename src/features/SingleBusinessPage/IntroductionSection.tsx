@@ -7,7 +7,7 @@ import Breadcrumbs from "@/components/shared/Breadcrumbs";
 import PlaceDetails from "@/components/shared/PlaceDetails";
 import { imagePlaceHolders } from "@/data";
 import { convertToPersianNumber } from "@/lib/utils";
-import { attributeRegex } from "@/lib/utils/HtmlParser";
+import { attributeRegex } from "@/lib/HtmlParser";
 import {
   BookmarkIcon as BookmarkIconOutline,
   ShareIcon,

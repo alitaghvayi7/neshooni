@@ -2,7 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { newsPageTypeInfo } from "./SingleHeroNews";
 import { NewsType, SingleNews } from "@/models/news";
-import { attributeRegex } from "@/lib/utils/HtmlParser";
+import { attributeRegex } from "@/lib/HtmlParser";
 
 const HorizontalNewsContainer = ({ data, type }: { data: SingleNews[]; type: NewsType }) => {
   return (

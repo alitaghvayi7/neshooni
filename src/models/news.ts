@@ -7,6 +7,8 @@ export type SingleNews = {
   favorite: boolean;
   type: string;
   img: string;
+  created_at: string;
+  source_title: string | null;
 };
 
 export type ListNews = {

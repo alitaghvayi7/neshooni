@@ -11,7 +11,7 @@ import "swiper/css";
 
 // import Images
 import { businessSlider } from "@/models/business";
-import { attributeRegex } from "@/lib/utils/HtmlParser";
+import { attributeRegex } from "@/lib/HtmlParser";
 import { imagePlaceHolders } from "@/data";
 
 const ShoppingSection = ({ data }: { data: businessSlider[] }) => {

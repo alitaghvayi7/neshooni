@@ -15,7 +15,7 @@ import {
 import { BookmarkIcon as BookmarkIconSolid, StarIcon as StarIconSolid } from "@heroicons/react/24/solid";
 import { useLayoutEffect, useState } from "react";
 import PlaceDetails from "@/components/shared/PlaceDetails";
-import { attributeRegex } from "@/lib/utils/HtmlParser";
+import { attributeRegex } from "@/lib/HtmlParser";
 import { imagePlaceHolders } from "@/data";
 import { convertToPersianNumber } from "@/lib/utils";
 const GoogleMap = dynamic(() => import("@/components/shared/GoogleMap"), { ssr: false });

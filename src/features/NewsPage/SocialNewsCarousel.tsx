@@ -1,5 +1,5 @@
 "use client";
-import { attributeRegex } from "@/lib/utils/HtmlParser";
+import { attributeRegex } from "@/lib/HtmlParser";
 import { SingleNews } from "@/models/news";
 import Image from "next/image";
 import Link from "next/link";

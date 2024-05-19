@@ -1,4 +1,4 @@
-import { attributeRegex } from "@/lib/utils/HtmlParser";
+import { attributeRegex } from "@/lib/HtmlParser";
 import { ChatBubbleLeftIcon, StarIcon } from "@heroicons/react/24/solid";
 import Image, { StaticImageData } from "next/image";
 import Link from "next/link";

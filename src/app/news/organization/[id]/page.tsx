@@ -1,7 +1,8 @@
 import Breadcrumbs from "@/components/shared/Breadcrumbs";
 import Footer from "@/components/shared/Footer";
 import Menu from "@/components/shared/Menu";
-import { attributeRegex } from "@/lib/utils/HtmlParser";
+import { attributeRegex } from "@/lib/HtmlParser";
+import { getPersianDate, getPersianHour, getPersianWeekday } from "@/lib/date";
 import { getSingleNews } from "@/services/news";
 import { CalendarDaysIcon, ShareIcon } from "@heroicons/react/24/outline";
 import { Metadata, ResolvingMetadata } from "next";
@@ -47,6 +48,7 @@ export default async function SingleNewsPage({ params: { id } }: { params: { id:
   // const [bookmarked, setBookmarked] = useState(false);
   const newsData = await getSingleNews({ id });
   if (newsData === "Error") return notFound();
+  const date = new Date(newsData?.data?.created_at || Date.now());
 
   return (
     <>
@@ -94,19 +96,19 @@ export default async function SingleNewsPage({ params: { id } }: { params: { id:
                   <span
                     className={`flex items-center justify-center text-[12px] leading-6 text-gray-04 lg:text-[20px]`}
                   >
-                    پنج شنبه
+                    {getPersianWeekday(date)}
                   </span>
                   <span
                     dir={"ltr"}
                     className={`flex items-center justify-center text-[12px] leading-6 text-gray-04 lg:text-[20px]`}
                   >
-                    1402 / 11 / 02
+                    {getPersianDate(date)}
                   </span>
                   <span
                     dir={"ltr"}
                     className={`flex items-center justify-center text-[12px] leading-6 text-gray-04 lg:text-[20px]`}
                   >
-                    12:55
+                    {getPersianHour(date)}
                   </span>
                 </div>
               </div>

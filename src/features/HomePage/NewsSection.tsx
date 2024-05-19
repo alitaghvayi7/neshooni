@@ -3,10 +3,11 @@ import Image from "next/image";
 import Link from "next/link";
 
 // images
-import { attributeRegex } from "@/lib/utils/HtmlParser";
+import { attributeRegex } from "@/lib/HtmlParser";
 import { SingleNews } from "@/models/news";
 import { Fragment, useMemo, useState } from "react";
 import { newsTypes } from "./LastNewsSection";
+import { getPersianDate } from "@/lib/date";
 
 const NewsSection = ({ newsList }: { newsList: SingleNews[] }) => {
   const [activeNewsType, setActiveNewsType] = useState<"social" | "official" | "organization">("official");
@@ -49,8 +50,7 @@ const NewsSection = ({ newsList }: { newsList: SingleNews[] }) => {
             {/* main */}
             {activeNews[0] && (
               <Fragment key={activeNews[0]?.id}>
-                <Link
-                  href={`/news/${newsTypes.find((item) => item.type === activeNews[0]?.type)?.path}/${activeNews[0]?.id}`}
+                <div
                   className={`flex h-full w-full flex-col items-center overflow-hidden rounded-t-[16px] lg:flex-row lg:rounded-t-none lg:rounded-br-[16px] lg:rounded-tr-[16px]`}
                 >
                   <div className="relative h-1/2 w-full lg:h-full lg:w-[255px] ">
@@ -66,23 +66,28 @@ const NewsSection = ({ newsList }: { newsList: SingleNews[] }) => {
                     // style={{ borderRadius: `16px 0 0 16px` }}
                     className={`flex h-1/2 w-full flex-col justify-around overflow-hidden rounded-b-[16px] border-b border-l border-r border-t border-yellow-04 px-4 py-6 lg:h-full lg:w-[calc(100%-255px)] lg:gap-4 lg:rounded-b-none lg:rounded-bl-[16px] lg:rounded-tl-[16px] lg:border-r-0 lg:px-6 lg:py-10`}
                   >
-                    {/* <div className={`flex w-full items-center justify-between`}>
+                    <div className={`flex w-full items-center justify-between`}>
                       <div className={`flex items-center justify-center gap-3`}>
                         <span className={`h-1 w-1 bg-gray-04`}></span>
                         <span
                           className={`flex items-center justify-center text-[10px] font-[400] text-gray-04 lg:text-[16px]`}
                         >
-                          <Link href={activeNews[0].source}>منبع</Link>
+                          <Link href={activeNews[0].source}>{activeNews[0].source_title || "منبع"}</Link>
                         </span>
                       </div>
                       <span
                         dir="ltr"
                         className={`flex items-center justify-center text-[10px] font-[400] text-gray-04 lg:text-[16px]`}
                       >
-                        {slides[0]?.date}
+                        {getPersianDate(new Date(activeNews[0].created_at || Date.now()))}
                       </span>
-                    </div> */}
-                    <span className={`text-[14px] font-[600] lg:text-[24px]`}>{activeNews[0].title}</span>
+                    </div>
+                    <Link
+                      href={`/news/${newsTypes.find((item) => item.type === activeNews[0]?.type)?.path}/${activeNews[0]?.id}`}
+                      className={`text-[14px] font-[600] lg:text-[24px]`}
+                    >
+                      {activeNews[0].title}
+                    </Link>
 
                     <div
                       className={`mb-auto line-clamp-[7] text-[16px] font-[400] text-write-main`}
@@ -91,7 +96,7 @@ const NewsSection = ({ newsList }: { newsList: SingleNews[] }) => {
                       }}
                     ></div>
                   </div>
-                </Link>
+                </div>
               </Fragment>
             )}
           </div>
@@ -102,10 +107,7 @@ const NewsSection = ({ newsList }: { newsList: SingleNews[] }) => {
             {activeNews?.slice(1, 4)?.map((item, index: number) => {
               return (
                 <Fragment key={item?.id}>
-                  <Link
-                    href={`/news/${newsTypes.find((news) => news.type === item?.type)?.path}/${item?.id}`}
-                    className={`flex h-[128px] w-full items-center rounded-[16px] lg:h-[151px]`}
-                  >
+                  <div className={`flex h-[128px] w-full items-center rounded-[16px] lg:h-[151px]`}>
                     <div className="relative h-full w-[128px] lg:w-[255px]">
                       <Image
                         style={{ borderRadius: `0 16px 16px 0` }}
@@ -119,25 +121,30 @@ const NewsSection = ({ newsList }: { newsList: SingleNews[] }) => {
                       style={{ borderRadius: `16px 0 0 16px` }}
                       className={`flex h-full w-[calc(100%-128px)] flex-col justify-around overflow-hidden border-b border-l border-t border-yellow-04 px-4 py-6 lg:w-[calc(100%-255px)] lg:px-6 lg:py-6`}
                     >
-                      {/* <div className={`flex w-full items-center justify-between`}>
+                      <div className={`flex w-full items-center justify-between`}>
                         <div className={`flex items-center justify-center gap-3`}>
                           <span className={`h-1 w-1 bg-gray-04`}></span>
                           <span
                             className={`flex items-center justify-center text-[10px] font-[400] text-gray-04 lg:text-[16px]`}
                           >
-                            <Link href={item.source}>منبع</Link>
+                            <Link href={item.source}>{item.source_title || "منبع"}</Link>
                           </span>
                         </div>
                         <span
                           dir="ltr"
                           className={`flex items-center justify-center text-[10px] font-[400] text-gray-04 lg:text-[16px]`}
                         >
-                          {item?.date}
+                          {getPersianDate(new Date(item.created_at || Date.now()))}
                         </span>
-                      </div> */}
-                      <span className={`text-[14px] font-[600] lg:text-[24px]`}>{item?.title}</span>
+                      </div>
+                      <Link
+                        href={`/news/${newsTypes.find((news) => news.type === item?.type)?.path}/${item?.id}`}
+                        className={`line-clamp-2 text-[14px] font-[600] lg:text-[24px]`}
+                      >
+                        {item?.title}
+                      </Link>
                     </div>
-                  </Link>
+                  </div>
                 </Fragment>
               );
             })}

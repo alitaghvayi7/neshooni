@@ -8,8 +8,9 @@ import { BookmarkIcon as BookmarkIconSolid } from "@heroicons/react/24/solid";
 import { getSingleNews } from "@/services/news";
 import { notFound } from "next/navigation";
 import Link from "next/link";
-import { attributeRegex } from "@/lib/utils/HtmlParser";
+import { attributeRegex } from "@/lib/HtmlParser";
 import { Metadata, ResolvingMetadata } from "next";
+import { getPersianDate, getPersianHour, getPersianWeekday } from "@/lib/date";
 // import { useState } from "react";
 
 export async function generateMetadata(
@@ -72,6 +73,8 @@ export default async function SingleNewsPage({ params: { id } }: { params: { id:
 
   if (newsData === "Error") return notFound();
 
+  const date = new Date(newsData?.data?.created_at || Date.now());
+
   return (
     <>
       <main className={`w-full`}>
@@ -118,19 +121,19 @@ export default async function SingleNewsPage({ params: { id } }: { params: { id:
                   <span
                     className={`flex items-center justify-center text-[12px] leading-6 text-gray-04 lg:text-[20px]`}
                   >
-                    پنج شنبه
+                    {getPersianWeekday(date)}
                   </span>
                   <span
                     dir={"ltr"}
                     className={`flex items-center justify-center text-[12px] leading-6 text-gray-04 lg:text-[20px]`}
                   >
-                    1402 / 11 / 02
+                    {getPersianDate(date)}
                   </span>
                   <span
                     dir={"ltr"}
                     className={`flex items-center justify-center text-[12px] leading-6 text-gray-04 lg:text-[20px]`}
                   >
-                    12:55
+                    {getPersianHour(date)}
                   </span>
                 </div>
               </div>

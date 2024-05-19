@@ -1,5 +1,7 @@
 import { HASHTAG_ICON, NEWS_ICON, PAPER_ICON } from "@/assets/icons/svgs";
-import { attributeRegex } from "@/lib/utils/HtmlParser";
+import { attributeRegex } from "@/lib/HtmlParser";
+import { getPersianDate } from "@/lib/date";
+
 import { SingleNews } from "@/models/news";
 import Image from "next/image";
 import Link from "next/link";
@@ -57,10 +59,7 @@ const LastNewsSection = ({ lastNews }: { lastNews: SingleNews[] }) => {
           {lastNews.map((item) => {
             return (
               <Fragment key={item?.id}>
-                <Link
-                  href={`/news/${newsTypes.find((news) => news.type === item?.type)?.path}/${item?.id}`}
-                  className={`flex h-[128px] w-full max-w-[829px] items-center rounded-[16px] lg:h-[250px]`}
-                >
+                <div className={`flex h-[128px] w-full max-w-[829px] items-center rounded-[16px] lg:h-[250px]`}>
                   <div className="relative h-full min-w-[128px] lg:min-w-[255px]">
                     <Image
                       style={{ borderRadius: `0 16px 16px 0` }}
@@ -72,25 +71,32 @@ const LastNewsSection = ({ lastNews }: { lastNews: SingleNews[] }) => {
                   </div>
                   <div
                     style={{ borderRadius: `16px 0 0 16px` }}
-                    className={`flex h-full flex-col gap-4 overflow-hidden border-b border-l border-t border-yellow-04 px-4 py-6`}
+                    className={`flex h-full flex-col gap-3 overflow-hidden border-b border-l border-t border-yellow-04 px-4 py-6`}
                   >
-                    {/* <div className={`flex w-full items-center justify-between`}>
+                    <div className={`flex w-full items-center justify-between`}>
                       <div className={`flex items-center justify-center gap-3`}>
                         <span className={`h-1 w-1 bg-gray-04`}></span>
-                        <span
+                        <Link
+                          href={item.source}
                           className={`flex items-center justify-center text-[10px] font-[400] text-gray-04 lg:text-[16px]`}
                         >
-                          {item?.publisher}
-                        </span>
+                          {item?.source_title || "منبع"}
+                        </Link>
                       </div>
                       <span
                         dir="ltr"
                         className={`flex items-center justify-center text-[10px] font-[400] text-gray-04 lg:text-[16px]`}
                       >
-                        {item?.date}
+                        {getPersianDate(new Date(item.created_at || Date.now()))}
                       </span>
-                    </div> */}
-                    <div className={`line-clamp-2 text-[14px] font-[600] lg:text-[24px]`}>{item?.title}</div>
+                    </div>
+
+                    <Link
+                      href={`/news/${newsTypes.find((news) => news.type === item?.type)?.path}/${item?.id}`}
+                      className={`line-clamp-2 text-[14px] font-[600] lg:text-[20px]`}
+                    >
+                      {item?.title}
+                    </Link>
                     <div
                       className={`mb-auto hidden text-[16px] font-[400] text-write-main lg:line-clamp-4`}
                       dangerouslySetInnerHTML={{
@@ -98,7 +104,7 @@ const LastNewsSection = ({ lastNews }: { lastNews: SingleNews[] }) => {
                       }}
                     ></div>
                   </div>
-                </Link>
+                </div>
               </Fragment>
             );
           })}

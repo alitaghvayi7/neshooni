@@ -56,6 +56,7 @@ export const getSingleNews = async ({ id }: { id: string }): Promise<{ data: Sin
         revalidate: 0,
       },
     });
+
     if (response.ok) {
       return {
         data: { ...(await response.json()).data },

@@ -12,7 +12,7 @@ import "swiper/css";
 
 // import Images
 import { singleTourismCard } from "@/models/tourism";
-import { attributeRegex } from "@/lib/utils/HtmlParser";
+import { attributeRegex } from "@/lib/HtmlParser";
 import { imageBaseURL, imagePlaceHolders } from "@/data";
 import { baseURL } from "@/services/news";
 

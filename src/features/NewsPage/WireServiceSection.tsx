@@ -1,4 +1,4 @@
-import { attributeRegex } from "@/lib/utils/HtmlParser";
+import { attributeRegex } from "@/lib/HtmlParser";
 import { SingleNews } from "@/models/news";
 import { NewspaperIcon } from "@heroicons/react/24/outline";
 import Image from "next/image";
