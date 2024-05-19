@@ -46,7 +46,7 @@ const fonst = localFont({
       style: "normal",
     },
     {
-      path: "../../public/assets/fonts/Peyda-Light.ttf",
+      path: "../../public/assets/fonts/peyda-light.ttf",
       weight: "200",
       style: "normal",
     },
