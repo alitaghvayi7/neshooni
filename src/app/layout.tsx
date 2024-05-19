@@ -10,7 +10,7 @@ import NextTopLoader from "nextjs-toploader";
 const fonst = localFont({
   src: [
     {
-      path: "../../public/assets/fonts/Peyda-extralight.ttf",
+      path: "../../public/assets/fonts/peyda-extralight.ttf",
       weight: "100",
       style: "normal",
     },
@@ -46,7 +46,7 @@ const fonst = localFont({
       style: "normal",
     },
     {
-      path: "../../public/assets/fonts/Peyda-Light.ttf",
+      path: "../../public/assets/fonts/peyda-light.ttf",
       weight: "200",
       style: "normal",
     },
@@ -64,6 +64,11 @@ export const metadata: Metadata = {
     images: `${process.env.NEXTAUTH_URL}/favicon.ico`,
     siteName: "قم نشان",
     locale: "fa-IR",
+  },
+  metadataBase: new URL('https://neshooni.city'), // Replace with your website URL
+  robots: {
+    index: false,
+     
   },
 };
 
