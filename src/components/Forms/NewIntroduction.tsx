@@ -79,7 +79,7 @@ const NewIntroductionForm = () => {
         toast({
           title: "پیشنهاد شما با موفقیت ثبت شد",
         });
-        // formMethods.reset();
+        formMethods.reset();
       } else {
         toast({
           title: "خطایی رخ داده است. لطفاً بعداً تلاش کنید",
