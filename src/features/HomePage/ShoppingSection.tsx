@@ -12,7 +12,7 @@ import "swiper/css";
 // import Images
 import { businessSlider } from "@/models/business";
 import { attributeRegex } from "@/lib/HtmlParser";
-import { imagePlaceHolders } from "@/data";
+import { imageBaseURL, imagePlaceHolders } from "@/data";
 
 const ShoppingSection = ({ data }: { data: businessSlider[] }) => {
   return (
@@ -166,7 +166,7 @@ const ShoppingSection = ({ data }: { data: businessSlider[] }) => {
                       <div className="relative h-[66%] w-full">
                         <Image
                           alt={``}
-                          src={`${item?.img || imagePlaceHolders.tourist}`}
+                          src={`${item?.img ? `${imageBaseURL}${item.img}` : imagePlaceHolders.tourist}`}
                           className={`object-cover`}
                           fill
                         />

@@ -1,7 +1,8 @@
 "use client";
-import { imagePlaceHolders } from "@/data";
+import { imageBaseURL, imagePlaceHolders } from "@/data";
 import { attributeRegex } from "@/lib/HtmlParser";
 import { businessSlider } from "@/models/business";
+import { baseURL } from "@/services/news";
 import { StarIcon } from "@heroicons/react/24/solid";
 import Image from "next/image";
 import Link from "next/link";
@@ -94,7 +95,7 @@ function BusinessSlider({ data }: { data: businessSlider[] }) {
             <SwiperSlide key={item.id}>
               <div className="relative h-full w-full">
                 <Image
-                  src={`${item?.img || imagePlaceHolders.business}`}
+                  src={`${item?.img ? `${imageBaseURL}${item.img}` : imagePlaceHolders.business}`}
                   alt="business"
                   fill
                   className="object-cover"

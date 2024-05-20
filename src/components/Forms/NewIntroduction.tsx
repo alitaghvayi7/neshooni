@@ -64,7 +64,7 @@ const NewIntroductionForm = () => {
     try {
       const formData = new FormData();
       formData.append("type", placeType[data.type as keyof typeof placeType]);
-      formData.append("suggestable_id", "");
+      formData.append("suggestable_id", "0");
       formData.append("user_id", `${session.data?.user.id}`);
       formData.append("content", data.description);
       formData.append("image", data.image);

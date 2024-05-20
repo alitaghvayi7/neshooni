@@ -24,11 +24,15 @@ const LandingSection = () => {
             <Image
               src={heroMainImage}
               alt={""}
-              className={`mx-auto h-[266px] w-[385px] object-cover lg:order-2 lg:h-[500px] lg:w-[700px]`}
+              className={`mx-auto h-[266px] w-[385px] object-cover lg:order-2 lg:h-[350px] lg:w-[450px] xl:h-[500px] xl:w-[700px]`}
             />
 
             <div className={"flex w-full flex-col gap-4 lg:order-1 lg:h-full lg:gap-10"}>
-              <h1 className={"font-peydaBold ps-6 text-[24px] font-bold text-write-main lg:text-[64px]"}>
+              <h1
+                className={
+                  "font-peydaBold ps-6 text-[24px] font-bold text-write-main md:whitespace-normal lg:text-[42px]"
+                }
+              >
                 جای جای &nbsp;
                 <span className={`${styles["gradiant-color"]}`}>شهرتو</span>
                 &nbsp; بشناس!
