@@ -54,15 +54,15 @@ const fonst = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "قم نشان",
-  description: "سایت قم نشان",
+  title: "نشونی، ابزار اکتشاف شهر",
+  description: "نشونی، ابزار اکتشاف شهر",
   openGraph: {
     type: "website",
     url: process.env.NEXTAUTH_URL,
-    title: "قم نشان",
-    description: "سایت قم نشان",
+    title: "نشونی، ابزار اکتشاف شهر",
+    description: "نشونی، ابزار اکتشاف شهر",
     images: `${process.env.NEXTAUTH_URL}/favicon.ico`,
-    siteName: "قم نشان",
+    siteName: "نشونی، ابزار اکتشاف شهر",
     locale: "fa-IR",
   },
   metadataBase: new URL("https://neshooni.city"), // Replace with your website URL
