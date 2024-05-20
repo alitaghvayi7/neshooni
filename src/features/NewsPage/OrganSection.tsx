@@ -4,6 +4,7 @@ import { SingleNews } from "@/models/news";
 import Image from "next/image";
 import Link from "next/link";
 import { Fragment } from "react";
+import { getPersianDate } from "@/lib/date";
 
 const OrganSection = ({ data }: { data: SingleNews[] }) => {
   return (
@@ -24,10 +25,7 @@ const OrganSection = ({ data }: { data: SingleNews[] }) => {
           {data?.slice(0, 6)?.map((item, index: number) => {
             return (
               <Fragment key={item?.id}>
-                <Link
-                  href={`/news/organization/${item.id}`}
-                  className={`flex h-[128px] w-full items-center rounded-[16px] bg-white lg:h-[170px] xl:h-[180px]`}
-                >
+                <div className={`flex h-[128px] w-full items-center rounded-[16px] bg-white lg:h-[170px] xl:h-[180px]`}>
                   <div className="relative h-full w-[128px] overflow-hidden rounded-r-2xl lg:w-[180px] xl:w-[200px]">
                     <Image alt={`${item.title}`} src={item?.img || ""} className={`object-cover`} fill />
                   </div>
@@ -35,25 +33,31 @@ const OrganSection = ({ data }: { data: SingleNews[] }) => {
                     style={{ borderRadius: `16px 0 0 16px` }}
                     className={`flex h-full w-[calc(100%-128px)] flex-col justify-around gap-3 overflow-hidden border-b border-l border-t border-yellow-04 px-4 py-4 lg:w-[calc(100%-200px)] xl:w-[calc(100%-255px)] xl:px-6 xl:py-8`}
                   >
-                    {/* <div className={`flex w-full items-center justify-between`}>
+                    <div className={`flex w-full items-center justify-between`}>
                       <div className={`flex items-center justify-center gap-3`}>
                         <span className={`h-1 w-1 bg-gray-04`}></span>
-                        <span
+                        <Link
+                          href={item.source}
                           className={`line-clamp-1 flex items-center justify-center text-[10px] font-[400] text-gray-04 lg:text-[14px]`}
                         >
-                          {item?.publisher}
-                        </span>
+                          {item?.source_title || "منبع"}
+                        </Link>
                       </div>
                       <span
                         dir="ltr"
                         className={`line-clamp-1 flex items-center justify-center text-[10px] font-[400] text-gray-04 lg:text-[14px]`}
                       >
-                        {item?.date}
+                        {getPersianDate(new Date(item.created_at || Date.now()))}
                       </span>
-                    </div> */}
-                    <span className={`mb-auto line-clamp-3 text-[14px] font-[600] lg:text-[20px]`}>{item?.title}</span>
+                    </div>
+                    <Link
+                      href={`/news/organization/${item.id}`}
+                      className={`mb-auto line-clamp-3 text-[14px] font-[600] lg:text-[20px]`}
+                    >
+                      {item?.title}
+                    </Link>
                   </div>
-                </Link>
+                </div>
               </Fragment>
             );
           })}

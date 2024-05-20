@@ -70,7 +70,7 @@ const NewsSection = ({ newsList }: { newsList: SingleNews[] }) => {
                       <div className={`flex items-center justify-center gap-3`}>
                         <span className={`h-1 w-1 bg-gray-04`}></span>
                         <span
-                          className={`flex items-center justify-center text-[10px] font-[400] text-gray-04 lg:text-[16px]`}
+                          className={`line-clamp-1 flex items-center justify-center text-[10px] font-[400] text-gray-04 lg:text-[16px]`}
                         >
                           <Link href={activeNews[0].source}>{activeNews[0].source_title || "منبع"}</Link>
                         </span>
@@ -125,7 +125,7 @@ const NewsSection = ({ newsList }: { newsList: SingleNews[] }) => {
                         <div className={`flex items-center justify-center gap-3`}>
                           <span className={`h-1 w-1 bg-gray-04`}></span>
                           <span
-                            className={`flex items-center justify-center text-[10px] font-[400] text-gray-04 lg:text-[16px]`}
+                            className={`line-clamp-1 flex items-center justify-center text-[10px] font-[400] text-gray-04 lg:text-[16px]`}
                           >
                             <Link href={item.source}>{item.source_title || "منبع"}</Link>
                           </span>

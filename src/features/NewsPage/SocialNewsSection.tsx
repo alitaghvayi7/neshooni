@@ -5,6 +5,7 @@ import { SingleNews } from "@/models/news";
 import Image from "next/image";
 import { Fragment } from "react";
 import SocialNewsSlider from "./SocialNewsCarousel";
+import { getPersianDate } from "@/lib/date";
 
 const SliderSection = ({ data }: { data: SingleNews[] }) => {
   return (
@@ -29,9 +30,8 @@ const SliderSection = ({ data }: { data: SingleNews[] }) => {
           {data.slice(4, 6).map((item, index: number) => {
             return (
               <Fragment key={item?.id}>
-                <Link
+                <div
                   className={`flex h-[128px] w-full max-w-[812px] items-center rounded-[16px] bg-white lg:h-[158px] lg:w-[48%]`}
-                  href={`/news/social-media/1`}
                 >
                   <div className="relative h-full w-[128px] overflow-hidden rounded-r-2xl lg:w-[200px] xl:w-[255px]">
                     <Image alt={`${item.title}`} src={item?.img} className={`object-cover`} fill />
@@ -43,26 +43,28 @@ const SliderSection = ({ data }: { data: SingleNews[] }) => {
                     <div className={`flex w-full items-center justify-between`}>
                       <div className={`flex items-center justify-center gap-2 xl:gap-3`}>
                         <span className={`h-1 w-1 bg-gray-04`}></span>
-                        <span
-                          className={`flex items-center justify-center text-[10px] font-[400] text-gray-04 lg:text-[12px] xl:text-[16px]`}
+                        <Link
+                          href={item.source}
+                          className={`line-clamp-1 flex items-center justify-center text-[10px] font-[400] text-gray-04 lg:text-[12px] xl:text-[16px]`}
                         >
-                          {/* {item?.publisher} */}
-                        </span>
+                          {item?.source_title || "منبع"}
+                        </Link>
                       </div>
                       <span
                         dir="ltr"
                         className={`flex items-center justify-center text-[10px] font-[400] text-gray-04 lg:text-[12px] xl:text-[16px]`}
                       >
-                        {/* {item?.date} */}
+                        {getPersianDate(new Date(item.created_at || Date.now()))}
                       </span>
                     </div>
-                    <span
+                    <Link
+                      href={`/news/social-media/${item.id}`}
                       className={`mb-auto text-[14px] font-[600] lg:line-clamp-3 lg:text-[16px] xl:line-clamp-2 xl:text-[20px]`}
                     >
-                      {/* {item?.name} */}
-                    </span>
+                      {item?.title}
+                    </Link>
                   </div>
-                </Link>
+                </div>
               </Fragment>
             );
           })}

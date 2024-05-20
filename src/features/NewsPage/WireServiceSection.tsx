@@ -1,4 +1,5 @@
 import { attributeRegex } from "@/lib/HtmlParser";
+import { getPersianDate } from "@/lib/date";
 import { SingleNews } from "@/models/news";
 import { NewspaperIcon } from "@heroicons/react/24/outline";
 import Image from "next/image";
@@ -22,8 +23,7 @@ const WireServiceSection = ({ data }: { data: SingleNews[] }) => {
         >
           {data?.slice(0, 4)?.map((item, index: number) => {
             return (
-              <Link
-                href={`/news/wire-service/${item.id}`}
+              <div
                 key={item?.id}
                 className="w-full overflow-hidden rounded-[16px] rounded-b-[16px] border border-yellow-04 bg-white lg:h-[400px] lg:rounded-[32px] xl:h-[400px]"
               >
@@ -31,31 +31,37 @@ const WireServiceSection = ({ data }: { data: SingleNews[] }) => {
                   <Image src={item?.img || ""} className="object-cover" alt={`${item.title}`} fill />
                 </div>
                 <div className="flex w-full flex-col justify-between gap-2 overflow-hidden p-4 lg:rounded-b-[32px] lg:p-6">
-                  {/* <div className={`flex w-full items-center justify-between`}>
+                  <div className={`flex w-full items-center justify-between`}>
                     <div className={`flex items-center justify-center gap-3`}>
                       <span className={`h-1 w-1 bg-gray-04`}></span>
-                      <span
-                        className={`flex items-center justify-center text-[10px] font-[400] text-gray-04 lg:text-[16px]`}
+                      <Link
+                        href={item.source}
+                        className={`line-clamp-1 flex items-center justify-center text-[10px] font-[400] text-gray-04 lg:text-[16px]`}
                       >
-                        {item?.publisher}
-                      </span>
+                        {item?.source_title || "منبع"}
+                      </Link>
                     </div>
                     <span
                       dir="ltr"
                       className={`flex items-center justify-center text-[10px] font-[400] text-gray-04 lg:text-[16px]`}
                     >
-                      {item?.date}
+                      {getPersianDate(new Date(item.created_at || Date.now()))}
                     </span>
-                  </div> */}
-                  <span className={`line-clamp-2 text-[14px] font-[600] leading-6 lg:text-[20px]`}>{item?.title}</span>
+                  </div>
+                  <Link
+                    href={`/news/wire-service/${item.id}`}
+                    className={`line-clamp-2 text-[14px] font-[600] leading-6 lg:text-[20px]`}
+                  >
+                    {item?.title}
+                  </Link>
                   <span
-                    className={`mb-auto line-clamp-4 overflow-hidden text-justify text-[10px] font-[400] text-write-main lg:text-[14px]`}
+                    className={`mb-auto line-clamp-3 overflow-hidden text-justify text-[10px] font-[400] text-write-main lg:text-[14px]`}
                     dangerouslySetInnerHTML={{
                       __html: item.content.replaceAll(attributeRegex, "") || "",
                     }}
                   ></span>
                 </div>
-              </Link>
+              </div>
             );
           })}
         </section>
@@ -65,40 +71,41 @@ const WireServiceSection = ({ data }: { data: SingleNews[] }) => {
           {data?.slice(4, 6)?.map((item, index: number) => {
             return (
               <Fragment key={item?.id}>
-                <Link
-                  href={`/news/wire-service/${item.id}`}
-                  className={`flex h-[128px] w-full items-center rounded-[16px] border-b border-l border-t border-yellow-04 bg-white lg:h-[170px] xl:h-[180px]`}
+                <div
+                  className={`flex h-[128px] w-full items-center justify-between rounded-[16px] border-b border-l border-t border-yellow-04 bg-white lg:h-[170px] xl:h-[180px]`}
                 >
                   <div className="relative h-full w-[128px] overflow-hidden rounded-r-2xl lg:w-[180px] xl:w-[200px]">
                     <Image alt={`${item.title}`} src={item?.img || "/"} className={`object-cover`} fill />
                   </div>
                   <div
                     style={{ borderRadius: `16px 0 0 16px` }}
-                    className={`flex h-full w-[calc(100%-128px)] flex-col justify-around gap-3 overflow-hidden  px-4 py-6 lg:w-[calc(100%-200px)] xl:w-[calc(100%-255px)] xl:px-6 xl:py-8`}
+                    className={`flex h-full flex-1 flex-col justify-around gap-3 overflow-hidden px-4 py-6 xl:px-6 xl:py-8`}
                   >
-                    {/* <div className={`flex w-full items-center justify-between`}>
+                    <div className={`flex w-full items-center justify-between`}>
                       <div className={`flex items-center justify-center gap-3`}>
                         <span className={`h-1 w-1 bg-gray-04`}></span>
-                        <span
+                        <Link
+                          href={item.source}
                           className={`line-clamp-1 flex items-center justify-center text-[10px] font-[400] text-gray-04 lg:text-[14px]`}
                         >
-                          {item?.publisher}
-                        </span>
+                          {item?.source_title || "منبع"}
+                        </Link>
                       </div>
                       <span
                         dir="ltr"
                         className={`line-clamp-1 flex items-center justify-center text-[10px] font-[400] text-gray-04 lg:text-[14px]`}
                       >
-                        {item?.date}
+                        {getPersianDate(new Date(item.created_at || Date.now()))}
                       </span>
-                    </div> */}
-                    <span
+                    </div>
+                    <Link
+                      href={`/news/wire-service/${item.id}`}
                       className={`mb-auto line-clamp-2 text-[14px] font-[600] lg:line-clamp-3 lg:text-[20px] xl:line-clamp-4`}
                     >
                       {item?.title}
-                    </span>
+                    </Link>
                   </div>
-                </Link>
+                </div>
               </Fragment>
             );
           })}

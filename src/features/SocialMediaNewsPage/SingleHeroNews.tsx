@@ -1,5 +1,6 @@
 import Breadcrumbs from "@/components/shared/Breadcrumbs";
 import { attributeRegex } from "@/lib/HtmlParser";
+import { getPersianDate } from "@/lib/date";
 import { NewsType, SingleNews } from "@/models/news";
 import Image from "next/image";
 import Link from "next/link";
@@ -36,8 +37,7 @@ const SingleHeroNews = ({ data, type }: { data: SingleNews; type: NewsType }) =>
         <h1 className={`text-[40px] font-[700] text-write-main`}>{newsPageTypeInfo[type].label}</h1>
         {data && (
           <Fragment key={data?.id}>
-            <Link
-              href={`${newsPageTypeInfo[type].href}/${data?.id}`}
+            <div
               className={`flex h-[440px] w-full flex-col items-center overflow-hidden rounded-t-[16px] lg:h-[340px] lg:flex-row lg:rounded-t-none lg:rounded-br-[16px] lg:rounded-tr-[16px]`}
             >
               <div className="relative h-1/2 w-full lg:h-full lg:w-[50%]">
@@ -51,34 +51,40 @@ const SingleHeroNews = ({ data, type }: { data: SingleNews; type: NewsType }) =>
               </div>
               <div
                 // style={{ borderRadius: `16px 0 0 16px` }}
-                className={`flex h-1/2 w-full flex-col gap-10 overflow-hidden rounded-b-[16px] border-b border-l border-r border-t border-yellow-04 bg-white px-4 py-6 lg:h-full lg:w-[50%] lg:rounded-b-none lg:rounded-bl-[16px] lg:rounded-tl-[16px] lg:border-r-0 lg:px-6 lg:py-10`}
+                className={`flex h-1/2 w-full flex-col gap-4 overflow-hidden rounded-b-[16px] border-b border-l border-r border-t border-yellow-04 bg-white px-4 py-6 lg:h-full lg:w-[50%] lg:rounded-b-none lg:rounded-bl-[16px] lg:rounded-tl-[16px] lg:border-r-0 lg:px-6 lg:py-10`}
               >
-                <span className={`line-clamp-2 text-[14px] font-[600] lg:text-[24px]`}>{data?.title}</span>
+                <Link
+                  href={`${newsPageTypeInfo[type].href}/${data?.id}`}
+                  className={`line-clamp-2 text-[14px] font-[600] lg:line-clamp-2 lg:text-[24px]`}
+                >
+                  {data?.title}
+                </Link>
 
                 <div
-                  className={`line-clamp-3 overflow-hidden text-[16px] font-[400] leading-[26px] text-write-main xl:line-clamp-4`}
+                  className={`mb-auto line-clamp-3 overflow-hidden text-[16px] font-[400] leading-[26px] text-write-main lg:line-clamp-3`}
                   dangerouslySetInnerHTML={{
                     __html: data?.content.replaceAll(attributeRegex, "") || "",
                   }}
                 ></div>
-                {/* <div className={`flex w-full items-center justify-between`}>
-              <div className={`flex items-center justify-center gap-3`}>
-                <span className={`h-1 w-1 bg-gray-04`}></span>
-                <span
-                  className={`flex items-center justify-center text-[10px] font-[400] text-gray-04 lg:text-[16px]`}
-                >
-                  {data?.publisher}
-                </span>
+                <div className={`flex w-full items-center justify-between`}>
+                  <div className={`flex items-center justify-center gap-3`}>
+                    <span className={`h-1 w-1 bg-gray-04`}></span>
+                    <Link
+                      href={data.source}
+                      className={`line-clamp-1 flex items-center justify-center text-[10px] font-[400] text-gray-04 lg:text-[16px]`}
+                    >
+                      {data?.source_title || "منبع"}
+                    </Link>
+                  </div>
+                  <span
+                    dir="ltr"
+                    className={`flex items-center justify-center text-[10px] font-[400] text-gray-04 lg:text-[16px]`}
+                  >
+                    {getPersianDate(new Date(data.created_at || Date.now()))}
+                  </span>
+                </div>
               </div>
-              <span
-                dir="ltr"
-                className={`flex items-center justify-center text-[10px] font-[400] text-gray-04 lg:text-[16px]`}
-              >
-                {data?.date}
-              </span>
-            </div> */}
-              </div>
-            </Link>
+            </div>
           </Fragment>
         )}
       </section>
