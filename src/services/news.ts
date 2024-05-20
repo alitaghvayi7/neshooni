@@ -17,7 +17,7 @@ export const getSocialNews = async (): Promise<SingleNews[] | []> => {
   try {
     const response = await fetch(`${baseURL}/news?type=social`, {
       next: {
-        revalidate: 60,
+        revalidate: 0,
       },
     });
     return (await response.json())?.data;
@@ -29,7 +29,7 @@ export const getOfficialNews = async (): Promise<SingleNews[] | []> => {
   try {
     const response = await fetch(`${baseURL}/news?type=official`, {
       next: {
-        revalidate: 60,
+        revalidate: 0,
       },
     });
     return (await response.json())?.data;
@@ -41,7 +41,7 @@ export const getOrganizationNews = async (): Promise<SingleNews[] | []> => {
   try {
     const response = await fetch(`${baseURL}/news?type=organization`, {
       next: {
-        revalidate: 60,
+        revalidate: 0,
       },
     });
     return (await response.json())?.data;

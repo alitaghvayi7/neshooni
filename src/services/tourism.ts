@@ -5,7 +5,7 @@ export const getTopPlaces = async (): Promise<singleTourismCard[]> => {
   try {
     const req = await fetch(`${baseURL}/tourism/top`, {
       next: {
-        revalidate: 60,
+        revalidate: 0,
       },
     });
     return req.json();
@@ -28,7 +28,7 @@ export const getSingleTourism = async ({
   try {
     const req = await fetch(`${baseURL}/tourism/${id}`, {
       next: {
-        revalidate: 60,
+        revalidate: 0,
       },
     });
 
@@ -62,7 +62,11 @@ export const getTourismList = async ({
   | "Error"
 > => {
   try {
-    const req = await fetch(`${baseURL}/tourism?page=${page}`);
+    const req = await fetch(`${baseURL}/tourism?page=${page}`, {
+      next: {
+        revalidate: 0,
+      },
+    });
     if (req.ok) {
       const res = await req.json();
       return {

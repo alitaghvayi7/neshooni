@@ -54,7 +54,7 @@ export default async function SingleBusinessPage({
     return notFound();
   }
 
-  console.log(pageData.data.address);
+  // console.log(pageData.data.address);
   return (
     <>
       <script

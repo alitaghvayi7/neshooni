@@ -12,7 +12,11 @@ export const searchQuery = async ({
   | "Error"
 > => {
   try {
-    const req = await fetch(`${baseURL}/search?search_term=${query}`);
+    const req = await fetch(`${baseURL}/search?search_term=${query}`, {
+      next: {
+        revalidate: 0,
+      },
+    });
     //   const req = await fetch(`${baseURL}/search?type=shop&search_term=${query}`);
     if (req.ok) {
       const res = await req.json();

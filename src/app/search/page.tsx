@@ -8,7 +8,7 @@ const SearchPage = async ({ searchParams: { q } }: { searchParams: { q: string }
   if (q && q !== "" && q.length >= 2) {
     const req = await fetch(`${baseURL}/search?search_term=${q}&type=${"all"}`, {
       next: {
-        revalidate: 60,
+        revalidate: 0,
       },
     });
     if (!req.ok) throw new Error();

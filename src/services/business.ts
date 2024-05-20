@@ -18,7 +18,7 @@ export const getTopBusiness = async (): Promise<businessSlider[]> => {
   try {
     const req = await fetch(`${baseURL}/shop/top`, {
       next: {
-        revalidate: 60,
+        revalidate: 0,
       },
     });
     return req.json();
@@ -41,7 +41,7 @@ export const getSingleBusiness = async ({
   try {
     const req = await fetch(`${baseURL}/shop/${id}`, {
       next: {
-        revalidate: 60,
+        revalidate: 0,
       },
     });
     if (req.ok) {
@@ -74,7 +74,11 @@ export const getBusinessList = async ({
   | "Error"
 > => {
   try {
-    const req = await fetch(`${baseURL}/shop?page=${page}`);
+    const req = await fetch(`${baseURL}/shop?page=${page}`, {
+      next: {
+        revalidate: 0,
+      },
+    });
     if (req.ok) {
       const res = await req.json();
       return {

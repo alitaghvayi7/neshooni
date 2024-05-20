@@ -14,6 +14,8 @@ export default async function SingleTouristPage({ params: { id } }: { params: { 
     notFound();
   }
 
+  // console.log(singleTourismData.data);
+
   return (
     <>
       <main className={`w-full`}>
