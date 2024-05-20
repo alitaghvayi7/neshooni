@@ -8,12 +8,11 @@ import Image6 from "@/assets/images/businesspage/business-image(6).png";
 import Image7 from "@/assets/images/businesspage/business-image(7).png";
 import Image8 from "@/assets/images/businesspage/business-image(8).png";
 import Image9 from "@/assets/images/businesspage/business-image(9).png";
-import { ArrowRightIcon, ChatBubbleLeftIcon } from "@heroicons/react/24/outline";
-import { StarIcon } from "@heroicons/react/24/solid";
+import { ArrowRightIcon } from "@heroicons/react/24/outline";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { Fragment, useLayoutEffect, useRef, useState } from "react";
+import { Fragment, useRef, useState } from "react";
 
 const slides = [
   {

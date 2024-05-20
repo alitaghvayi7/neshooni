@@ -9,10 +9,14 @@ export default async function IntroductionPage() {
 
   if (!session)
     return (
-      <div className="m-auto flex flex-col items-center justify-center py-10">
-        <p className="text-[18px] font-semibold">لطفاً برای معرفی مکان‌های جدید ابتداوارد حساب کاربری خود شوید.</p>
-        <div>
-          <Link href={`/auth?refer=/introduction`}>ورود</Link>
+      <div className="m-auto flex flex-col items-center justify-center p-10">
+        <div className="flex flex-col items-center justify-center gap-8 p-14">
+          <p className="text-[22px] font-semibold">لطفاً برای معرفی مکان‌های جدید ابتدا وارد حساب کاربری خود شوید.</p>
+          <div>
+            <Link href={`/auth?refer=/introduction`} className="rounded-lg bg-blue-03 px-6 py-2 text-[16px] text-white">
+              ورود به حساب کاربری
+            </Link>
+          </div>
         </div>
       </div>
     );

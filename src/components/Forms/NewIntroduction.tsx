@@ -1,119 +1,109 @@
 "use client";
 
-import Footer from "@/components/shared/Footer";
-import Menu from "@/components/shared/Menu";
-import { ChevronDownIcon, PhotoIcon, XMarkIcon } from "@heroicons/react/24/outline";
-import { useEffect, useState } from "react";
-// import GoogleMapNoControll from "@/components/shared/GoogleMapNoControll";
-import dynamic from "next/dynamic";
-import { z } from "zod";
-import { useForm } from "react-hook-form";
+import { ChevronDownIcon, PhotoIcon } from "@heroicons/react/24/outline";
+import { useState } from "react";
+import SetCordinates from "@/features/IntroductionPage/SetCordinates";
 import { zodResolver } from "@hookform/resolvers/zod";
-// import GoogleMapNoControll from "@/components/shared/GoogleMapNoControll";
-// import GoogleMapWithControll from "@/components/shared/GoogleMap";
-// import GoogleMapWithControll from "@/components/shared/GoogleMapWithControll";
-const GoogleMapNoControll = dynamic(import("@/components/shared/GoogleMapNoControll"), { ssr: false });
-const GoogleMapWithControll = dynamic(import("@/components/shared/GoogleMap"), { ssr: false });
+import { FormProvider, useForm } from "react-hook-form";
+import { z } from "zod";
+import Image from "next/image";
+import { useSession } from "next-auth/react";
+import { baseURL } from "@/services/news";
+import { useToast } from "../ui/use-toast";
 
-const formSchema = z.object({});
+const formSchema = z.object({
+  type: z.string().min(1, { message: "نوع مکان‌های دیدنی الزامی می‌باشد" }),
+  title: z.string().min(1, { message: "عنوان مکان‌های دیدنی الزامی می‌باشد" }),
+  description: z.string().min(1, { message: "توضیحات مکان‌های دیدنی الزامی می‌باشد" }),
+  image: z.any({ required_error: "لطفاً عکس انتخاب کنید" }).refine((args: File) => {
+    if (!args) {
+      return false;
+    } else {
+      return true;
+    }
+  }, "لطفاً عکس محل مورد نظر را ارسال کنید"),
+  phoneNumber: z.string().min(1, { message: "شماره موبایل الزامی می‌باشد" }),
+  address: z.string().min(1, "لطفاً آدرس محل مورد نظر را وارد کنید"),
+  lat: z.string(),
+  long: z.string(),
+});
 
-type formData = z.infer<typeof formSchema>;
+export type introductionFormData = z.infer<typeof formSchema>;
+
+const placeType = {
+  گردشگری: "tourism",
+  "کسب و کار": "shop",
+};
 
 const NewIntroductionForm = () => {
-  const [selected, setSelected] = useState<null | string>(null);
+  const { toast } = useToast();
+  const session = useSession();
   const [open, setOpen] = useState(false);
-  const [showFirstMap, setShowFirstMap] = useState(false);
-  const [showSecondMap, setShowSecondMap] = useState(false);
-  const [userLocation, setUserLocation] = useState({ lng: 0, lat: 0 });
-  const [finalLocation, setFinalLocation] = useState({ lng: 0, lat: 0 });
-  const [address, setAddress] = useState<{ address_line2: "" } | null>(null);
-
-  const {
-    handleSubmit,
-    register,
-    formState: { errors, isSubmitting },
-    reset,
-    setError,
-  } = useForm<formData>({
-    resolver: zodResolver(formSchema),
+  const [imagePreview, setImagePreview] = useState({
+    url: "",
+    name: "",
   });
 
-  useEffect(() => {
-    const requestOptions = {
-      method: "GET",
-    };
+  const formMethods = useForm<introductionFormData>({
+    resolver: zodResolver(formSchema),
+    defaultValues: {
+      type: "",
+      title: "",
+      description: "",
+      image: null,
+      phoneNumber: "",
+      address: "",
+      lat: "",
+      long: "",
+    },
+  });
 
-    fetch(
-      `https://api.geoapify.com/v1/geocode/reverse?lat=${finalLocation?.lat}&lon=${finalLocation?.lng}&apiKey=${process.env.GEOAPIFY_API_KEY}&lang=fa`,
-      requestOptions,
-    )
-      .then((response) => response.json())
-      .then((result) => setAddress(result.features[0].properties))
-      .catch((error) => console.log("error", error));
-  }, [finalLocation]);
+  const errors = formMethods.formState.errors;
+
+  const handleFormSubmit = formMethods.handleSubmit(async (data) => {
+    try {
+      const formData = new FormData();
+      formData.append("type", placeType[data.type as keyof typeof placeType]);
+      formData.append("suggestable_id", "");
+      formData.append("user_id", `${session.data?.user.id}`);
+      formData.append("content", data.description);
+      formData.append("image", data.image);
+      const req = await fetch(`${baseURL}/suggestion`, {
+        method: "POST",
+        headers: {
+          Authorization: `Bearer ${session.data?.user.token}`,
+        },
+        body: formData,
+      });
+      if (req.ok) {
+        toast({
+          title: "پیشنهاد شما با موفقیت ثبت شد",
+        });
+        // formMethods.reset();
+      } else {
+        toast({
+          title: "خطایی رخ داده است. لطفاً بعداً تلاش کنید",
+          variant: "destructive",
+        });
+      }
+    } catch (error) {
+      toast({
+        title: "خطایی رخ داده است. لطفاً بعداً تلاش کنید",
+        variant: "destructive",
+      });
+    }
+  });
 
   return (
-    <>
-      {showFirstMap && (
-        <div
-          className={`fffffff fixed inset-0 z-[100] flex h-screen w-screen items-center justify-center bg-[rgba(255,255,255,.1)] backdrop-blur-[4px]`}
-        >
-          <XMarkIcon
-            onClick={() => setShowFirstMap(false)}
-            className={`absolute left-10 top-10 h-8 w-8 cursor-pointer text-gray-04`}
-          />
-          <div
-            className={`flex h-[50%] w-[90%] flex-col justify-between rounded-[32px] bg-white px-6 py-4 shadow-2xl lg:w-[40%]`}
-          >
-            <div className={`h-[80%] w-full overflow-hidden rounded-[16px]`}>
-              <GoogleMapNoControll boundes={userLocation} setBoundes={setUserLocation} />
-            </div>
-            <button
-              onClick={() => {
-                setFinalLocation(userLocation);
-                setShowFirstMap(false);
-              }}
-              className={`mx-auto flex h-[40px] w-full items-center justify-center rounded-[8px] bg-yellow-main text-[16px] font-[400] text-write-main lg:w-[346px]`}
-            >
-              ثبت
-            </button>
-          </div>
-        </div>
-      )}
-      {showSecondMap && (
-        <div
-          className={`sssssss fixed inset-0 z-[100] flex h-screen w-screen items-center justify-center bg-[rgba(255,255,255,.1)] backdrop-blur-[4px]`}
-        >
-          <XMarkIcon
-            onClick={() => setShowSecondMap(false)}
-            className={`absolute left-10 top-10 h-8 w-8 cursor-pointer text-gray-04`}
-          />
-          <div
-            className={`flex h-[60%]  w-[90%] flex-col justify-between rounded-[32px] bg-white px-6 py-4 shadow-2xl lg:w-[40%]`}
-          >
-            <div className={`h-[80%] w-full overflow-hidden rounded-[16px]`}>
-              <GoogleMapWithControll boundes={userLocation} labelTitle="نمایش در گوگل" />
-            </div>
-            <button
-              onClick={() => {
-                setFinalLocation(userLocation);
-                setShowSecondMap(false);
-              }}
-              className={`mx-auto flex h-[40px] w-full items-center justify-center rounded-[8px] bg-yellow-main text-[16px] font-[400] text-write-main lg:w-[346px]`}
-            >
-              ثبت
-            </button>
-          </div>
-        </div>
-      )}
+    <FormProvider {...formMethods}>
       <div className={`w-full`}>
         <section className={`w-full bg-blue-04 bg-opacity-10 pb-14 pt-[5rem] lg:pt-[8rem]`}>
           <section
             className={`mx-auto flex w-[calc(100%-56px)] max-w-[1254px] flex-col flex-wrap gap-4 lg:w-[calc(100%-300px)] lg:gap-0`}
           >
             <p className={`w-full max-w-[1124px] text-[20px] font-[400] leading-8 text-write-04`}>
-              شما می توانید جاهای دیدنی ، کسب و کارهای مختلف و... در این بخش به ما معرفی کنید. بعد از ارسال و معرفی خود،
-              مطالب توسط ادمین بررسی میشود و در سایت منتشر می‌شود.
+              شما می توانید مکان‌های دیدنی ، کسب و کارهای مختلف و... در این بخش به ما معرفی کنید. بعد از ارسال و معرفی
+              خود، مطالب توسط ادمین بررسی میشود و در سایت منتشر می‌شود.
             </p>
             <details className={`group relative isolate mt-[72px]`} open={open}>
               <summary
@@ -121,14 +111,15 @@ const NewIntroductionForm = () => {
                 className={`flex h-[48px] w-full max-w-[539px] cursor-pointer items-center justify-between rounded-[16px] border border-gray-02 bg-white px-6 py-3 group-open:rounded-b-none group-open:rounded-t-[16px]`}
               >
                 <span className={`text-[16px] font-[500] text-write-04`}>
-                  {selected ? selected : "سوژه مورد نظر شما جزو کدوم بخشه؟"}
+                  {formMethods.getValues("type") ? formMethods.getValues("type") : "سوژه مورد نظر شما جزو کدوم بخشه؟"}
                 </span>
                 <ChevronDownIcon className={`h-6 w-6 text-[#5B5B5B] transition group-open:rotate-[180deg]`} />
               </summary>
               <ul className={`group/dropdown absolute left-0 right-0 top-[46px] w-full max-w-[538px]`}>
                 <li
                   onClick={() => {
-                    setSelected("گردشگری");
+                    formMethods.setValue("type", "گردشگری");
+                    formMethods.clearErrors("type");
                     setOpen(false);
                   }}
                   className={`flex w-full max-w-[539px] cursor-pointer items-center justify-between bg-white px-6 py-3 `}
@@ -137,7 +128,8 @@ const NewIntroductionForm = () => {
                 </li>
                 <li
                   onClick={() => {
-                    setSelected("کسب و کار");
+                    formMethods.setValue("type", "کسب و کار");
+                    formMethods.clearErrors("type");
                     setOpen(false);
                   }}
                   className={`flex w-full max-w-[539px] cursor-pointer items-center justify-between bg-white px-6 py-3 group-open:rounded-b-[16px]`}
@@ -146,73 +138,109 @@ const NewIntroductionForm = () => {
                 </li>
               </ul>
             </details>
-            <form className={`mt-6 flex w-full flex-col items-center justify-center gap-6`}>
+            {errors.type && <span className="px-2 py-1 text-[12px] text-red-400">{errors.type.message}</span>}
+
+            <form onSubmit={handleFormSubmit} className={`mt-6 flex w-full flex-col items-center justify-center gap-6`}>
               <div
                 className={`mx-auto flex h-max w-full flex-wrap items-center justify-center gap-4 rounded-[32px] bg-transparent lg:h-[470px] lg:flex-nowrap lg:justify-between lg:gap-6 lg:border lg:border-yellow-04 lg:bg-white lg:px-[64px] lg:py-10`}
               >
-                <div className={`flex h-full w-full max-w-[539px] flex-col justify-between gap-4 lg:gap-0`}>
-                  <input
+                <div className={`flex h-full w-full max-w-[539px] flex-col justify-between gap-4 lg:gap-8`}>
+                  {/* <input
                     type={"text"}
                     placeholder={`نوع کسب و کار`}
                     className={`h-[56px] w-full rounded-[16px] border border-gray-02 bg-white px-6 py-4 text-[16px] font-[400] text-write-main placeholder:text-gray-03`}
-                  />
-                  <input
-                    type={"text"}
-                    placeholder={`عنوان کسب و کار  را وارد کنید`}
-                    className={`h-[56px] w-full rounded-[16px] border border-gray-02 bg-white px-6 py-4 text-[16px] font-[400] text-write-main placeholder:text-gray-03`}
-                  />
-                  <input
-                    type={"text"}
-                    placeholder={`شماره تماس`}
-                    className={`h-[56px] w-full rounded-[16px] border border-gray-02 bg-white px-6 py-4 text-[16px] font-[400] text-write-main placeholder:text-gray-03`}
-                  />
-                  <input id={`file`} className={`hidden`} type={"file"} multiple={false} />
-                  <label
-                    htmlFor={`file`}
-                    className={`flex h-[136px] w-full cursor-pointer justify-between rounded-[16px] border-[3px] border-dashed border-gray-02 bg-white p-6 lg:justify-around`}
-                  >
-                    <div className={`flex flex-col `}>
-                      <span className={`text-[16px] font-[500] text-gray-03`}>افزودن عکس</span>
-                      <div className={`flex items-center gap-3`}>
-                        <span className={`text-[12px] font-[400] text-gray-01`}>اندازه عکسpx 500*500px </span>
-                        <span className={`text-[12px] font-[400] text-gray-01`}>حجم عکس10 MB </span>
-                      </div>
-                    </div>
-                    <PhotoIcon className={`h-[56px] w-[56px] self-center text-blue-06`} />
-                  </label>
-                </div>
-                <div className={`flex h-full w-full max-w-[539px] flex-col justify-between gap-4 lg:gap-6`}>
-                  <textarea
-                    placeholder={"توضیحات"}
-                    className={`h-[136px] w-full resize-none rounded-[16px] border border-gray-02 bg-white p-6 text-[16px] font-[400] text-write-main placeholder:text-gray-03`}
-                  ></textarea>
-                  <label
-                    className={`relative isolate block h-[216px] w-full overflow-hidden rounded-[16px] border border-gray-02`}
-                  >
-                    <textarea
-                      value={address?.address_line2 ?? ""}
-                      placeholder={"آدرس را وارد کنید"}
-                      className={`absolute inset-0 z-[1] h-full w-full resize-none bg-white p-6 text-[16px] font-[400] text-write-main placeholder:text-gray-03`}
-                    ></textarea>
-                    <div
-                      className={`absolute bottom-4 left-0 right-0 z-[2] flex h-[56px] w-full items-center justify-between gap-4 px-6`}
+                  /> */}
+                  <div>
+                    <input
+                      type={"text"}
+                      placeholder={`عنوان کسب و کار  را وارد کنید`}
+                      {...formMethods.register("title")}
+                      className={`h-[56px] w-full rounded-[16px] border border-gray-02 bg-white px-6 py-4 text-[16px] font-[400] text-write-main outline-none placeholder:text-gray-03`}
+                    />
+                    {errors.title && (
+                      <span className="px-2 pt-2 text-[12px] text-red-500">{errors.title?.message}</span>
+                    )}
+                  </div>
+                  <div>
+                    <input
+                      type={"text"}
+                      placeholder={`شماره تماس`}
+                      {...formMethods.register("phoneNumber")}
+                      className={`h-[56px] w-full rounded-[16px] border border-gray-02 bg-white px-6 py-4 text-[16px] font-[400] text-write-main outline-none placeholder:text-gray-03`}
+                    />
+                    {errors.phoneNumber && (
+                      <span className="px-2 pt-2 text-[12px] text-red-500">{errors.phoneNumber?.message}</span>
+                    )}
+                  </div>
+
+                  <div className="flex-1">
+                    <input
+                      id={`file`}
+                      className={`hidden`}
+                      {...formMethods.register("image", {
+                        onChange: (e) => {
+                          const file = e.target.files[0];
+                          if (file) {
+                            const reader = new FileReader();
+                            reader.readAsDataURL(file);
+                            reader.onload = () => {
+                              formMethods.setValue("image", file);
+                              setImagePreview({
+                                name: file.name,
+                                url: reader.result as string,
+                              });
+                            };
+                          }
+                        },
+                      })}
+                      type={"file"}
+                      multiple={false}
+                    />
+                    <label
+                      htmlFor={`file`}
+                      className={`flex h-full w-full cursor-pointer items-center justify-between rounded-[16px] border-[3px] border-dashed border-gray-02 bg-white p-6 lg:justify-around`}
                     >
-                      <button
-                        type={"button"}
-                        onClick={() => setShowFirstMap(true)}
-                        className={`flex w-full max-w-[225px] cursor-pointer items-center justify-center rounded-[8px] border border-yellow-04 py-[10px] text-[14px] text-gray-03`}
-                      >
-                        من اینجام
-                      </button>
-                      <button
-                        type={"button"}
-                        onClick={() => setShowSecondMap(true)}
-                        className={`flex w-full max-w-[225px] cursor-pointer items-center justify-center rounded-[8px] border border-yellow-04 py-[10px] text-[14px] text-gray-03`}
-                      >
-                        انتخاب از روی نقشه
-                      </button>
-                    </div>
-                  </label>
+                      {imagePreview.name ? (
+                        imagePreview.name
+                      ) : (
+                        <div className={`flex flex-col `}>
+                          <span className={`text-[16px] font-[500] text-gray-03`}>افزودن عکس</span>
+                          <div className={`flex items-center gap-3`}>
+                            <span className={`text-[12px] font-[400] text-gray-01`}>اندازه عکسpx 500*500px </span>
+                            <span className={`text-[12px] font-[400] text-gray-01`}>حجم عکس10 MB </span>
+                          </div>
+                        </div>
+                      )}
+                      {imagePreview.url.length > 0 ? (
+                        <div className="relative size-20">
+                          <Image src={imagePreview.url} alt="" fill />
+                        </div>
+                      ) : (
+                        <PhotoIcon className={`h-[56px] w-[56px] self-center text-blue-06`} />
+                      )}
+                    </label>
+                    {errors.image && (
+                      <span className="px-2 pt-2 text-[12px] text-red-500">{errors.image?.message?.toString()}</span>
+                    )}
+                  </div>
+                </div>
+                <div className={`flex h-full w-full max-w-[539px] flex-col justify-between gap-6 lg:gap-6`}>
+                  <div className="h-[136px] w-full flex-1 rounded-[16px] border border-gray-02 bg-white">
+                    <textarea
+                      placeholder={"توضیحات"}
+                      {...formMethods.register("description")}
+                      className={`h-full w-full resize-none rounded-[16px] p-6 text-[16px] font-[400] text-write-main placeholder:text-gray-03`}
+                    ></textarea>
+                    {errors.description && (
+                      <span className="mmb-4 block px-2 text-[12px] text-red-500">{errors.description?.message}</span>
+                    )}
+                  </div>
+                  <div>
+                    <SetCordinates />
+                    {errors.address && (
+                      <span className="px-2 py-2 text-[12px] text-red-500">{errors.address?.message}</span>
+                    )}
+                  </div>
                 </div>
               </div>
               <button
@@ -227,7 +255,7 @@ const NewIntroductionForm = () => {
 
         {/* <MapComponent /> */}
       </div>
-    </>
+    </FormProvider>
   );
 };
 

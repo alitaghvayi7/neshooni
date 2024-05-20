@@ -23,5 +23,5 @@
     ]
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "next.config.js", "postcss.config.js"],
-  "exclude": ["node_modules", "./src/components/pages"]
+  "exclude": ["node_modules"]
 }

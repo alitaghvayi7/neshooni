@@ -7,6 +7,15 @@ const nextConfig = {
     BACKEND_URL: process.env.BACKEND_URL,
     BACKEND_VERSION: process.env.BACKEND_VERSION,
   },
+  async redirects() {
+    return [
+      {
+        source: "/profile",
+        destination: "/profile/info",
+        permanent: true,
+      },
+    ];
+  },
   images: {
     remotePatterns: [
       {

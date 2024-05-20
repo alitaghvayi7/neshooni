@@ -4,7 +4,7 @@ import { ReactNode } from "react";
 
 const RootLayout = ({ children }: { children: ReactNode }) => {
   return (
-    <main>
+    <main className="flex min-h-screen flex-col justify-between">
       <header className={`w-full bg-blue-04 bg-opacity-20`}>
         <Menu />
         <div
