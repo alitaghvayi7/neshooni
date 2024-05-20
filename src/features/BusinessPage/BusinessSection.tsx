@@ -40,10 +40,11 @@ const BusinessSection = ({ data }: { data: SingleBusiness[] }) => {
     <section
       className={`mx-auto flex w-[calc(100%-56px)] max-w-[1666px] flex-col gap-8 pb-[64px] pt-8 lg:w-[calc(100%-128px)] lg:flex-row`}
     >
-      <div className="sticky top-5 hidden h-[429px] w-[402px] lg:block">
+      {/* <div className="sticky top-5 hidden h-[429px] w-[402px] lg:block">
         <FilterBox />
-      </div>
-      <div className="lg:w-[calc(100%-434px)]">
+      </div> */}
+      {/* <div className="lg:w-[calc(100%-434px)]"> */}
+      <div className="mx-auto w-full max-w-[1200px]">
         <div className="hidden w-full items-center justify-end gap-4 lg:flex">
           <button
             onClick={() => {
