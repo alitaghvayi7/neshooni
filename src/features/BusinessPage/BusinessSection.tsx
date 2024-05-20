@@ -81,7 +81,7 @@ const BusinessSection = ({ data }: { data: SingleBusiness[] }) => {
                   address={item.address?.address || ""}
                   comments={item.comments_count}
                   desc={item.desc || ""}
-                  image={item?.img ? `${imageBaseURL}${item.img}` : imagePlaceHolders.business}
+                  image={item?.img ? `${item.img}` : imagePlaceHolders.business}
                   name={item.name}
                   score={`${item.average_score[0]?.average_score || 0}`.substring(0, 3)}
                   key={item.id}
@@ -93,7 +93,7 @@ const BusinessSection = ({ data }: { data: SingleBusiness[] }) => {
                     address={item.address?.address || ""}
                     comments={item.comments_count}
                     desc={item.desc || ""}
-                    image={item?.img ? `${imageBaseURL}${item.img}` : imagePlaceHolders.business}
+                    image={item?.img ? `${item.img}` : imagePlaceHolders.business}
                     name={item.name}
                     score={`${item.average_score[0]?.average_score || 0}`.substring(0, 3)}
                     key={item.id}

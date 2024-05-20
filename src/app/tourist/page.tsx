@@ -17,6 +17,7 @@ export default async function TouristPage() {
     page: 1,
   });
   if (tourismList === "Error") return null;
+  console.log(tourismList.data);
   return (
     <>
       <main className={`w-full`}>
