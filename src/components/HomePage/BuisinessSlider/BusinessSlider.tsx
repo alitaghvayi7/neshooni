@@ -109,7 +109,9 @@ function BusinessSlider({ data }: { data: businessSlider[] }) {
         className={`flex h-[429px] w-full flex-col justify-between rounded-bl-[32px] rounded-tl-[32px] p-4 lg:w-1/2 lg:p-[4rem]`}
       >
         <div className={`flex w-full items-center justify-between`}>
-          <span className={`text-[24px] font-[600]`}>{activeBusiness?.name}</span>
+          <Link href={`/business/${activeBusiness?.id}`} className={`text-[24px] font-[600]`}>
+            {activeBusiness?.name}
+          </Link>
           <div className={`flex items-center gap-2`}>
             <StarIcon className={`h-5 w-5 text-yellow-main`} />
             <span className={`flex items-center justify-center text-[20px] leading-none text-write-main`}>

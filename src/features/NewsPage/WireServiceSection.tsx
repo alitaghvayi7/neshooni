@@ -1,3 +1,4 @@
+import { imagePlaceHolders } from "@/data";
 import { attributeRegex } from "@/lib/HtmlParser";
 import { getPersianDate } from "@/lib/date";
 import { SingleNews } from "@/models/news";
@@ -28,7 +29,12 @@ const WireServiceSection = ({ data }: { data: SingleNews[] }) => {
                 className="w-full overflow-hidden rounded-[16px] rounded-b-[16px] border border-yellow-04 bg-white lg:h-[400px] lg:rounded-[32px] xl:h-[400px]"
               >
                 <div className="relative h-[50%] w-full overflow-hidden rounded-t-[16px] lg:rounded-t-[32px] xl:h-[50%]">
-                  <Image src={item?.img || ""} className="object-cover" alt={`${item.title}`} fill />
+                  <Image
+                    src={item?.img || imagePlaceHolders.news}
+                    className="object-cover"
+                    alt={`${item.title}`}
+                    fill
+                  />
                 </div>
                 <div className="flex w-full flex-col justify-between gap-2 overflow-hidden p-4 lg:rounded-b-[32px] lg:p-6">
                   <div className={`flex w-full items-center justify-between`}>
@@ -77,7 +83,12 @@ const WireServiceSection = ({ data }: { data: SingleNews[] }) => {
                   className={`flex h-[128px] w-full items-center justify-between rounded-[16px] border-b border-l border-t border-yellow-04 bg-white lg:h-[170px] xl:h-[180px]`}
                 >
                   <div className="relative h-full w-[128px] overflow-hidden rounded-r-2xl lg:w-[180px] xl:w-[200px]">
-                    <Image alt={`${item.title}`} src={item?.img || "/"} className={`object-cover`} fill />
+                    <Image
+                      alt={`${item.title}`}
+                      src={item?.img || imagePlaceHolders.news}
+                      className={`object-cover`}
+                      fill
+                    />
                   </div>
                   <div
                     style={{ borderRadius: `16px 0 0 16px` }}

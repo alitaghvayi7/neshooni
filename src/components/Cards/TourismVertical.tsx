@@ -36,7 +36,9 @@ const TourismVerticalCard = ({
         className={`flex h-1/2 w-full flex-col gap-2 overflow-hidden rounded-b-2xl border-b border-l border-r border-yellow-04 bg-white p-4 lg:px-3 lg:py-4`}
       >
         <div className={`flex w-full items-center justify-between`}>
-          <span className={`text-[14px] font-[700] lg:text-[24px]`}>{name}</span>
+          <Link href={`/tourist/${id}`} className={`text-[14px] font-[700] lg:text-[24px]`}>
+            {name}
+          </Link>
         </div>
         <span className={`line-clamp-2 text-ellipsis text-[12px] font-[500] leading-6 text-write-main lg:text-[14px]`}>
           {address}

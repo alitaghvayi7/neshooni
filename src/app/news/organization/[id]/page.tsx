@@ -1,6 +1,7 @@
 import Breadcrumbs from "@/components/shared/Breadcrumbs";
 import Footer from "@/components/shared/Footer";
 import Menu from "@/components/shared/Menu";
+import { imagePlaceHolders } from "@/data";
 import { attributeRegex } from "@/lib/HtmlParser";
 import { getPersianDate, getPersianHour, getPersianWeekday } from "@/lib/date";
 import { getSingleNews } from "@/services/news";
@@ -118,7 +119,12 @@ export default async function SingleNewsPage({ params: { id } }: { params: { id:
               className={`flex h-[342px] w-full items-center justify-center overflow-hidden rounded-[16px] lg:h-[700px]`}
             >
               <div className="relative h-full w-full">
-                <Image alt={`${newsData.data.title}`} src={newsData.data.img} className={`object-cover`} fill />
+                <Image
+                  alt={`${newsData.data.title}`}
+                  src={newsData.data.img || imagePlaceHolders.news}
+                  className={`object-cover`}
+                  fill
+                />
               </div>
             </div>
 

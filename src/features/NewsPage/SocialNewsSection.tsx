@@ -6,6 +6,7 @@ import Image from "next/image";
 import { Fragment } from "react";
 import SocialNewsSlider from "./SocialNewsCarousel";
 import { getPersianDate } from "@/lib/date";
+import { imagePlaceHolders } from "@/data";
 
 const SliderSection = ({ data }: { data: SingleNews[] }) => {
   return (
@@ -34,7 +35,12 @@ const SliderSection = ({ data }: { data: SingleNews[] }) => {
                   className={`flex h-[128px] w-full max-w-[812px] items-center rounded-[16px] bg-white lg:h-[158px] lg:w-[48%]`}
                 >
                   <div className="relative h-full w-[128px] overflow-hidden rounded-r-2xl lg:w-[200px] xl:w-[255px]">
-                    <Image alt={`${item.title}`} src={item?.img} className={`object-cover`} fill />
+                    <Image
+                      alt={`${item.title}`}
+                      src={item?.img || imagePlaceHolders.news}
+                      className={`object-cover`}
+                      fill
+                    />
                   </div>
                   <div
                     style={{ borderRadius: `16px 0 0 16px` }}

@@ -1,4 +1,5 @@
 import { HASHTAG_ICON, NEWS_ICON, PAPER_ICON } from "@/assets/icons/svgs";
+import { imagePlaceHolders } from "@/data";
 import { attributeRegex } from "@/lib/HtmlParser";
 import { getPersianDate } from "@/lib/date";
 
@@ -64,7 +65,7 @@ const LastNewsSection = ({ lastNews }: { lastNews: SingleNews[] }) => {
                     <Image
                       style={{ borderRadius: `0 16px 16px 0` }}
                       alt={`${item.title}`}
-                      src={`${item.img}`}
+                      src={`${item.img || imagePlaceHolders.news}`}
                       className={`object-cover`}
                       fill
                     />

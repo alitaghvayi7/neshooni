@@ -1,4 +1,5 @@
 import Breadcrumbs from "@/components/shared/Breadcrumbs";
+import { imagePlaceHolders } from "@/data";
 import { attributeRegex } from "@/lib/HtmlParser";
 import { getPersianDate } from "@/lib/date";
 import { NewsType, SingleNews } from "@/models/news";
@@ -44,7 +45,7 @@ const SingleHeroNews = ({ data, type }: { data: SingleNews; type: NewsType }) =>
                 <Image
                   // style={{ borderRadius: `0 16px 16px 0` }}
                   alt={`${data?.title}`}
-                  src={data?.img || "/"}
+                  src={data?.img || imagePlaceHolders.news}
                   className={`object-cover`}
                   fill
                 />

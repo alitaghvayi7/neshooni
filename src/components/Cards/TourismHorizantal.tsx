@@ -39,7 +39,9 @@ const TourismHorizantalCard = ({
           className={`flex h-full w-[60%] flex-col justify-start gap-1 overflow-hidden rounded-bl-[16px] rounded-tl-[16px] border-b border-l border-t border-yellow-04 bg-white p-4 md:gap-2 lg:px-6 lg:py-6`}
         >
           <div className={`flex w-full items-center justify-between`}>
-            <span className={`text-[14px] font-[700] md:text-[16px] lg:text-[24px]`}>{name}</span>
+            <Link href={`/tourist/${id}`} className={`text-[14px] font-[700] md:text-[16px] lg:text-[24px]`}>
+              {name}
+            </Link>
             <div className={`flex items-center gap-2`}>
               <div className={`flex items-center gap-2`}>
                 <StarIcon className={`h-3 w-3 text-yellow-main lg:h-5 lg:w-5`} />

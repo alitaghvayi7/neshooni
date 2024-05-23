@@ -1,4 +1,5 @@
 "use client";
+import { imagePlaceHolders } from "@/data";
 import { attributeRegex } from "@/lib/HtmlParser";
 import { SingleNews } from "@/models/news";
 import Image from "next/image";
@@ -91,7 +92,7 @@ function SocialNewsSlider({ data }: { data: SingleNews[] | [] }) {
           {data?.map((item, index) => (
             <SwiperSlide key={item.id}>
               <div className="relative h-full w-full bg-black">
-                <Image src={item.img || "/"} alt="business" fill />
+                <Image src={item.img || imagePlaceHolders.news} className="object-cover" alt="business" fill />
               </div>
             </SwiperSlide>
           ))}
@@ -101,7 +102,9 @@ function SocialNewsSlider({ data }: { data: SingleNews[] | [] }) {
         className={`flex h-[429px] w-full flex-col justify-between rounded-bl-[32px] rounded-tl-[32px] p-4 lg:w-1/2 lg:p-[4rem]`}
       >
         <div className={`flex w-full items-center justify-between`}>
-          <span className={`text-[24px] font-[600]`}>{activeNews?.title}</span>
+          <Link href={`/news/social-media/${activeNews?.id}`} className={`text-[24px] font-[600]`}>
+            {activeNews?.title}
+          </Link>
         </div>
         {/* <span className={`text-[20px] font-[400] text-write-main`}>آدرس: {activeNews}</span> */}
         <p

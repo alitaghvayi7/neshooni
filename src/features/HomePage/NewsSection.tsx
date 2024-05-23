@@ -8,12 +8,14 @@ import { SingleNews } from "@/models/news";
 import { Fragment, useMemo, useState } from "react";
 import { newsTypes } from "./LastNewsSection";
 import { getPersianDate } from "@/lib/date";
+import { imagePlaceHolders } from "@/data";
 
 const NewsSection = ({ newsList }: { newsList: SingleNews[] }) => {
   const [activeNewsType, setActiveNewsType] = useState<"social" | "official" | "organization">("official");
   const activeNews = useMemo(() => {
     return newsList.filter((item) => item.type === activeNewsType);
   }, [activeNewsType, newsList]);
+
   return (
     <>
       <section
@@ -57,7 +59,7 @@ const NewsSection = ({ newsList }: { newsList: SingleNews[] }) => {
                     <Image
                       // style={{ borderRadius: `0 16px 16px 0` }}
                       alt={`${activeNews[0].title}`}
-                      src={`${activeNews[0]?.img}`}
+                      src={`${activeNews[0]?.img || imagePlaceHolders.news}`}
                       className={`object-cover`}
                       fill
                     />
@@ -113,7 +115,7 @@ const NewsSection = ({ newsList }: { newsList: SingleNews[] }) => {
                     <div className="relative h-full w-[128px] lg:w-[255px]">
                       <Image
                         style={{ borderRadius: `0 16px 16px 0` }}
-                        alt={`${item.title}`}
+                        alt={`${item.title || imagePlaceHolders.news}`}
                         src={`${item.img}`}
                         className={`object-cover`}
                         fill
