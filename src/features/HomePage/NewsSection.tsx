@@ -129,7 +129,9 @@ const NewsSection = ({ newsList }: { newsList: SingleNews[] }) => {
                           <span
                             className={`line-clamp-1 flex items-center justify-center text-[10px] font-[400] text-gray-04 lg:text-[16px]`}
                           >
-                            <Link href={item.source}>{item.source_title || "منبع"}</Link>
+                            <Link target="_blank" rel="nofollow" href={item.source}>
+                              {item.source_title || "منبع"}
+                            </Link>
                           </span>
                         </div>
                         <span
