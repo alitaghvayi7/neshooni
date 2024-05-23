@@ -38,6 +38,8 @@ const OrganSection = ({ data }: { data: SingleNews[] }) => {
                         <span className={`h-1 w-1 bg-gray-04`}></span>
                         <Link
                           href={item.source}
+                          target="_blank"
+                          rel="nofollow"
                           className={`line-clamp-1 flex items-center justify-center text-[10px] font-[400] text-gray-04 lg:text-[14px]`}
                         >
                           {item?.source_title || "منبع"}
