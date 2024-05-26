@@ -30,7 +30,7 @@ const WireServiceSection = ({ data }: { data: SingleNews[] }) => {
               >
                 <div className="relative h-[50%] w-full overflow-hidden rounded-t-[16px] lg:rounded-t-[32px] xl:h-[50%]">
                   <Image
-                    src={item?.img || imagePlaceHolders.news}
+                    src={"https://www.muq.ac.ir/uploads/1/2024/May/15/34534.jpg"}
                     className="object-cover"
                     alt={`${item.title}`}
                     fill

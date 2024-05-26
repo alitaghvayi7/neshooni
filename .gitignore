@@ -39,3 +39,4 @@ package-lock.json
 /.cloud/
 .cloud/
 /.cloud
+certificates

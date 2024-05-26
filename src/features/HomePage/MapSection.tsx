@@ -1,8 +1,8 @@
 "use client";
-import {useCallback, useEffect, useLayoutEffect, useRef, useState} from "react";
+import { useCallback, useEffect, useLayoutEffect, useRef, useState } from "react";
 import dynamic from "next/dynamic";
-import {ChevronLeftIcon, ChevronRightIcon, MinusIcon, PlusIcon} from "@heroicons/react/24/outline";
-import {getBusinessPointsFromLocation} from "@/services/business";
+import { ChevronLeftIcon, ChevronRightIcon, MinusIcon, PlusIcon } from "@heroicons/react/24/outline";
+import { getBusinessPointsFromLocation } from "@/services/business";
 
 const MapComponent = dynamic(() => import("@/components/HomePage/Map/Map"), {
   ssr: false,
@@ -47,7 +47,7 @@ const MapSection = () => {
 
   const [boundes, setBoundes] = useState({ lat: 0, lng: 0 });
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     if ("geolocation" in navigator) {
       // Prompt user for permission to access their location
       navigator.geolocation.getCurrentPosition(
@@ -61,14 +61,15 @@ const MapSection = () => {
           // console.log(`Latitude: ${lat}, longitude: ${lng}`);
           setBoundes({ lat, lng });
           const res = await getBusinessPointsFromLocation(lat, lng);
-          console.log(res,'-----------------')
+          console.log(res, "-----------------");
         },
         // Error callback function
         (error) => {
+          console.log("error", error);
           // Handle errors, e.g. user denied location sharing permissions
           // console.error("Error getting user location:", error);
           setBoundes({ lat: 34.382436, lng: 50.523504 });
-        }
+        },
       );
     } else {
       // Geolocation is not supported by the browser
@@ -77,24 +78,21 @@ const MapSection = () => {
     }
   }, []);
 
-
-
-
   return (
     <>
       <section
-        className={`flex flex-col w-[calc(100%-56px)] lg:w-[calc(100%-128px)] max-w-[1689px] mx-auto mt-[5rem] lg:mt-[8rem] gap-8`}
+        className={`mx-auto mt-[5rem] flex w-[calc(100%-56px)] max-w-[1689px] flex-col gap-8 lg:mt-[8rem] lg:w-[calc(100%-128px)]`}
       >
         <span
           style={{ backgroundClip: "content-box", borderRadius: "0 0 32px 0" }}
-          className={`w-fit pl-6 border-b border-r border-yellow-04 bg-yellow-06 indent-5 font-bold text-[20px] lg:text-[40px] text-write-main`}
+          className={`w-fit border-b border-r border-yellow-04 bg-yellow-06 pl-6 indent-5 text-[20px] font-bold text-write-main lg:text-[40px]`}
         >
           از روی نقشه شهر پیدا کن
         </span>
         {boundes.lat === 0 && boundes.lng === 0 && (
           <section
             dir={"ltr"}
-            className={`w-full h-[329px] lg:h-[414px] mx-auto overflow-hidden rounded-[16px] bg-gray-01 flex items-center justify-center relative isolate`}
+            className={`relative isolate mx-auto flex h-[329px] w-full items-center justify-center overflow-hidden rounded-[16px] bg-gray-01 lg:h-[414px]`}
           ></section>
         )}
         {boundes.lat !== 0 && boundes.lng !== 0 && (
@@ -106,29 +104,29 @@ const MapSection = () => {
             }}
             dir={"ltr"}
             ref={parentMapRef}
-            className={`w-full h-[329px] lg:h-[414px] mx-auto overflow-hidden rounded-[16px]  flex items-center justify-center relative isolate`}
+            className={`relative isolate mx-auto flex h-[329px] w-full  items-center justify-center overflow-hidden rounded-[16px] lg:h-[414px]`}
           >
             {/*Map Zoom Controls*/}
 
-            <div className={`w-[50px] h-[120px] bg-white absolute left-4 top-4 z-[4] shadow-2xl rounded-[8px]`}>
+            <div className={`absolute left-4 top-4 z-[4] h-[120px] w-[50px] rounded-[8px] bg-white shadow-2xl`}>
               <button
-                  onClick={()=>{
-                    rightMapRef?.current?.setZoom(rightMapRef.current.getZoom() + 1);
-                    leftMapRef?.current?.setZoom(leftMapRef.current.getZoom() + 1);
-                  }}
-                  className={`w-full h-1/2 flex items-center justify-center border-b border-write-main`}>
-                <PlusIcon className={`w-6 h-6 text-write-main`}/>
+                onClick={() => {
+                  rightMapRef?.current?.setZoom(rightMapRef.current.getZoom() + 1);
+                  leftMapRef?.current?.setZoom(leftMapRef.current.getZoom() + 1);
+                }}
+                className={`flex h-1/2 w-full items-center justify-center border-b border-write-main`}
+              >
+                <PlusIcon className={`h-6 w-6 text-write-main`} />
               </button>
               <button
-                  onClick={()=>{
-                    rightMapRef?.current?.setZoom(rightMapRef.current.getZoom() - 1);
-                    leftMapRef?.current?.setZoom(leftMapRef.current.getZoom() - 1);
-                  }}
-                  className={`w-full h-1/2 flex items-center justify-center`}>
-                <MinusIcon className={`w-6 h-6 text-write-main`}/>
+                onClick={() => {
+                  rightMapRef?.current?.setZoom(rightMapRef.current.getZoom() - 1);
+                  leftMapRef?.current?.setZoom(leftMapRef.current.getZoom() - 1);
+                }}
+                className={`flex h-1/2 w-full items-center justify-center`}
+              >
+                <MinusIcon className={`h-6 w-6 text-write-main`} />
               </button>
-
-
             </div>
 
             {/*Map Zoom Controls*/}
@@ -155,13 +153,13 @@ const MapSection = () => {
                 }
               }}
               style={{ left: `${percentage ? percentage + 0.4 : 49.8}%` }}
-              className={`absolute h-full w-[5px] top-0 bottom-0 bg-yellow-main z-[2] cursor-e-resize left-[49.8%] transition isolate`}
+              className={`absolute bottom-0 left-[49.8%] top-0 isolate z-[2] h-full w-[5px] cursor-e-resize bg-yellow-main transition`}
             >
               <div
-                className={`w-10 h-10 rounded-full bg-yellow-main flex items-center justify-between absolute left-[50%] top-[50%] translate-x-[-50%] translate-y-[-50%]`}
+                className={`absolute left-[50%] top-[50%] flex h-10 w-10 translate-x-[-50%] translate-y-[-50%] items-center justify-between rounded-full bg-yellow-main`}
               >
-                <ChevronLeftIcon className={`w-5 h-5 text-write-04`} />
-                <ChevronRightIcon className={`w-5 h-5 text-write-04`} />
+                <ChevronLeftIcon className={`h-5 w-5 text-write-04`} />
+                <ChevronRightIcon className={`h-5 w-5 text-write-04`} />
               </div>
             </div>
 
@@ -171,7 +169,7 @@ const MapSection = () => {
                   percentage ? percentage + 0.4 : 50
                 }% 100%, 0% 100%)`,
               }}
-              className={`w-[100%] h-full overflow-hidden absolute inset-0 transition z-[1]`}
+              className={`absolute inset-0 z-[1] h-full w-[100%] overflow-hidden transition`}
             >
               <MapComponent
                 boundes={boundes}
@@ -189,7 +187,7 @@ const MapSection = () => {
                   percentage ? percentage + 0.4 : 50
                 }% 100%)`,
               }}
-              className={`w-[100%] h-full overflow-hidden absolute inset-0 transition z-[1]`}
+              className={`absolute inset-0 z-[1] h-full w-[100%] overflow-hidden transition`}
             >
               <MapComponent
                 boundes={boundes}
