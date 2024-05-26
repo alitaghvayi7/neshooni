@@ -13,8 +13,6 @@ export default async function NewsPage() {
     getOrganizationNews(),
   ]);
 
-  console.log(officialNews.slice(0, 5));
-
   return (
     <>
       <>

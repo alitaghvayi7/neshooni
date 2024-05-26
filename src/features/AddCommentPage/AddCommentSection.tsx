@@ -4,12 +4,17 @@ import Image1 from "@/assets/images/businesspage/business-image(1).png";
 import { useState } from "react";
 import { StarIcon } from "@heroicons/react/24/solid";
 import { PhotoIcon } from "@heroicons/react/24/outline";
+import { useSession } from "next-auth/react";
+
+const totalStars = 5;
 
 const AddCommentSection = () => {
   const [rating, setRating] = useState<number | null>(null);
   const [hover, setHover] = useState<number | null>(null);
-  const [totalStars, setTotalStars] = useState(5);
   const [comment, setcomment] = useState("");
+
+  const session = useSession();
+  console.log(session.data?.user);
 
   return (
     <>
