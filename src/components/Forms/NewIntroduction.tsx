@@ -64,9 +64,12 @@ const NewIntroductionForm = () => {
     try {
       const formData = new FormData();
       formData.append("type", placeType[data.type as keyof typeof placeType]);
-      formData.append("suggestable_id", "0");
+      formData.append("suggestable_id", "");
       formData.append("user_id", `${session.data?.user.id}`);
       formData.append("content", data.description);
+      formData.append("address", data.address);
+      formData.append("title", data.title);
+      formData.append("phone", data.phoneNumber);
       formData.append("image", data.image);
       const req = await fetch(`${baseURL}/suggestion`, {
         method: "POST",
@@ -80,6 +83,7 @@ const NewIntroductionForm = () => {
           title: "پیشنهاد شما با موفقیت ثبت شد",
         });
         formMethods.reset();
+        setImagePreview({ url: "", name: "" });
       } else {
         toast({
           title: "خطایی رخ داده است. لطفاً بعداً تلاش کنید",

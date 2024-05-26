@@ -12,6 +12,7 @@ export default async function NewsPage() {
     getOfficialNews(),
     getOrganizationNews(),
   ]);
+
   return (
     <>
       <>

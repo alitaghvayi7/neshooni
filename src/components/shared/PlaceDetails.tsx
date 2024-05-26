@@ -6,6 +6,7 @@ import Image from "next/image";
 import { BusinessDetails } from "@/models/business";
 
 const PlaceDetails = ({ details }: { details: BusinessDetails[] }) => {
+  console.log(details, "details in business");
   return (
     <>
       <div className="flex h-full w-full flex-col justify-around">

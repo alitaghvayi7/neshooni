@@ -36,6 +36,7 @@ const IntroductionSection = ({
 }) => {
   const [bookmarked, setBookmarked] = useState(false);
   const [boundes, setBoundes] = useState({ lat: 0, lng: 0 });
+  console.log(details);
 
   useLayoutEffect(() => {
     if ("geolocation" in navigator) {

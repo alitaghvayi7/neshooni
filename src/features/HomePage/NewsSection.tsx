@@ -115,8 +115,8 @@ const NewsSection = ({ newsList }: { newsList: SingleNews[] }) => {
                     <div className="relative h-full w-[128px] lg:w-[255px]">
                       <Image
                         style={{ borderRadius: `0 16px 16px 0` }}
-                        alt={`${item.title || imagePlaceHolders.news}`}
-                        src={`${item.img}`}
+                        alt={`${item.title}`}
+                        src={`${item.img || imagePlaceHolders.news}`}
                         className={`object-cover`}
                         fill
                       />
