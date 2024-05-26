@@ -18,7 +18,7 @@ interface Props {
     lat: string;
     long: string;
     id: number;
-    title: string;
+    name: string;
   }[];
 }
 
@@ -135,6 +135,8 @@ const Map = (props: Props) => {
                 // }}
                 key={i}
                 icon={markerIcon}
+                riseOnHover
+                title={item.name}
                 position={new LatLng(Number(item.lat), Number(item.long))}
               ></Marker>
             );

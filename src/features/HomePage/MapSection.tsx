@@ -16,13 +16,13 @@ const MapSection = () => {
     tourism: {
       lat: string;
       long: string;
-      title: string;
+      name: string;
       id: number;
     }[];
     business: {
       lat: string;
       long: string;
-      title: string;
+      name: string;
       id: number;
     }[];
   }>({
@@ -73,7 +73,7 @@ const MapSection = () => {
           // Get the user's latitude and longitude coordinates
           const lat = position.coords.latitude;
           const lng = position.coords.longitude;
-
+          console.log(lat, lng);
           // Do something with the location data, e.g. display on a map
           // console.log(`Latitude: ${lat}, longitude: ${lng}`);
           setBoundes({ lat, lng });
