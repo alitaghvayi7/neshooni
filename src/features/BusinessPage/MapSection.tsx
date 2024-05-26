@@ -1,5 +1,6 @@
 "use client";
 import MapComponent from "@/components/shared/Map";
+import { MinusIcon, PlusIcon } from "@heroicons/react/24/outline";
 import { useLayoutEffect, useState } from "react";
 
 const MapSection = () => {
@@ -34,23 +35,25 @@ const MapSection = () => {
   }, []);
 
   return (
-    <section
-      className={`mx-auto flex w-[calc(100%-56px)] max-w-[1666px] flex-col gap-8 overflow-hidden rounded-[16px] lg:w-[calc(100%-128px)]`}
-    >
-      {boundes.lat === 0 && boundes.lng === 0 && (
-        <section
-          dir={"ltr"}
-          className={`relative isolate mx-auto flex h-[343px] w-full items-center justify-center overflow-hidden rounded-[16px] bg-gray-01 lg:h-[300px]`}
-        ></section>
-      )}
-      {boundes.lat !== 0 && boundes.lng !== 0 && (
-        <div
-          className={`relative isolate mx-auto flex h-[343px] w-full  items-center justify-center overflow-hidden rounded-[16px] lg:h-[300px]`}
-        >
-          <MapComponent boundes={boundes} labelTitle="روی نقشه همه کسب و کارهای شهرتو ببین" />
-        </div>
-      )}
-    </section>
+    <>
+      <section
+        className={`mx-auto flex w-[calc(100%-56px)] max-w-[1666px] flex-col gap-8 overflow-hidden rounded-[16px] lg:w-[calc(100%-128px)]`}
+      >
+        {boundes.lat === 0 && boundes.lng === 0 && (
+          <section
+            dir={"ltr"}
+            className={`relative isolate mx-auto flex h-[343px] w-full items-center justify-center overflow-hidden rounded-[16px] bg-gray-01 lg:h-[300px]`}
+          ></section>
+        )}
+        {boundes.lat !== 0 && boundes.lng !== 0 && (
+          <div
+            className={`relative isolate mx-auto flex h-[343px] w-full  items-center justify-center overflow-hidden rounded-[16px] lg:h-[300px]`}
+          >
+            <MapComponent boundes={boundes} labelTitle="روی نقشه همه کسب و کارهای شهرتو ببین" />
+          </div>
+        )}
+      </section>
+    </>
   );
 };
 

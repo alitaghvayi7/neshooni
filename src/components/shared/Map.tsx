@@ -5,6 +5,7 @@ import "leaflet/dist/leaflet.css";
 import { Icon, LatLng, Map } from "leaflet";
 import IconImage from "@/assets/images/icons/marker.png";
 import IconShadowImage from "@/assets/images/icons/shadow-marker.png";
+import { MinusIcon, PlusIcon } from "@heroicons/react/24/outline";
 
 interface Props {
   labelTitle: string;
@@ -22,11 +23,29 @@ const MapComponent = (props: Props) => {
     shadowUrl: IconShadowImage.src,
     shadowAnchor: [33, 33],
   });
-  console.log(process.env.THUNDERFOREST_API_KEY);
 
   return (
     <>
       <section className={`relative isolate h-full w-full overflow-hidden`}>
+        {/*Map Zoom Controls*/}
+        <div className={`absolute left-4 top-4 z-[4] h-[120px] w-[50px] rounded-[8px] bg-white shadow-2xl`}>
+          <button
+            onClick={() => {
+              mapRef?.current?.setZoom(mapRef.current.getZoom() + 1);
+            }}
+            className={`flex h-1/2 w-full items-center justify-center border-b border-write-main`}
+          >
+            <PlusIcon className={`h-6 w-6 text-write-main`} />
+          </button>
+          <button
+            onClick={() => {
+              mapRef?.current?.setZoom(mapRef.current.getZoom() - 1);
+            }}
+            className={`flex h-1/2 w-full items-center justify-center`}
+          >
+            <MinusIcon className={`h-6 w-6 text-write-main`} />
+          </button>
+        </div>
         <div
           className={`pointer-events-none absolute inset-0 z-[3] flex h-full w-full items-end justify-center bg-transparent pb-[48px]`}
         >

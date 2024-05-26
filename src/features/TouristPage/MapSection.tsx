@@ -1,8 +1,9 @@
 "use client";
 
-import { useEffect, useLayoutEffect, useState } from "react";
+import { useEffect, useLayoutEffect, useRef, useState } from "react";
 // import MapWithoutLabels from "@/components/shared/MapWithoutLabels";
 import dynamic from "next/dynamic";
+import { MinusIcon, PlusIcon } from "@heroicons/react/24/outline";
 const MapWithoutLabels = dynamic(() => import("@/components/shared/MapWithoutLabels"), {
   ssr: false,
 });
@@ -30,7 +31,7 @@ const MapSection = () => {
           // Handle errors, e.g. user denied location sharing permissions
           // console.error("Error getting user location:", error);
           setBoundes({ lat: 34.382436, lng: 50.523504 });
-        }
+        },
       );
     } else {
       // Geolocation is not supported by the browser
@@ -41,17 +42,17 @@ const MapSection = () => {
 
   return (
     <section
-      className={`flex flex-col w-[calc(100%-56px)] lg:w-[calc(100%-128px)] rounded-[16px] overflow-hidden max-w-[1666px] mx-auto gap-8`}
+      className={`mx-auto flex w-[calc(100%-56px)] max-w-[1666px] flex-col gap-8 overflow-hidden rounded-[16px] lg:w-[calc(100%-128px)]`}
     >
       {boundes.lat === 0 && boundes.lng === 0 && (
         <section
           dir={"ltr"}
-          className={`w-full h-[343px] lg:h-[300px] mx-auto overflow-hidden rounded-[16px] bg-gray-01 flex items-center justify-center relative isolate`}
+          className={`relative isolate mx-auto flex h-[343px] w-full items-center justify-center overflow-hidden rounded-[16px] bg-gray-01 lg:h-[300px]`}
         ></section>
       )}
       {boundes.lat !== 0 && boundes.lng !== 0 && (
         <div
-          className={`w-full h-[343px] lg:h-[300px] mx-auto overflow-hidden rounded-[16px]  flex items-center justify-center relative isolate`}
+          className={`relative isolate mx-auto flex h-[343px] w-full  items-center justify-center overflow-hidden rounded-[16px] lg:h-[300px]`}
         >
           {typeof window !== undefined && (
             <MapWithoutLabels boundes={boundes} labelTitle="روی نقشه همه کسب و کارهای شهرتو ببین" />
