@@ -1,5 +1,5 @@
 "use client";
-import { useCallback, useEffect, useLayoutEffect, useRef, useState } from "react";
+import { use, useCallback, useEffect, useLayoutEffect, useRef, useState } from "react";
 import dynamic from "next/dynamic";
 import { ChevronLeftIcon, ChevronRightIcon, MinusIcon, PlusIcon } from "@heroicons/react/24/outline";
 import { getBusinessPointsFromLocation } from "@/services/business";
@@ -12,6 +12,23 @@ const MapSection = () => {
   const parentMapRef = useRef<HTMLElement>(null);
   const resizeElementRef = useRef<HTMLDivElement>(null);
   const [percentage, setPercentage] = useState<number | null>(null);
+  const [locations, setLocations] = useState<{
+    tourism: {
+      lat: string;
+      long: string;
+      title: string;
+      id: number;
+    }[];
+    business: {
+      lat: string;
+      long: string;
+      title: string;
+      id: number;
+    }[];
+  }>({
+    business: [],
+    tourism: [],
+  });
   const rightMapRef = useRef<any>(null);
   const leftMapRef = useRef<any>(null);
 
@@ -62,6 +79,10 @@ const MapSection = () => {
           setBoundes({ lat, lng });
           const res = await getBusinessPointsFromLocation(lat, lng);
           console.log(res, "-----------------");
+          setLocations({
+            business: res.data.business,
+            tourism: res.data.tourist,
+          });
         },
         // Error callback function
         (error) => {
@@ -179,6 +200,8 @@ const MapSection = () => {
                 direction={"left"}
                 refrence={leftMapRef}
                 sideMap={rightMapRef}
+                locations={locations.business}
+                type="business"
               />
             </div>
             <div
@@ -197,6 +220,8 @@ const MapSection = () => {
                 direction={"right"}
                 refrence={rightMapRef}
                 sideMap={leftMapRef}
+                locations={locations.tourism}
+                type="tourism"
               />
             </div>
           </section>

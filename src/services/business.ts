@@ -3,14 +3,43 @@ import { baseURL } from "./news";
 
 export const getBusinessPointsFromLocation = async (lat: any, lng: any) => {
   try {
-    const req = await fetch(`${baseURL}/search/map?lat=34.63935180663382&long=50.878894309208384&radius=30&type=shop`, {
-      next: {
-        revalidate: 0,
-      },
-    });
-    return req.json();
+    const [businessReq, tourismReq] = await Promise.all([
+      fetch(`${baseURL}/search/map?lat=${lat}&long=${lng}&radius=30&type=shop`, {
+        next: {
+          revalidate: 0,
+        },
+      }),
+      fetch(`${baseURL}/search/map?lat=${lat}&long=${lng}&radius=30&type=tourism`, {
+        next: {
+          revalidate: 0,
+        },
+      }),
+    ]);
+    if (businessReq.ok && tourismReq.ok) {
+      return {
+        data: {
+          business: (await businessReq.json()).data,
+          tourist: (await tourismReq.json()).data,
+          status: businessReq.status,
+        },
+      };
+    } else {
+      return {
+        data: {
+          business: [],
+          tourist: [],
+          status: businessReq.status,
+        },
+      };
+    }
   } catch (error) {
-    return [];
+    return {
+      data: {
+        business: [],
+        tourist: [],
+        status: 500,
+      },
+    };
   }
 };
 

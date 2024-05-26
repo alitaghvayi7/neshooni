@@ -179,7 +179,7 @@ const IntroductionSection = ({
               شما هم درباره این مغازه دیدگاه ثبت کنید
             </span>
             <Link
-              href={`/business/${id}/comment`}
+              href={`/tourist/${id}/comment`}
               className="mt-9 flex w-full items-center justify-center rounded-[16px] bg-yellow-02 py-3 text-write-main"
             >
               ثبت دیدگاه
@@ -188,30 +188,6 @@ const IntroductionSection = ({
           <div className="flex h-full w-full flex-col lg:w-[55%]">
             <h2 className="text-[20px] font-[600] text-write-main">نظرات و تجربه کاربران</h2>
             <div className="mt-4 flex w-full flex-col gap-3">
-              {/* start single comment */}
-              <div className="flex w-full flex-col rounded-[16px] bg-white px-4 py-6 lg:px-[56px] lg:py-8">
-                <div className="flex w-full items-center justify-between">
-                  <div className="flex items-center gap-4">
-                    <span className="flex h-[48px] w-[48px] items-center justify-center rounded-full bg-blue-06 lg:h-[80px] lg:w-[80px]">
-                      <UserIcon className="h-[24px] w-[24px] text-white lg:h-[40px] lg:w-[40px]" />
-                    </span>
-                    <div className=" flex flex-col justify-between">
-                      <span className="text-[14px] font-[600] text-write-main lg:text-[16px]">شهرام طالبی</span>
-                      <span className="text-[12px] font-[300] text-write-main lg:text-[14px]">۱ اسفند ۱۴۰۱</span>
-                    </div>
-                  </div>
-                  <ShareIcon className={`h-6 w-6 cursor-pointer text-write-03`} />
-                </div>
-                <p className="mt-4 text-[12px] font-[400] leading-5 text-write-main lg:text-[20px] lg:leading-7">
-                  اگه به کرمانشاه سفر کردید برای دیدن زیبایی و وسعت شهر حتما سری به بام کرمانشاه بزنید. در این خبری از
-                  ترافیک و شلوغی شهر نیست و میتونید چشم انداز زیبایی از شهر رو به خصوص در شب ببینید.
-                </p>
-                <span className="my-5 block h-[2px] w-full bg-gray-02"></span>
-                <span className="cursor-pointer text-[12px] font-[400] leading-7 text-write-main lg:text-[14px]">
-                  پاسخ به این دیدگاه
-                </span>
-              </div>
-              {/* end single comment */}
               {/* start single comment */}
               <div className="flex w-full flex-col rounded-[16px] bg-white px-4 py-6 lg:px-[56px] lg:py-8">
                 <div className="flex w-full items-center justify-between">
